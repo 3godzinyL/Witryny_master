@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>INF.03 — Pełny index: HTML + CSS + JS + PHP (bez skrótów)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#f6f7f8;
+      --panel:#ffffff;
+      --soft:#f0f2f5;
+      --border:#d4d7de;
+      --ink:#101418;
+      --ink-dim:#5f6672;
+      --code-bg:#0f172a;
+      --code-fg:#e6edf3;
+      --panel-gray:#f3f4f6;
+      --box-dark:#374151;
+      --accent:#0ea5e9;
+      --accent-2:#8b5cf6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, Arial, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.55;
+      padding:24px;
+    }
+    header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+    .brand{font-weight:900; letter-spacing:.2px}
+    nav.tabs a{
+      display:inline-block; margin-right:8px; padding:8px 14px;
+      text-decoration:none; color:#0b0f14; background:#e7eaf0; border-radius:10px; border:1px solid var(--border);
+      font-weight:700;
+    }
+    section{
+      margin:28px 0;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:0 8px 30px rgba(2,6,23,.06);
+      padding:22px;
+    }
+    section>h2{margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--soft)}
+    .element{margin:16px 0;padding:14px;background:var(--soft);border:1px solid var(--border);border-radius:12px}
+    .element h3{margin:0 0 10px}
+    .preview{
+      background:#eef1f6;
+      padding:14px;
+      display:block;
+      border:1px solid var(--border);
+      color:var(--ink);
+      border-radius:10px;
+    }
+    code, pre.code{
+      display:block; background:var(--code-bg); color:var(--code-fg);
+      padding:12px 14px; border-radius:10px; margin-top:10px; overflow:auto; white-space:pre;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.92rem;
+    }
+    .note{font-size:.92rem;color:var(--ink-dim)}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:14px}
+    .grid3{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:14px}
+    .grid_auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .full{width:100%}
+
+    /* === playground boxes === */
+    .panel{display:inline-block;vertical-align:top;width:280px;min-height:210px;margin:8px 10px;padding:10px;background:var(--panel-gray);border:1px solid var(--border);border-radius:12px}
+    .legend{font-size:.86rem;color:#374151;margin:0 0 6px 2px;font-weight:800}
+    .stage{position:relative;width:100%;min-height:140px;border:1px dashed #b7bfcc;background:#fafbff;border-radius:10px;overflow:auto;padding:8px}
+    .stage.clean{overflow:hidden}
+    .box{width:64px;height:64px;background:var(--box-dark);border:2px solid #9aa4b2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;user-select:none;border-radius:10px}
+    .box.s{width:40px;height:40px}
+    .ghost{width:40px;height:40px;background:#e7ebf2;border:1px dashed #aab4c2;color:#55606f;display:flex;align-items:center;justify-content:center;border-radius:8px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    /* position helpers */
+    .pos-static{position:static}
+    .pos-relative{position:relative}
+    .pos-absolute{position:absolute}
+    .pos-sticky{position:sticky}
+    .pos-fixed{position:fixed}
+
+    /* === PRO (namespaced) === */
+    #css_pro .card{
+      display:flex;flex-direction:column;gap:8px;background:var(--panel-gray);border:1px solid var(--border);border-radius:12px;padding:12px
+    }
+    #css_pro .title{font-weight:900;font-size:.98rem}
+    #css_pro .mini{font-size:.86rem;color:#fff;font-weight:800;background:#0f172a;padding:6px 10px;border-radius:10px;display:inline-block;margin:4px 0 10px}
+    #css_pro .examples{display:none;margin-top:8px;padding:8px;background:#eef2f8;border:1px solid var(--border);border-radius:10px}
+    #css_pro .examples.open{display:block}
+    #css_pro .toggle{
+      display:flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--border);
+      background:#e9eef6;border-radius:10px;padding:6px 10px;font-weight:800;user-select:none
+    }
+    #css_pro .chev{transition:transform .18s ease}
+    #css_pro .chev.rot{transform:rotate(180deg)}
+
+    /* table + form styling (no skrótów) */
+    table.fancy{width:100%;border-collapse:collapse;background:#fff;border:1px solid #cfd6e0;border-radius:10px;overflow:hidden}
+    table.fancy caption{caption-side:top;padding:8px 12px;font-weight:800}
+    table.fancy th, table.fancy td{padding:10px 12px;border-bottom:1px solid #e3e8ef;text-align:left}
+    table.fancy thead th{background:#f3f6fb}
+    table.fancy tfoot td{background:#f9fbff;font-weight:700}
+    colgroup col:nth-child(1){background:#fcfcfe}
+    form.big label{display:block;margin:8px 0 4px;font-weight:700}
+    form.big input, form.big select, form.big textarea{width:100%;padding:10px 12px;border:1px solid #cfd6e0;border-radius:10px;background:#fff}
+    form.big .row.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    form.big fieldset{border:1px solid #cfd6e0;border-radius:12px;padding:12px;margin:10px 0;background:#f7f9fc}
+    form.big legend{font-weight:900;padding:0 8px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}
+    .btn.sec{background:#64748b}
+    .btn.alt{background:var(--accent-2)}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">INF.03 — Pełny index: HTML + CSS + JS + PHP</div>
+    <nav class="tabs">
+      <a href="#html">HTML</a>
+      <a href="#css_pro">CSS</a>
+      <a href="#js">JS</a>
+      <a href="#php">PHP</a>
+      <a href="#mysql">MySQL</a>
+    </nav>
+  </header>
+
+  <!-- =================== HTML =================== -->
+  <section id="html">
+    <h2>HTML — Tekstowe, Semantyka, Tabele/Formularze</h2>
+
+    <!-- 1) Tekstowe: H1..H5 with ONLY H1 code under -->
+    <div class="element">
+      <h3>1) Nagłówki H1..H5 (kod pod spodem tylko dla &lt;h1&gt;)</h3>
+      <div class="preview">
+        <div style="display:grid;gap:4px">
+          <h1 style="margin:0">Nagłówek H1</h1>
+          <h2 style="margin:0">Nagłówek H2</h2>
+          <h3 style="margin:0">Nagłówek H3</h3>
+          <h4 style="margin:0">Nagłówek H4</h4>
+          <h5 style="margin:0">Nagłówek H5</h5>
+        </div>
+      </div>
+      <pre class="code">&lt;h1&gt;Nagłówek H1&lt;/h1&gt;</pre>
+    </div>
+
+    <!-- 2) Paragraf + bold + italic -->
+    <div class="element">
+      <h3>2) Paragraf + pogrubienie + kursywa (w jednym panelu)</h3>
+      <div class="preview">
+        <p>To jest paragraf.</p>
+        <strong>Pogrubiony tekst</strong><br/>
+        <em>Kursywa</em>
+      </div>
+      <pre class="code">&lt;p&gt;To jest paragraf.&lt;/p&gt;
+&lt;strong&gt;Pogrubiony tekst&lt;/strong&gt;
+&lt;em&gt;Kursywa&lt;/em&gt;</pre>
+    </div>
+
+    <!-- 3) Link osobno -->
+    <div class="element">
+      <h3>3) Link</h3>
+      <div class="preview">
+        <a href="#" title="Przykładowy link">To jest link</a>
+      </div>
+      <pre class="code">&lt;a href="#" title="Przykładowy link"&gt;To jest link&lt;/a&gt;</pre>
+    </div>
+
+    <!-- 4) Semantyka -->
+    <div class="element">
+      <h3>4) Semantyka</h3>
+      <div class="preview">
+        <header style="padding:6px;border:1px solid #cfd6e0;margin-bottom:6px;border-radius:10px;background:#fff">Header</header>
+        <nav style="padding:6px;border:1px solid #cfd6e0;margin-bottom:6px;border-radius:10px;background:#fff">Nav</nav>
+        <main style="padding:6px;border:1px solid #cfd6e0;margin-bottom:6px;border-radius:10px;background:#fff">
+          <section>Section</section>
+        </main>
+        <aside style="padding:6px;border:1px solid #cfd6e0;margin-bottom:6px;border-radius:10px;background:#fff">Aside</aside>
+        <footer style="padding:6px;border:1px solid #cfd6e0;border-radius:10px;background:#fff">Footer</footer>
+      </div>
+      <div class="grid3" style="margin-top:10px">
+        <pre class="code">&lt;header&gt;...&lt;/header&gt;</pre>
+        <pre class="code">&lt;nav&gt;...&lt;/nav&gt;</pre>
+        <pre class="code">&lt;main&gt;&lt;section&gt;...&lt;/section&gt;&lt;/main&gt;</pre>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <pre class="code">&lt;aside&gt;...&lt;/aside&gt;</pre>
+        <pre class="code">&lt;footer&gt;...&lt;/footer&gt;</pre>
+      </div>
+    </div>
+
+    <!-- 5) Tabele i formularze: pełne kody -->
+    <div class="element">
+      <h3>5) Tabele i formularze (pełne kody, bez skrótów)</h3>
+      <div class="grid2">
+        <!-- Tabela -->
+        <div class="preview">
+          <table class="fancy">
+            <caption>Użytkownicy</caption>
+            <colgroup>
+              <col span="1" /><col span="1" /><col span="1" />
+            </colgroup>
+            <thead>
+              <tr><th>ID</th><th>Imię</th><th>Nazwisko</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Jan</td><td>Kowalski</td></tr>
+              <tr><td>2</td><td>Ala</td><td>Nowak</td></tr>
+              <tr><td>3</td><td>Ola</td><td>Zielińska</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td colspan="3">Razem: 3</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div>
+<pre class="code">&lt;table class="fancy"&gt;
+  &lt;caption&gt;Użytkownicy&lt;/caption&gt;
+  &lt;colgroup&gt;
+    &lt;col span="1" /&gt;&lt;col span="1" /&gt;&lt;col span="1" /&gt;
+  &lt;/colgroup&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Imię&lt;/th&gt;&lt;th&gt;Nazwisko&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Jan&lt;/td&gt;&lt;td&gt;Kowalski&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Ala&lt;/td&gt;&lt;td&gt;Nowak&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Ola&lt;/td&gt;&lt;td&gt;Zielińska&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;&lt;td colspan="3"&gt;Razem: 3&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</pre>
+        </div>
+
+        <!-- Formularz -->
+        <div class="preview">
+          <form class="big" action="form.php" method="post" enctype="multipart/form-data">
+            <fieldset>
+              <legend>Dane podstawowe</legend>
+              <div class="row grid">
+                <div>
+                  <label for="imie">Imię</label>
+                  <input id="imie" name="imie" type="text" required placeholder="Jan">
+                </div>
+                <div>
+                  <label for="nazw">Nazwisko</label>
+                  <input id="nazw" name="nazwisko" type="text" required placeholder="Kowalski">
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required placeholder="email@domena.pl">
+                </div>
+                <div>
+                  <label for="tel">Telefon</label>
+                  <input id="tel" name="tel" type="tel" pattern="[0-9\s\+]{6,}" placeholder="+48 600 000 000">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Szczegóły</legend>
+              <div class="row grid">
+                <div>
+                  <label for="haslo">Hasło</label>
+                  <input id="haslo" name="haslo" type="password" minlength="6" required>
+                </div>
+                <div>
+                  <label for="wiek">Wiek</label>
+                  <input id="wiek" name="wiek" type="number" min="1" max="120" step="1">
+                </div>
+                <div>
+                  <label for="data">Data</label>
+                  <input id="data" name="data" type="date">
+                </div>
+                <div>
+                  <label for="kolor">Ulubiony kolor</label>
+                  <input id="kolor" name="kolor" type="color" value="#0ea5e9">
+                </div>
+                <div>
+                  <label for="zakres">Zakres (1-10)</label>
+                  <input id="zakres" name="zakres" type="range" min="1" max="10" value="5">
+                </div>
+                <div>
+                  <label for="plik">Plik</label>
+                  <input id="plik" name="plik" type="file">
+                </div>
+              </div>
+              <div class="row grid">
+                <div>
+                  <label for="rola">Rola</label>
+                  <select id="rola" name="rola">
+                    <option value="user">Użytkownik</option>
+                    <option value="admin">Administrator</option>
+                    <option value="mod">Moderator</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Płeć</label>
+                  <div class="row" style="align-items:center">
+                    <label class="mono"><input type="radio" name="plec" value="k"> Kobieta</label>
+                    <label class="mono"><input type="radio" name="plec" value="m"> Mężczyzna</label>
+                    <label class="mono"><input type="radio" name="plec" value="i"> Inna</label>
+                  </div>
+                </div>
+                <div>
+                  <label>Zgody</label>
+                  <div class="row" style="grid-template-columns:1fr">
+                    <label class="mono"><input type="checkbox" name="reg" required> Akceptuję regulamin</label>
+                    <label class="mono"><input type="checkbox" name="news"> Newsletter</label>
+                  </div>
+                </div>
+              </div>
+              <label for="bio">Opis</label>
+              <textarea id="bio" name="bio" rows="4" placeholder="Napisz coś..."></textarea>
+            </fieldset>
+
+            <div class="row">
+              <button class="btn" type="submit">Wyślij</button>
+              <button class="btn sec" type="reset">Wyczyść</button>
+            </div>
+          </form>
+        </div>
+        <div>
+<pre class="code">&lt;form class="big" action="form.php" method="post" enctype="multipart/form-data"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Dane podstawowe&lt;/legend&gt;
+    &lt;div class="row grid"&gt;
+      &lt;div&gt;
+        &lt;label for="imie"&gt;Imię&lt;/label&gt;
+        &lt;input id="imie" name="imie" type="text" required placeholder="Jan"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="nazw"&gt;Nazwisko&lt;/label&gt;
+        &lt;input id="nazw" name="nazwisko" type="text" required placeholder="Kowalski"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="email"&gt;Email&lt;/label&gt;
+        &lt;input id="email" name="email" type="email" required placeholder="email@domena.pl"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="tel"&gt;Telefon&lt;/label&gt;
+        &lt;input id="tel" name="tel" type="tel" pattern="[0-9\s\+]{6,}" placeholder="+48 600 000 000"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Szczegóły&lt;/legend&gt;
+    &lt;div class="row grid"&gt;
+      &lt;div&gt;
+        &lt;label for="haslo"&gt;Hasło&lt;/label&gt;
+        &lt;input id="haslo" name="haslo" type="password" minlength="6" required&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="wiek"&gt;Wiek&lt;/label&gt;
+        &lt;input id="wiek" name="wiek" type="number" min="1" max="120" step="1"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="data"&gt;Data&lt;/label&gt;
+        &lt;input id="data" name="data" type="date"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="kolor"&gt;Ulubiony kolor&lt;/label&gt;
+        &lt;input id="kolor" name="kolor" type="color" value="#0ea5e9"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="zakres"&gt;Zakres (1-10)&lt;/label&gt;
+        &lt;input id="zakres" name="zakres" type="range" min="1" max="10" value="5"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label for="plik"&gt;Plik&lt;/label&gt;
+        &lt;input id="plik" name="plik" type="file"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row grid"&gt;
+      &lt;div&gt;
+        &lt;label for="rola"&gt;Rola&lt;/label&gt;
+        &lt;select id="rola" name="rola"&gt;
+          &lt;option value="user"&gt;Użytkownik&lt;/option&gt;
+          &lt;option value="admin"&gt;Administrator&lt;/option&gt;
+          &lt;option value="mod"&gt;Moderator&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label&gt;Płeć&lt;/label&gt;
+        &lt;div class="row" style="align-items:center"&gt;
+          &lt;label class="mono"&gt;&lt;input type="radio" name="plec" value="k"&gt; Kobieta&lt;/label&gt;
+          &lt;label class="mono"&gt;&lt;input type="radio" name="plec" value="m"&gt; Mężczyzna&lt;/label&gt;
+          &lt;label class="mono"&gt;&lt;input type="radio" name="plec" value="i"&gt; Inna&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label&gt;Zgody&lt;/label&gt;
+        &lt;div class="row" style="grid-template-columns:1fr"&gt;
+          &lt;label class="mono"&gt;&lt;input type="checkbox" name="reg" required&gt; Akceptuję regulamin&lt;/label&gt;
+          &lt;label class="mono"&gt;&lt;input type="checkbox" name="news"&gt; Newsletter&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;label for="bio"&gt;Opis&lt;/label&gt;
+    &lt;textarea id="bio" name="bio" rows="4" placeholder="Napisz coś..."&gt;&lt;/textarea&gt;
+  &lt;/fieldset&gt;
+
+  &lt;div class="row"&gt;
+    &lt;button class="btn" type="submit"&gt;Wyślij&lt;/button&gt;
+    &lt;button class="btn sec" type="reset"&gt;Wyczyść&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CSS (PRO) =================== -->
+  <section id="css_pro">
+    <h2>CSS — Pozycjonowanie (1) ignorują, (2) reagują z rozwijaniem)</h2>
+
+    <!-- 1) Ignorują offsets -->
+    <div class="element">
+      <div class="mini">1) Ignorują <code>top/right/bottom/left</code> (i <code>z-index</code>)</div>
+      <div class="grid_auto">
+        <div class="card">
+          <div class="title">Inline (span) + <code>left/top</code> — ignorowane</div>
+          <div class="stage clean">
+            <div class="row">
+              <div class="ghost">—</div>
+              <span class="box pos-static" style="display:inline-block; left:22px; top:12px">inline</span>
+            </div>
+          </div>
+          <pre class="code">span { position: static; left:22px; top:12px; /* brak efektu */ }</pre>
+        </div>
+        <div class="card">
+          <div class="title">Flex item (static) + <code>top/left</code> — ignorowane</div>
+          <div class="stage clean" style="display:flex;gap:8px;align-items:center">
+            <div class="ghost">—</div>
+            <div style="display:flex;gap:8px;border:1px dashed #cbd5e1;padding:8px;border-radius:8px">
+              <div class="box pos-static" style="left:18px">A</div>
+              <div class="box pos-static">B</div>
+            </div>
+          </div>
+          <pre class="code">.item { position: static; left:18px; /* nic nie zmieni w flex */ }</pre>
+        </div>
+        <div class="card">
+          <div class="title">Grid item (static) + <code>right</code> — ignorowane</div>
+          <div class="stage clean" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div class="ghost">—</div>
+            <div class="box pos-static" style="right:20px">#1</div>
+            <div class="box pos-static">#2</div>
+          </div>
+          <pre class="code">.cell { position: static; right:20px; /* brak efektu w grid */ }</pre>
+        </div>
+        <div class="card">
+          <div class="title"><code>z-index</code> na static — ignorowany</div>
+          <div class="stage clean" style="position:relative;height:150px">
+            <div class="box pos-static" style="position:static; z-index:999; width:70px; height:70px; background:#1f2937; color:#fff">static</div>
+            <div class="box pos-absolute" style="left:24px; top:24px; z-index:2; background:#334155">abs 2</div>
+            <div class="box pos-absolute" style="left:38px; top:38px; z-index:3; background:#475569">abs 3</div>
+          </div>
+          <pre class="code">.static { position: static; z-index: 999; /* ignorowane */ }</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2) Reagują offsets — base + expandable -->
+    <div class="element">
+      <div class="mini">2) Reagują na <code>top/right/bottom/left</code> — baza + rozwijane przykłady</div>
+      <div class="grid_auto">
+
+        <!-- RELATIVE -->
+        <div class="card">
+          <div class="title">relative — baza (bez offsetów)</div>
+          <div class="stage clean" style="display:flex;gap:10px;align-items:center">
+            <div class="ghost">—</div>
+            <div class="box pos-relative">rel</div>
+          </div>
+          <div class="toggle" data-target="#ex-rel">
+            <span class="chev">▾</span> Pokaż przykłady: <code>left/right/top/bottom</code>
+          </div>
+          <div id="ex-rel" class="examples">
+            <div class="stage clean" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <div class="ghost">—</div>
+              <div class="box pos-relative" style="left:16px">L</div>
+              <div class="box pos-relative" style="right:16px">R</div>
+              <div class="box pos-relative" style="top:12px">T</div>
+              <div class="box pos-relative" style="bottom:12px">B</div>
+            </div>
+            <pre class="code">.box { position: relative; left:16px } /* analogicznie right/top/bottom */</pre>
+          </div>
+        </div>
+
+        <!-- ABSOLUTE -->
+        <div class="card">
+          <div class="title">absolute — baza (bez offsetów)</div>
+          <div class="stage clean pos-relative" style="height:160px">
+            <div class="ghost" style="position:absolute;left:8px;top:8px">—</div>
+            <div class="box pos-absolute" style="left:50%;top:50%;transform:translate(-50%,-50%)">abs</div>
+          </div>
+          <div class="toggle" data-target="#ex-abs">
+            <span class="chev">▾</span> Pokaż rogi: <code>TL/TR/BL/BR</code>
+          </div>
+          <div id="ex-abs" class="examples">
+            <div class="stage clean pos-relative" style="height:160px">
+              <div class="box s pos-absolute" style="left:8px;top:8px">TL</div>
+              <div class="box s pos-absolute" style="right:8px;top:8px">TR</div>
+              <div class="box s pos-absolute" style="left:8px;bottom:8px">BL</div>
+              <div class="box s pos-absolute" style="right:8px;bottom:8px">BR</div>
+            </div>
+            <pre class="code">.wrap{position:relative} .box{position:absolute; right:8px; top:8px}</pre>
+          </div>
+        </div>
+
+        <!-- FIXED -->
+        <div class="card">
+          <div class="title">fixed — baza (bez offsetów)</div>
+          <div class="stage clean" style="height:120px">
+            <div class="ghost">—</div>
+            <div class="box pos-fixed" style="bottom:14px; right:14px; opacity:.9">fixed</div>
+          </div>
+          <div class="toggle" data-target="#ex-fix">
+            <span class="chev">▾</span> Pokaż: <code>top/right/bottom/left</code>
+          </div>
+          <div id="ex-fix" class="examples">
+            <div class="stage clean" style="height:160px">
+              <div class="box s pos-fixed" style="top:8px;left:8px">TL</div>
+              <div class="box s pos-fixed" style="top:8px;right:8px">TR</div>
+              <div class="box s pos-fixed" style="bottom:8px;left:8px">BL</div>
+              <div class="box s pos-fixed" style="bottom:8px;right:8px">BR</div>
+            </div>
+            <pre class="code">.box{position:fixed; bottom:8px; right:8px}</pre>
+          </div>
+        </div>
+
+        <!-- STICKY -->
+        <div class="card">
+          <div class="title">sticky — baza (bez offsetów)</div>
+          <div class="stage" style="height:180px; overflow:auto">
+            <div style="height:16px"></div>
+            <div class="ghost">—</div>
+            <div class="box pos-sticky" style="top:0;margin-top:220px;background:#0f172a">sticky</div>
+            <div style="height:340px"></div>
+          </div>
+          <div class="toggle" data-target="#ex-stk">
+            <span class="chev">▾</span> Pokaż: <code>top/bottom</code> (+ info o left/right)</div>
+          <div id="ex-stk" class="examples">
+            <div class="stage" style="height:200px; overflow:auto">
+              <div style="height:14px"></div>
+              <div class="box pos-sticky" style="top:0;margin-top:160px">top</div>
+              <div class="box pos-sticky" style="bottom:0;margin-top:260px">bottom</div>
+              <div style="height:260px"></div>
+            </div>
+            <div class="note">Uwaga: w układzie pionowym <code>left/right</code> dla <code>sticky</code> zwykle nie mają efektu (działają przy poziomym scrollu).</div>
+            <pre class="code">.box{position:sticky; top:0}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== JS =================== -->
+  <section id="js">
+    <h2>JavaScript — Sekcja 1: Selekcja i odczyt/zapis</h2>
+
+    <!-- 1.1 input + button -> alert -->
+    <div class="element">
+      <h3>1.1 Tekst → Alert (input + button)</h3>
+      <div class="grid2">
+        <div class="preview">
+          <input id="ex1_text" placeholder="Wpisz tekst">
+          <button id="ex1_btn" class="btn">Pokaż alert</button>
+        </div>
+        <div>
+<pre class="code">const t = document.querySelector('#ex1_text');
+const b = document.querySelector('#ex1_btn');
+b.addEventListener('click', () =&gt; { alert(t.value); });</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.2 select onchange alert + select + button -->
+    <div class="element">
+      <h3>1.2 &lt;select&gt;: alert on change + wariant z buttonem</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div class="row">
+            <label>Wybór (onchange): 
+              <select id="ex2_sel_change">
+                <option value="A">Opcja A</option>
+                <option value="B">Opcja B</option>
+              </select>
+            </label>
+            <span class="note">zmiana =&gt; alert</span>
+          </div>
+          <div class="row">
+            <label>Wybór (z buttonem): 
+              <select id="ex2_sel_btn">
+                <option value="1">Opcja 1</option>
+                <option value="2">Opcja 2</option>
+              </select>
+            </label>
+            <button id="ex2_btn" class="btn">Sprawdź</button>
+          </div>
+        </div>
+        <div>
+<pre class="code">const s1 = document.querySelector('#ex2_sel_change');
+s1.addEventListener('change', () =&gt; alert('Wybrano: ' + s1.value));
+
+const s2 = document.querySelector('#ex2_sel_btn');
+const sb = document.querySelector('#ex2_btn');
+sb.addEventListener('click', () =&gt; alert('Wybrano: ' + s2.value));</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.3 radio + alert -->
+    <div class="element">
+      <h3>1.3 Radio ×3 — alert wybranej</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div class="row">
+            <label class="mono"><input type="radio" name="r1" value="X"> X</label>
+            <label class="mono"><input type="radio" name="r1" value="Y"> Y</label>
+            <label class="mono"><input type="radio" name="r1" value="Z"> Z</label>
+          </div>
+          <button id="ex3_btn" class="btn">Pokaż zaznaczoną</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#ex3_btn').addEventListener('click', () =&gt; {
+  const picked = document.querySelector('input[name="r1"]:checked');
+  alert(picked ? picked.value : 'Nic nie wybrano');
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.4 checkboxes + button -->
+    <div class="element">
+      <h3>1.4 CheckBox ×2 — alert z zaznaczonych</h3>
+      <div class="grid2">
+        <div class="preview">
+          <label class="mono"><input type="checkbox" id="cb1"> C1</label>
+          <label class="mono"><input type="checkbox" id="cb2"> C2</label>
+          <button id="ex4_btn" class="btn">Sprawdź</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#ex4_btn').addEventListener('click', () =&gt; {
+  const r = [];
+  if (document.querySelector('#cb1').checked) r.push('C1');
+  if (document.querySelector('#cb2').checked) r.push('C2');
+  alert(r.length ? 'Zaznaczone: ' + r.join(', ') : 'Brak zaznaczeń');
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <h2>JavaScript — Sekcja 2: Matematyka i data</h2>
+
+    <!-- 2.1 kalkulator 2 liczby + operator -->
+    <div class="element">
+      <h3>2.1 Dwie liczby + operator (+, -, *, :) → wynik</h3>
+      <div class="grid2">
+        <div class="preview">
+          <input id="m_a" class="mono" placeholder="Liczba 1">
+          <select id="m_op" class="mono">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">:</option>
+          </select>
+          <input id="m_b" class="mono" placeholder="Liczba 2">
+          <button id="m_go" class="btn">Oblicz</button>
+        </div>
+        <div>
+<pre class="code">const A = document.querySelector('#m_a');
+const B = document.querySelector('#m_b');
+const OP = document.querySelector('#m_op');
+document.querySelector('#m_go').addEventListener('click', () =&gt; {
+  const a = parseFloat(A.value), b = parseFloat(B.value);
+  if (Number.isNaN(a) || Number.isNaN(b)) { alert('Podaj liczby'); return; }
+  let out = 0;
+  switch(OP.value){
+    case '+': out = a + b; break;
+    case '-': out = a - b; break;
+    case '*': out = a * b; break;
+    case '/': out = b === 0 ? 'dzielenie przez zero' : (a / b); break;
+  }
+  alert('Wynik: ' + out);
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 Formuły/algorytmy bez elementów -->
+    <div class="element">
+      <h3>2.2 Wzorce (bez elementów) — min, max, średnia, NWD, inne</h3>
+<pre class="code">// najmniejsza, największa, średnia
+function arrMin(arr){ return Math.min(...arr); }
+function arrMax(arr){ return Math.max(...arr); }
+function arrAvg(arr){ return arr.reduce((s,x)=&gt;s+x,0) / (arr.length||1); }
+
+// NWD (Euclid) i NWW
+function gcd(a,b){ while(b!==0){ [a,b] = [b, a % b]; } return Math.abs(a); }
+function lcm(a,b){ return Math.abs(a*b) / gcd(a,b); }
+
+// inne przydatne
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function round2(x){ return Math.round(x*100)/100; }
+const ex = {
+  pow: Math.pow(2,10),
+  sqrt: Math.sqrt(49),
+  abs:  Math.abs(-7),
+  floor: Math.floor(3.9),
+  ceil:  Math.ceil(3.1)
+};</pre>
+      <h4>2.3 Data (bez elementów) — alert aktualnej daty</h4>
+<pre class="code">function showNow(){
+  alert(new Date().toLocaleString('pl-PL'));
+}
+// showNow(); // wywołaj gdy chcesz zobaczyć alert</pre>
+    </div>
+
+    <h2>JavaScript — Sekcja 3: Pętle i warunki</h2>
+
+    <!-- 3.1 for 1..100 do label -->
+    <div class="element">
+      <h3>3.1 for — wypisz 1..100 do etykiety</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div id="for_out" class="preview" style="min-height:44px;background:#fff"></div>
+          <button id="for_btn" class="btn">Policz 1..100</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#for_btn').addEventListener('click', () =&gt; {
+  let s = '';
+  for(let i=1;i&lt;=100;i++){ s += (i + (i&lt;100 ? ' ' : '')); }
+  document.querySelector('#for_out').textContent = s;
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 while -> '*' * n (alert) -->
+    <div class="element">
+      <h3>3.2 while — n gwiazdek (*) w alercie</h3>
+      <div class="grid2">
+        <div class="preview">
+          <input id="while_n" class="mono" placeholder="Podaj n (np. 7)">
+          <button id="while_btn" class="btn">Pokaż gwiazdki</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#while_btn').addEventListener('click', () =&gt; {
+  let n = parseInt(document.querySelector('#while_n').value, 10);
+  if (Number.isNaN(n) || n&lt;0) { alert('Podaj n ≥ 0'); return; }
+  let i=0, out='';
+  while(i&lt;n){ out += '*'; i++; }
+  alert(out);
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 if / else -->
+    <div class="element">
+      <h3>3.3 if / else — sprawdź czy wpisano „a” lub „b”</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div class="row"><span class="mono">a</span></div>
+          <div class="row"><span class="mono">b</span></div>
+          <input id="if_inp" class="mono" placeholder="Wpisz a lub b">
+          <button id="if_btn" class="btn">Sprawdź</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#if_btn').addEventListener('click', () =&gt; {
+  const v = (document.querySelector('#if_inp').value||'').trim().toLowerCase();
+  if (v === 'a') alert('tak');
+  else if (v === 'b') alert('b');
+  else alert('inne');
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.4 Tablice i obiekty -->
+    <div class="element">
+      <h3>3.4 Tablice i obiekty — pobierz dane z tabeli</h3>
+      <div class="grid2">
+        <div class="preview">
+          <table class="fancy" id="ao_tab">
+            <caption>Wpisz dane</caption>
+            <thead><tr><th>Imię</th><th>Wiek</th></tr></thead>
+            <tbody>
+              <tr><td><input class="mono" placeholder="Ala"></td><td><input class="mono" placeholder="19"></td></tr>
+              <tr><td><input class="mono" placeholder="Jan"></td><td><input class="mono" placeholder="23"></td></tr>
+              <tr><td><input class="mono" placeholder="Ola"></td><td><input class="mono" placeholder="21"></td></tr>
+            </tbody>
+          </table>
+          <button id="ao_btn" class="btn">Zbierz do tablicy obiektów</button>
+        </div>
+        <div>
+<pre class="code">document.querySelector('#ao_btn').addEventListener('click', () =&gt; {
+  const rows = Array.from(document.querySelectorAll('#ao_tab tbody tr'));
+  const out = rows.map(tr =&gt; {
+    const [nameEl, ageEl] = tr.querySelectorAll('input');
+    return { name: nameEl.value.trim(), age: Number(ageEl.value) };
+  });
+  alert(JSON.stringify(out));
+});
+
+// inne użycia:
+const names = ['Ala','Jan','Ola'];
+const upper = names.map(x =&gt; x.toUpperCase());   // map
+const onlyA = names.filter(x =&gt; x.startsWith('A')); // filter
+const total = [1,2,3].reduce((s,x)=&gt;s+x,0);        // reduce
+for (const n of names){ /* ... */ }                // for-of
+const person = {id:1, name:'Ala'};
+const {id, name} = person; // destrukturyzacja</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.5 Funkcje -->
+    <div class="element">
+      <h3>3.5 Funkcje — przykłady ważne na INF.03</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div class="row">
+            <input id="fn_n" class="mono" placeholder="n (np. 5)">
+            <button id="fn_fact" class="btn">Silnia(n)</button>
+            <button id="fn_prime" class="btn alt">Czy pierwsza?</button>
+          </div>
+        </div>
+        <div>
+<pre class="code">// deklaracja + wartość domyślna + typowy zwrot
+function sum(a=0,b=0){ return a + b; }
+
+// silnia iteracyjnie
+function factorial(n){
+  n = Math.max(0, Math.floor(n||0));
+  let r=1; for(let i=2;i&lt;=n;i++) r*=i; return r;
+}
+
+// test pierwszości (prosty)
+function isPrime(n){
+  n = Math.floor(n);
+  if (n&lt;2) return false;
+  for(let i=2;i*i&lt;=n;i++){ if(n%i===0) return false; }
+  return true;
+}
+
+// arrow function
+const double = x =&gt; x*2;
+
+// wywołania na UI:
+document.querySelector('#fn_fact').addEventListener('click', () =&gt; {
+  const n = parseInt(document.querySelector('#fn_n').value,10);
+  alert('n! = ' + factorial(n));
+});
+document.querySelector('#fn_prime').addEventListener('click', () =&gt; {
+  const n = parseInt(document.querySelector('#fn_n').value,10);
+  alert(isPrime(n) ? 'pierwsza' : 'złożona');
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.6 Dwie dodatkowe sekcje: String/Number oraz JSON/localStorage -->
+    <div class="element">
+      <h3>3.6 String/Number — przydatne metody</h3>
+<pre class="code">const s = '  Ala ma kota  ';
+const trimmed = s.trim();
+const parts = 'Ala,Jan,Ola'.split(',');
+const repl = 'Ala'.replace('A','O');
+const includes = 'frontend'.includes('end');
+const num = Number.parseFloat('3.14');
+const fixed = (3.14159).toFixed(2);
+</pre>
+      <h3>3.7 JSON i localStorage</h3>
+<pre class="code">const obj = {a:1,b:2};
+const json = JSON.stringify(obj);
+const back = JSON.parse(json);
+localStorage.setItem('cfg', json);
+const read = JSON.parse(localStorage.getItem('cfg') || '{}');</pre>
+    </div>
+  </section>
+
+  <!-- =================== PHP =================== -->
+  <section id="php">
+    <h2>PHP — podstawy (pełne, bez skrótów w blokach)</h2>
+
+    <div class="element">
+      <h3>Hello + zmienne + konkatenacja</h3>
+<pre class="code">&lt;?php
+$name = "Ala";
+$age = 19;
+echo "Cześć, " . $name . "! Masz " . $age . " lat.";
+?&gt;</pre>
+    </div>
+
+    <div class="element">
+      <h3>Warunki, pętle, tablice asocjacyjne</h3>
+<pre class="code">&lt;?php
+$users = [
+  ["id" =&gt; 1, "name" =&gt; "Ala", "age" =&gt; 19],
+  ["id" =&gt; 2, "name" =&gt; "Jan", "age" =&gt; 23]
+];
+foreach ($users as $u) {
+  if ($u["age"] &gt;= 18) {
+    echo $u["name"] . " jest pełnoletnia&lt;br&gt;";
+  } else {
+    echo $u["name"] . " jest niepełnoletnia&lt;br&gt;";
+  }
+}
+?&gt;</pre>
+    </div>
+
+    <div class="element">
+      <h3>Funkcje + typy + wartości domyślne</h3>
+<pre class="code">&lt;?php
+function add(int $a, int $b = 0): int { return $a + $b; }
+echo add(2,3); // 5
+?&gt;</pre>
+    </div>
+
+    <div class="element">
+      <h3>Obsługa formularza (GET/POST) + sanitizacja</h3>
+<pre class="code">&lt;!-- form.html --&gt;
+&lt;form action="form.php" method="post"&gt;
+  &lt;input name="imie"&gt;
+  &lt;button type="submit"&gt;OK&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;?php // form.php
+$imie = $_POST["imie"] ?? "";
+$imie = htmlspecialchars($imie, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+echo "Witaj, $imie";
+?&gt;</pre>
+    </div>
+
+    <div class="element">
+      <h3>Sesje + JSON + MySQL (mysqli)</h3>
+<pre class="code">&lt;?php
+session_start();
+$_SESSION["user"] = "Ala";
+$txt = '{"a":1,"b":2}';
+$obj = json_decode($txt, true);
+echo $obj["a"] + $obj["b"];
+
+$mysqli = new mysqli("localhost","user","pass","baza");
+if ($mysqli-&gt;connect_errno) { die("Błąd połączenia: " . $mysqli-&gt;connect_error); }
+$stmt = $mysqli-&gt;prepare("SELECT id,name FROM users WHERE id = ?");
+$id = 1;
+$stmt-&gt;bind_param("i", $id);
+$stmt-&gt;execute();
+$res = $stmt-&gt;get_result();
+while($row = $res-&gt;fetch_assoc()){
+  echo $row["id"] . " " . $row["name"] . "&lt;br&gt;";
+}
+$stmt-&gt;close();
+$mysqli-&gt;close();
+?&gt;</pre>
+    </div>
+  </section>
+
+  <section id="mysql">
+    <h2>MySQL — (skrótowo, do rozbudowy wedle życzenia)</h2>
+    <div class="element">
+<pre class="code">-- DDL
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(64) NOT NULL
+);
+
+-- DML
+INSERT INTO users(name) VALUES ('Ala'), ('Jan');</pre>
+    </div>
+  </section>
+
+  <script>
+    // === CSS toggles ===
+    document.querySelectorAll('#css_pro .toggle').forEach(btn => {
+      const target = document.querySelector(btn.getAttribute('data-target'));
+      const chev = btn.querySelector('.chev');
+      btn.addEventListener('click', () => {
+        target.classList.toggle('open');
+        chev && chev.classList.toggle('rot');
+      });
+    });
+
+    // === JS Section handlers already embedded inline above ===
+    // The code blocks above show the exact JS; the runtime copies are here implicitly as we used same IDs.
+  </script>
+  <script>
+    // Runtime wiring for Section 1, 2, 3 (duplicating the snippets so page działa bez przepisywania)
+    // 1.1
+    const t = document.querySelector('#ex1_text');
+    const b = document.querySelector('#ex1_btn');
+    b.addEventListener('click', () => { alert(t.value); });
+
+    // 1.2
+    const s1 = document.querySelector('#ex2_sel_change');
+    s1.addEventListener('change', () => alert('Wybrano: ' + s1.value));
+    const s2 = document.querySelector('#ex2_sel_btn');
+    const sb = document.querySelector('#ex2_btn');
+    sb.addEventListener('click', () => alert('Wybrano: ' + s2.value));
+
+    // 1.3
+    document.querySelector('#ex3_btn').addEventListener('click', () => {
+      const picked = document.querySelector('input[name="r1"]:checked');
+      alert(picked ? picked.value : 'Nic nie wybrano');
+    });
+
+    // 1.4
+    document.querySelector('#ex4_btn').addEventListener('click', () => {
+      const r = [];
+      if (document.querySelector('#cb1').checked) r.push('C1');
+      if (document.querySelector('#cb2').checked) r.push('C2');
+      alert(r.length ? 'Zaznaczone: ' + r.join(', ') : 'Brak zaznaczeń');
+    });
+
+    // 2.1
+    const A = document.querySelector('#m_a');
+    const B = document.querySelector('#m_b');
+    const OP = document.querySelector('#m_op');
+    document.querySelector('#m_go').addEventListener('click', () => {
+      const a = parseFloat(A.value), b = parseFloat(B.value);
+      if (Number.isNaN(a) || Number.isNaN(b)) { alert('Podaj liczby'); return; }
+      let out = 0;
+      switch(OP.value){
+        case '+': out = a + b; break;
+        case '-': out = a - b; break;
+        case '*': out = a * b; break;
+        case '/': out = b === 0 ? 'dzielenie przez zero' : (a / b); break;
+      }
+      alert('Wynik: ' + out);
+    });
+
+    // 3.1
+    document.querySelector('#for_btn').addEventListener('click', () => {
+      let s = '';
+      for(let i=1;i<=100;i++){ s += (i + (i<100 ? ' ' : '')); }
+      document.querySelector('#for_out').textContent = s;
+    });
+
+    // 3.2
+    document.querySelector('#while_btn').addEventListener('click', () => {
+      let n = parseInt(document.querySelector('#while_n').value, 10);
+      if (Number.isNaN(n) || n<0) { alert('Podaj n ≥ 0'); return; }
+      let i=0, out='';
+      while(i<n){ out += '*'; i++; }
+      alert(out);
+    });
+
+    // 3.3
+    document.querySelector('#if_btn').addEventListener('click', () => {
+      const v = (document.querySelector('#if_inp').value||'').trim().toLowerCase();
+      if (v === 'a') alert('tak');
+      else if (v === 'b') alert('b');
+      else alert('inne');
+    });
+
+    // 3.4
+    document.querySelector('#ao_btn').addEventListener('click', () => {
+      const rows = Array.from(document.querySelectorAll('#ao_tab tbody tr'));
+      const out = rows.map(tr => {
+        const [nameEl, ageEl] = tr.querySelectorAll('input');
+        return { name: nameEl.value.trim(), age: Number(ageEl.value) };
+      });
+      alert(JSON.stringify(out));
+    });
+
+    // 3.5 Functions runtime helpers
+    function sum(a=0,b=0){ return a + b; }
+    function factorial(n){
+      n = Math.max(0, Math.floor(n||0));
+      let r=1; for(let i=2;i<=n;i++) r*=i; return r;
+    }
+    function isPrime(n){
+      n = Math.floor(n);
+      if (n<2) return false;
+      for(let i=2;i*i<=n;i++){ if(n%i===0) return false; }
+      return true;
+    }
+    const double = x => x*2;
+    document.querySelector('#fn_fact').addEventListener('click', () => {
+      const n = parseInt(document.querySelector('#fn_n').value,10);
+      alert('n! = ' + factorial(n));
+    });
+    document.querySelector('#fn_prime').addEventListener('click', () => {
+      const n = parseInt(document.querySelector('#fn_n').value,10);
+      alert(isPrime(n) ? 'pierwsza' : 'złożona');
+    });
+
+    // Utility functions from 2.2 for completeness:
+    function arrMin(arr){ return Math.min(...arr); }
+    function arrMax(arr){ return Math.max(...arr); }
+    function arrAvg(arr){ return arr.reduce((s,x)=>s+x,0) / (arr.length||1); }
+    function gcd(a,b){ while(b!==0){ [a,b] = [b, a % b]; } return Math.abs(a); }
+    function lcm(a,b){ return Math.abs(a*b) / gcd(a,b); }
+    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+    function round2(x){ return Math.round(x*100)/100; }
+    function showNow(){ alert(new Date().toLocaleString('pl-PL')); }
+  </script>
+</body>
+</html>
