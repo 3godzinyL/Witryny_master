@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>INF.03 — Pełny index: HTML + CSS + JS + PHP (bez skrótów)</title>
+  <title>INF.03 — Pełny index: HTML + CSS + JS + PHP + MySQL (bez skrótów)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
@@ -45,7 +45,7 @@
     }
     section>h2{margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--soft)}
     .element{margin:16px 0;padding:14px;background:var(--soft);border:1px solid var(--border);border-radius:12px}
-    .element h3{margin:0 0 10px}
+    .element h3{margin:0 0 8px}
     .preview{
       background:#eef1f6;
       padding:14px;
@@ -65,8 +65,9 @@
     .grid3{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:14px}
     .grid_auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
     .full{width:100%}
+    .pill{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;background:#f4f6fa;margin-right:6px;font-size:.78rem}
 
-    /* === playground boxes === */
+    /* === playground boxes for CSS positioning === */
     .panel{display:inline-block;vertical-align:top;width:280px;min-height:210px;margin:8px 10px;padding:10px;background:var(--panel-gray);border:1px solid var(--border);border-radius:12px}
     .legend{font-size:.86rem;color:#374151;margin:0 0 6px 2px;font-weight:800}
     .stage{position:relative;width:100%;min-height:140px;border:1px dashed #b7bfcc;background:#fafbff;border-radius:10px;overflow:auto;padding:8px}
@@ -114,23 +115,61 @@
     .btn.sec{background:#64748b}
     .btn.alt{background:var(--accent-2)}
     .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+    /* helper for styling literal selector tokens like ".nazwa-klasy" and "#nazwa-id" */
+    .sel-pill{display:inline-block;background:var(--code-bg);color:var(--code-fg);padding:2px 8px;border-radius:8px;font-family:ui-monospace,Menlo,Consolas,monospace}
   </style>
 </head>
 <body>
   <header class="top">
-    <div class="brand">INF.03 — Pełny index: HTML + CSS + JS + PHP</div>
+    <div class="brand">INF.03 — Pełny index: HTML + CSS + JS + PHP + MySQL</div>
     <nav class="tabs">
       <a href="#html">HTML</a>
       <a href="#css_pro">CSS</a>
       <a href="#js">JS</a>
-      <a href="#php">PHP</a>
-      <a href="#mysql">MySQL</a>
+      <a href="#php">PHP + MySQL</a>
+      <a href="#mysql">SQL</a>
     </nav>
   </header>
 
   <!-- =================== HTML =================== -->
   <section id="html">
-    <h2>HTML — Tekstowe, Semantyka, Tabele/Formularze</h2>
+    <h2>HTML — Podstawa, Tekstowe, Semantyka, Zasoby, Tabele/Formularze</h2>
+
+    <!-- 0) PODSTAWA + dołączanie CSS/JS -->
+    <div class="element">
+      <h3>0) Podstawa HTML5 (pełny szablon) + dołączanie CSS/JS</h3>
+      <div class="grid2">
+        <div>
+<pre class="code">&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Tytuł strony&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Witaj!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+        <div>
+          <div class="preview">
+            <div><span class="pill">CSS:</span> Dołączenie arkusza stylów (warianty z <code>media</code>)</div>
+          </div>
+<pre class="code">&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;link rel="stylesheet" href="print.css" media="print"&gt;
+&lt;link rel="stylesheet" href="phone.css" media="(max-width: 600px)"&gt;</pre>
+          <div class="preview" style="margin-top:8px">
+            <div><span class="pill">JS:</span> Dołączenie skryptu (zalecane <code>defer</code>)</div>
+          </div>
+<pre class="code">&lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;!-- alternatywnie: &lt;script&gt;alert('inline');&lt;/script&gt; --&gt;</pre>
+        </div>
+      </div>
+    </div>
 
     <!-- 1) Tekstowe: H1..H5 with ONLY H1 code under -->
     <div class="element">
@@ -160,13 +199,30 @@
 &lt;em&gt;Kursywa&lt;/em&gt;</pre>
     </div>
 
-    <!-- 3) Link osobno -->
+    <!-- 3) Linki i zasoby -->
     <div class="element">
-      <h3>3) Link</h3>
-      <div class="preview">
-        <a href="#" title="Przykładowy link">To jest link</a>
+      <h3>3) Linki i zasoby (&lt;a&gt; + &lt;link&gt; + obraz)</h3>
+      <div class="grid3">
+        <div>
+          <div class="preview">
+            <a href="#" title="Przykładowy link">To jest link (&lt;a&gt;)</a>
+          </div>
+<pre class="code">&lt;a href="#" title="Przykładowy link"&gt;To jest link&lt;/a&gt;</pre>
+        </div>
+        <div>
+          <div class="preview">
+            <div>Arkusz stylów z media:</div>
+          </div>
+<pre class="code">&lt;link rel="stylesheet" href="style.css" media="(max-width: 800px)"&gt;</pre>
+        </div>
+        <div>
+          <div class="preview">
+            <img alt="Demo" width="120" height="80"
+                 src="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='120' height='80'&gt;&lt;rect width='100%' height='100%' fill='%230ea5e9'/&gt;&lt;text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='white'&gt;IMG&lt;/text&gt;&lt;/svg&gt;">
+          </div>
+<pre class="code">&lt;img src="obrazek.jpg" alt="Opis alternatywny" width="120" height="80"&gt;</pre>
+        </div>
       </div>
-      <pre class="code">&lt;a href="#" title="Przykładowy link"&gt;To jest link&lt;/a&gt;</pre>
     </div>
 
     <!-- 4) Semantyka -->
@@ -415,9 +471,50 @@
     </div>
   </section>
 
-  <!-- =================== CSS (PRO) =================== -->
+  <!-- =================== CSS (INTRO + PRO) =================== -->
   <section id="css_pro">
-    <h2>CSS — Pozycjonowanie (1) ignorują, (2) reagują z rozwijaniem)</h2>
+    <h2>CSS — Wprowadzenie (selektory) + Pozycjonowanie</h2>
+
+    <!-- Intro: selectors -->
+    <div class="element">
+      <h3>0) Selektory: <span class="sel-pill">*</span>, <span class="sel-pill">p</span>, <span class="sel-pill">.nazwa-klasy</span>, <span class="sel-pill">#nazwa-id</span></h3>
+      <div class="grid2">
+        <div>
+          <div class="preview">
+            <div class="pill">* (wszystkie elementy)</div>
+            <p>Ten tekst pokaże wpływ selektora typu <strong>p</strong>.</p>
+            <div class="demo-klasa">DIV z klasą <code>demo-klasa</code>.</div>
+            <div id="demo-id">DIV z id <code>demo-id</code>.</div>
+          </div>
+<pre class="code">* { box-sizing: border-box; }
+p { color: #0ea5e9; }
+.nazwa-klasy { background: #f3f4f6; padding: 4px; }
+#nazwa-id { border: 2px solid #0ea5e9; }</pre>
+        </div>
+        <div>
+          <div class="preview">
+            <div class="pill">Po co klasy?</div>
+            <ul style="margin:0 0 6px 18px">
+              <li>Reużywalny styl dla wielu elementów</li>
+              <li>Selekcja w JS: <code>document.querySelector('.nazwa-klasy')</code></li>
+              <li>Oddzielenie treści od prezentacji</li>
+            </ul>
+            <div style="display:flex;gap:10px;align-items:center">
+              <div class="demo-klasa" style="padding:6px;border:1px dashed #cbd5e1;border-radius:8px">DIV .demo-klasa</div>
+              <p class="demo-klasa" style="padding:6px;border:1px dashed #cbd5e1;border-radius:8px;margin:0">P .demo-klasa</p>
+            </div>
+            <div class="pill" style="margin-top:8px">Po co id?</div>
+            <ul style="margin:6px 0 0 18px">
+              <li>Unikalny identyfikator: kotwice, aria, testy</li>
+              <li>Szybka selekcja: <code>document.getElementById('demo-id')</code></li>
+            </ul>
+          </div>
+<pre class="code">&lt;div class="demo-klasa"&gt;...&lt;/div&gt;
+&lt;p class="demo-klasa"&gt;...&lt;/p&gt;
+&lt;div id="demo-id"&gt;...&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
 
     <!-- 1) Ignorują offsets -->
     <div class="element">
@@ -544,7 +641,8 @@
             <div style="height:340px"></div>
           </div>
           <div class="toggle" data-target="#ex-stk">
-            <span class="chev">▾</span> Pokaż: <code>top/bottom</code> (+ info o left/right)</div>
+            <span class="chev">▾</span> Pokaż: <code>top/bottom</code> (+ info o left/right)</span>
+          </div>
           <div id="ex-stk" class="examples">
             <div class="stage" style="height:200px; overflow:auto">
               <div style="height:14px"></div>
@@ -719,7 +817,7 @@ const ex = {
 <pre class="code">function showNow(){
   alert(new Date().toLocaleString('pl-PL'));
 }
-// showNow(); // wywołaj gdy chcesz zobaczyć alert</pre>
+// showNow();</pre>
     </div>
 
     <h2>JavaScript — Sekcja 3: Pętle i warunki</h2>
@@ -809,14 +907,14 @@ const ex = {
   alert(JSON.stringify(out));
 });
 
-// inne użycia:
+// map/filter/reduce i destrukturyzacja:
 const names = ['Ala','Jan','Ola'];
-const upper = names.map(x =&gt; x.toUpperCase());   // map
-const onlyA = names.filter(x =&gt; x.startsWith('A')); // filter
-const total = [1,2,3].reduce((s,x)=&gt;s+x,0);        // reduce
-for (const n of names){ /* ... */ }                // for-of
+const upper = names.map(x =&gt; x.toUpperCase());
+const onlyA = names.filter(x =&gt; x.startsWith('A'));
+const total = [1,2,3].reduce((s,x)=&gt;s+x,0);
+for (const n of names){ /* ... */ }
 const person = {id:1, name:'Ala'};
-const {id, name} = person; // destrukturyzacja</pre>
+const {id, name} = person;</pre>
         </div>
       </div>
     </div>
@@ -833,27 +931,22 @@ const {id, name} = person; // destrukturyzacja</pre>
           </div>
         </div>
         <div>
-<pre class="code">// deklaracja + wartość domyślna + typowy zwrot
+<pre class="code">// deklaracja + domyślne
 function sum(a=0,b=0){ return a + b; }
 
-// silnia iteracyjnie
 function factorial(n){
   n = Math.max(0, Math.floor(n||0));
   let r=1; for(let i=2;i&lt;=n;i++) r*=i; return r;
 }
 
-// test pierwszości (prosty)
 function isPrime(n){
   n = Math.floor(n);
   if (n&lt;2) return false;
   for(let i=2;i*i&lt;=n;i++){ if(n%i===0) return false; }
   return true;
 }
-
-// arrow function
 const double = x =&gt; x*2;
 
-// wywołania na UI:
 document.querySelector('#fn_fact').addEventListener('click', () =&gt; {
   const n = parseInt(document.querySelector('#fn_n').value,10);
   alert('n! = ' + factorial(n));
@@ -866,32 +959,98 @@ document.querySelector('#fn_prime').addEventListener('click', () =&gt; {
       </div>
     </div>
 
-    <!-- 3.6 Dwie dodatkowe sekcje: String/Number oraz JSON/localStorage -->
+    <!-- 4) Nowa sekcja: DOM — tworzenie elementu i klasy -->
     <div class="element">
-      <h3>3.6 String/Number — przydatne metody</h3>
-<pre class="code">const s = '  Ala ma kota  ';
-const trimmed = s.trim();
-const parts = 'Ala,Jan,Ola'.split(',');
-const repl = 'Ala'.replace('A','O');
-const includes = 'frontend'.includes('end');
-const num = Number.parseFloat('3.14');
-const fixed = (3.14159).toFixed(2);
-</pre>
-      <h3>3.7 JSON i localStorage</h3>
-<pre class="code">const obj = {a:1,b:2};
-const json = JSON.stringify(obj);
-const back = JSON.parse(json);
-localStorage.setItem('cfg', json);
-const read = JSON.parse(localStorage.getItem('cfg') || '{}');</pre>
+      <h3>4) DOM — tworzenie elementów i manipulacja klasami</h3>
+      <div class="grid2">
+        <div class="preview">
+          <div id="dom_box" class="preview" style="background:#fff;min-height:48px"></div>
+          <button id="dom_add" class="btn">Dodaj element</button>
+          <button id="dom_toggle" class="btn alt">Przełącz klasę .highlight</button>
+        </div>
+        <div>
+<pre class="code">const box = document.querySelector('#dom_box');
+document.querySelector('#dom_add').addEventListener('click', () =&gt; {
+  const p = document.createElement('p');
+  p.textContent = 'Nowy element ' + (box.children.length+1);
+  box.appendChild(p);
+});
+document.querySelector('#dom_toggle').addEventListener('click', () =&gt; {
+  box.classList.toggle('highlight');
+});</pre>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- =================== PHP =================== -->
+  <!-- =================== PHP + MySQL =================== -->
   <section id="php">
-    <h2>PHP — podstawy (pełne, bez skrótów w blokach)</h2>
+    <h2>PHP + MySQL — połączenie, formularze, sesje</h2>
 
+    <!-- 0) Połączenie z MySQL (localhost) -->
     <div class="element">
-      <h3>Hello + zmienne + konkatenacja</h3>
+      <h3>0) Połączenie z MySQL (mysqli + PDO)</h3>
+      <div class="grid2">
+        <div>
+<pre class="code">&lt;?php
+// mysqli
+$host = "localhost";
+$user = "root";        // domyślnie w XAMPP/WAMP
+$pass = "";            // ustaw swój
+$db   = "test_db";
+
+$mysqli = @new mysqli($host, $user, $pass, $db);
+if ($mysqli-&gt;connect_errno) {
+  die("Błąd połączenia: " . $mysqli-&gt;connect_error);
+}
+echo "Połączono (mysqli)!";
+$mysqli-&gt;close();
+?&gt;</pre>
+        </div>
+        <div>
+<pre class="code">&lt;?php
+// PDO
+$dsn = "mysql:host=localhost;dbname=test_db;charset=utf8mb4";
+$user = "root";
+$pass = "";
+try {
+  $pdo = new PDO($dsn, $user, $pass, [
+    PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC
+  ]);
+  echo "Połączono (PDO)!";
+} catch (PDOException $e) {
+  die("DB error: " . $e-&gt;getMessage());
+}
+?&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1) PHP "Tekst -> Alert" (form POST + echo <script>) -->
+    <div class="element">
+      <h3>1) PHP: Tekst → Alert (input + button) — pełny przykład</h3>
+      <div class="grid2">
+        <div class="preview">
+          <form action="" method="post">
+            <input name="txt_php" placeholder="Wpisz tekst (PHP)">
+            <button class="btn" type="submit" name="go_php">Wyślij</button>
+          </form>
+        </div>
+        <div>
+<pre class="code">&lt;?php
+if (isset($_POST['go_php'])) {
+  $val = htmlspecialchars($_POST['txt_php'] ?? "", ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+  echo "&lt;script&gt;alert('". $val ."');&lt;/script&gt;";
+}
+?&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2) Reszta przykładów PHP (pełne jak wcześniej) -->
+    <div class="element">
+      <h3>2) Hello + zmienne + konkatenacja</h3>
 <pre class="code">&lt;?php
 $name = "Ala";
 $age = 19;
@@ -900,7 +1059,7 @@ echo "Cześć, " . $name . "! Masz " . $age . " lat.";
     </div>
 
     <div class="element">
-      <h3>Warunki, pętle, tablice asocjacyjne</h3>
+      <h3>3) Warunki, pętle, tablice</h3>
 <pre class="code">&lt;?php
 $users = [
   ["id" =&gt; 1, "name" =&gt; "Ala", "age" =&gt; 19],
@@ -917,7 +1076,7 @@ foreach ($users as $u) {
     </div>
 
     <div class="element">
-      <h3>Funkcje + typy + wartości domyślne</h3>
+      <h3>4) Funkcje + typy + wartości domyślne</h3>
 <pre class="code">&lt;?php
 function add(int $a, int $b = 0): int { return $a + $b; }
 echo add(2,3); // 5
@@ -925,7 +1084,7 @@ echo add(2,3); // 5
     </div>
 
     <div class="element">
-      <h3>Obsługa formularza (GET/POST) + sanitizacja</h3>
+      <h3>5) Obsługa formularza (GET/POST) + sanitizacja</h3>
 <pre class="code">&lt;!-- form.html --&gt;
 &lt;form action="form.php" method="post"&gt;
   &lt;input name="imie"&gt;
@@ -940,7 +1099,7 @@ echo "Witaj, $imie";
     </div>
 
     <div class="element">
-      <h3>Sesje + JSON + MySQL (mysqli)</h3>
+      <h3>6) Sesje + JSON + MySQL (mysqli)</h3>
 <pre class="code">&lt;?php
 session_start();
 $_SESSION["user"] = "Ala";
@@ -948,7 +1107,7 @@ $txt = '{"a":1,"b":2}';
 $obj = json_decode($txt, true);
 echo $obj["a"] + $obj["b"];
 
-$mysqli = new mysqli("localhost","user","pass","baza");
+$mysqli = new mysqli("localhost","root","","test_db");
 if ($mysqli-&gt;connect_errno) { die("Błąd połączenia: " . $mysqli-&gt;connect_error); }
 $stmt = $mysqli-&gt;prepare("SELECT id,name FROM users WHERE id = ?");
 $id = 1;
@@ -964,11 +1123,14 @@ $mysqli-&gt;close();
     </div>
   </section>
 
+  <!-- =================== SQL quick =================== -->
   <section id="mysql">
-    <h2>MySQL — (skrótowo, do rozbudowy wedle życzenia)</h2>
+    <h2>SQL — skrót (DDL + DML)</h2>
     <div class="element">
 <pre class="code">-- DDL
-CREATE TABLE users (
+CREATE DATABASE IF NOT EXISTS test_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE test_db;
+CREATE TABLE IF NOT EXISTS users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(64) NOT NULL
 );
@@ -977,6 +1139,16 @@ CREATE TABLE users (
 INSERT INTO users(name) VALUES ('Ala'), ('Jan');</pre>
     </div>
   </section>
+
+  <script>
+    /* CSS demo styles from CSS intro */
+    p { color: #0ea5e9; }
+    .demo-klasa { background: #f3f4f6; padding: 6px; border-radius: 8px; }
+    #demo-id { border: 2px dashed #0ea5e9; padding: 6px; border-radius: 8px; }
+
+    /* highlight toggle demo */
+    .highlight { outline: 3px solid #8b5cf6; outline-offset: 2px; }
+  </script>
 
   <script>
     // === CSS toggles ===
@@ -989,11 +1161,7 @@ INSERT INTO users(name) VALUES ('Ala'), ('Jan');</pre>
       });
     });
 
-    // === JS Section handlers already embedded inline above ===
-    // The code blocks above show the exact JS; the runtime copies are here implicitly as we used same IDs.
-  </script>
-  <script>
-    // Runtime wiring for Section 1, 2, 3 (duplicating the snippets so page działa bez przepisywania)
+    // === Runtime JS wiring for all examples ===
     // 1.1
     const t = document.querySelector('#ex1_text');
     const b = document.querySelector('#ex1_btn');
@@ -1093,15 +1261,16 @@ INSERT INTO users(name) VALUES ('Ala'), ('Jan');</pre>
       alert(isPrime(n) ? 'pierwsza' : 'złożona');
     });
 
-    // Utility functions from 2.2 for completeness:
-    function arrMin(arr){ return Math.min(...arr); }
-    function arrMax(arr){ return Math.max(...arr); }
-    function arrAvg(arr){ return arr.reduce((s,x)=>s+x,0) / (arr.length||1); }
-    function gcd(a,b){ while(b!==0){ [a,b] = [b, a % b]; } return Math.abs(a); }
-    function lcm(a,b){ return Math.abs(a*b) / gcd(a,b); }
-    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-    function round2(x){ return Math.round(x*100)/100; }
-    function showNow(){ alert(new Date().toLocaleString('pl-PL')); }
+    // 4) DOM section runtime
+    const box = document.querySelector('#dom_box');
+    document.querySelector('#dom_add').addEventListener('click', () => {
+      const p = document.createElement('p');
+      p.textContent = 'Nowy element ' + (box.children.length+1);
+      box.appendChild(p);
+    });
+    document.querySelector('#dom_toggle').addEventListener('click', () => {
+      box.classList.toggle('highlight');
+    });
   </script>
 </body>
 </html>
