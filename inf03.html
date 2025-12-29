@@ -1,0 +1,3496 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompletna Nauka INF03</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px;
+            border: 5px solid #000;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            border: 3px solid #000;
+            margin-bottom: 40px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            border-right: 3px solid #000;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .nav-tab:last-child {
+            border-right: none;
+        }
+
+        .nav-tab:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .nav-tab.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            padding: 20px;
+            border: 3px solid #000;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .example-box {
+            border: 3px solid #000;
+            padding: 30px;
+            margin-bottom: 40px;
+            background: #fff;
+        }
+
+        .example-title {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #000;
+            font-weight: bold;
+        }
+
+        .demo-area {
+            border: 3px dashed #000;
+            padding: 25px;
+            margin-bottom: 20px;
+            background: #fafafa;
+            min-height: 60px;
+        }
+
+        .code-area {
+            background: #f5f5f5;
+            border: 2px solid #000;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .warning-box {
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .note-box {
+            background: #f0f0f0;
+            border-left: 6px solid #000;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        input, textarea, select {
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #000;
+            font-family: inherit;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            border: 3px solid #000;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            font-family: inherit;
+            margin: 10px 5px 10px 0;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .inline-label {
+            display: inline;
+            margin-left: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 2px solid #000;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>INF03 - NAUKA NA EGZAMIN</h1>
+            <p style="font-size: 1.3em; margin-top: 15px;">Kompletny materiał - wszystko czego potrzebujesz</p>
+        </header>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('html')">HTML</div>
+            <div class="nav-tab" onclick="showSection('css')">CSS</div>
+            <div class="nav-tab" onclick="showSection('js')">JAVASCRIPT</div>
+            <div class="nav-tab" onclick="showSection('php')">PHP</div>
+            <div class="nav-tab" onclick="showSection('mysql')">MySQL</div>
+        </div>
+
+        <!-- ========== HTML ========== -->
+        <div id="html" class="section active">
+            <h2 class="section-title">HTML</h2>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWOWA STRUKTURA HTML</div>
+                <div class="warning-box">⚠️ ZAWSZE ZACZYNAJ OD TEGO!</div>
+                <div class="code-area">&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tytuł&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Treść --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">NAGŁÓWEK H1</div>
+                <div class="demo-area">
+                    <h1>To jest nagłówek H1 - największy</h1>
+                </div>
+                <div class="code-area">&lt;h1&gt;To jest nagłówek H1 - największy&lt;/h1&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">NAGŁÓWEK H2</div>
+                <div class="demo-area">
+                    <h2>To jest nagłówek H2</h2>
+                </div>
+                <div class="code-area">&lt;h2&gt;To jest nagłówek H2&lt;/h2&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">NAGŁÓWEK H3</div>
+                <div class="demo-area">
+                    <h3>To jest nagłówek H3</h3>
+                </div>
+                <div class="code-area">&lt;h3&gt;To jest nagłówek H3&lt;/h3&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PARAGRAF</div>
+                <div class="demo-area">
+                    <p>To jest zwykły paragraf tekstu. Używamy go do normalnego tekstu na stronie.</p>
+                </div>
+                <div class="code-area">&lt;p&gt;To jest zwykły paragraf tekstu.&lt;/p&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POGRUBIENIE (STRONG)</div>
+                <div class="demo-area">
+                    <p>Tekst normalny i <strong>tekst pogrubiony</strong></p>
+                </div>
+                <div class="code-area">&lt;p&gt;Tekst normalny i &lt;strong&gt;tekst pogrubiony&lt;/strong&gt;&lt;/p&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">KURSYWA (EM)</div>
+                <div class="demo-area">
+                    <p>Tekst normalny i <em>tekst kursywą</em></p>
+                </div>
+                <div class="code-area">&lt;p&gt;Tekst normalny i &lt;em&gt;tekst kursywą&lt;/em&gt;&lt;/p&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT TEXT</div>
+                <div class="demo-area">
+                    <label>Wpisz tekst:</label>
+                    <input type="text" placeholder="Wpisz coś...">
+                </div>
+                <div class="code-area">&lt;label&gt;Wpisz tekst:&lt;/label&gt;
+&lt;input type="text" placeholder="Wpisz coś..."&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT NUMBER</div>
+                <div class="demo-area">
+                    <label>Podaj liczbę:</label>
+                    <input type="number" min="0" max="100" value="50">
+                </div>
+                <div class="code-area">&lt;label&gt;Podaj liczbę:&lt;/label&gt;
+&lt;input type="number" min="0" max="100" value="50"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT DATE</div>
+                <div class="demo-area">
+                    <label>Wybierz datę:</label>
+                    <input type="date">
+                </div>
+                <div class="code-area">&lt;label&gt;Wybierz datę:&lt;/label&gt;
+&lt;input type="date"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT EMAIL</div>
+                <div class="demo-area">
+                    <label>Email:</label>
+                    <input type="email" placeholder="email@example.com">
+                </div>
+                <div class="code-area">&lt;input type="email" placeholder="email@example.com"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT PASSWORD</div>
+                <div class="demo-area">
+                    <label>Hasło:</label>
+                    <input type="password" placeholder="Hasło">
+                </div>
+                <div class="code-area">&lt;input type="password" placeholder="Hasło"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT FILE</div>
+                <div class="demo-area">
+                    <label>Wybierz plik:</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="code-area">&lt;input type="file" accept="image/*"&gt;</div>
+                <div class="note-box">accept="image/*" - tylko obrazy</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT TEL</div>
+                <div class="demo-area">
+                    <label>Telefon:</label>
+                    <input type="tel" placeholder="+48 123 456 789">
+                </div>
+                <div class="code-area">&lt;input type="tel" placeholder="+48 123 456 789"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">RADIO BUTTONS</div>
+                <div class="demo-area">
+                    <p><strong>Płeć:</strong></p>
+                    <input type="radio" id="html-m" name="html-plec" value="m">
+                    <label class="inline-label" for="html-m">Mężczyzna</label>
+                    <br>
+                    <input type="radio" id="html-k" name="html-plec" value="k">
+                    <label class="inline-label" for="html-k">Kobieta</label>
+                </div>
+                <div class="code-area">&lt;input type="radio" id="m" name="plec" value="m"&gt;
+&lt;label for="m"&gt;Mężczyzna&lt;/label&gt;
+
+&lt;input type="radio" id="k" name="plec" value="k"&gt;
+&lt;label for="k"&gt;Kobieta&lt;/label&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">CHECKBOX</div>
+                <div class="demo-area">
+                    <p><strong>Zainteresowania:</strong></p>
+                    <input type="checkbox" id="html-sport" value="sport">
+                    <label class="inline-label" for="html-sport">Sport</label>
+                    <br>
+                    <input type="checkbox" id="html-muzyka" value="muzyka">
+                    <label class="inline-label" for="html-muzyka">Muzyka</label>
+                </div>
+                <div class="code-area">&lt;input type="checkbox" id="sport" value="sport"&gt;
+&lt;label for="sport"&gt;Sport&lt;/label&gt;
+
+&lt;input type="checkbox" id="muzyka" value="muzyka"&gt;
+&lt;label for="muzyka"&gt;Muzyka&lt;/label&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">SELECT (LISTA ROZWIJANA)</div>
+                <div class="demo-area">
+                    <label>Wybierz miasto:</label>
+                    <select>
+                        <option value="">Wybierz...</option>
+                        <option value="warszawa">Warszawa</option>
+                        <option value="krakow">Kraków</option>
+                        <option value="gdansk">Gdańsk</option>
+                    </select>
+                </div>
+                <div class="code-area">&lt;select name="miasto"&gt;
+    &lt;option value=""&gt;Wybierz...&lt;/option&gt;
+    &lt;option value="warszawa"&gt;Warszawa&lt;/option&gt;
+    &lt;option value="krakow"&gt;Kraków&lt;/option&gt;
+&lt;/select&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">TEXTAREA</div>
+                <div class="demo-area">
+                    <label>Twoja wiadomość:</label>
+                    <textarea rows="4" placeholder="Wpisz tekst..."></textarea>
+                </div>
+                <div class="code-area">&lt;textarea rows="4" placeholder="Wpisz tekst..."&gt;&lt;/textarea&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT FILE</div>
+                <div class="demo-area">
+                    <label>Wybierz plik:</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="code-area">&lt;input type="file" accept="image/*"&gt;</div>
+                <div class="note-box">accept="image/*" - tylko obrazy<br>accept=".pdf" - tylko PDF</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT TEL</div>
+                <div class="demo-area">
+                    <label>Telefon:</label>
+                    <input type="tel" placeholder="+48 123 456 789">
+                </div>
+                <div class="code-area">&lt;input type="tel" placeholder="+48 123 456 789"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT COLOR</div>
+                <div class="demo-area">
+                    <label>Wybierz kolor:</label>
+                    <input type="color" value="#000000">
+                </div>
+                <div class="code-area">&lt;input type="color" value="#000000"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INPUT RANGE (suwak)</div>
+                <div class="demo-area">
+                    <label>Wybierz wartość:</label>
+                    <input type="range" min="0" max="100" value="50">
+                </div>
+                <div class="code-area">&lt;input type="range" min="0" max="100" value="50"&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BUTTON</div>
+                <div class="demo-area">
+                    <button onclick="alert('Kliknięto!')">KLIKNIJ MNIE</button>
+                </div>
+                <div class="code-area">&lt;button onclick="alert('Kliknięto!')"&gt;KLIKNIJ MNIE&lt;/button&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BUTTON TYPE="SUBMIT"</div>
+                <div class="demo-area">
+                    <form onsubmit="event.preventDefault(); alert('Formularz wysłany!');">
+                        <button type="submit">WYŚLIJ FORMULARZ</button>
+                    </form>
+                </div>
+                <div class="code-area">&lt;form method="POST" action="obsluga.php"&gt;
+    &lt;button type="submit"&gt;Wyślij&lt;/button&gt;
+&lt;/form&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BUTTON TYPE="RESET"</div>
+                <div class="demo-area">
+                    <form>
+                        <input type="text" placeholder="Wpisz coś..." value="Test">
+                        <button type="reset">WYCZYŚĆ</button>
+                    </form>
+                </div>
+                <div class="code-area">&lt;form&gt;
+    &lt;input type="text" value="Test"&gt;
+    &lt;button type="reset"&gt;Wyczyść&lt;/button&gt;
+&lt;/form&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LINK - ZWYKŁY</div>
+                <div class="demo-area">
+                    <a href="strona.html" style="color: blue; text-decoration: underline;">Link do strony</a>
+                </div>
+                <div class="code-area">&lt;a href="strona.html"&gt;Link do strony&lt;/a&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LINK - NOWA KARTA</div>
+                <div class="demo-area">
+                    <a href="https://google.com" target="_blank" style="color: blue; text-decoration: underline;">Google (nowa karta)</a>
+                </div>
+                <div class="code-area">&lt;a href="https://google.com" target="_blank"&gt;Google&lt;/a&gt;</div>
+                <div class="note-box">target="_blank" otwiera link w nowej karcie</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LINK - DO SEKCJI</div>
+                <div class="demo-area">
+                    <a href="#sekcja1" style="color: blue; text-decoration: underline;">Skocz do sekcji</a>
+                </div>
+                <div class="code-area">&lt;a href="#sekcja1"&gt;Skocz do sekcji&lt;/a&gt;
+
+&lt;section id="sekcja1"&gt;
+    &lt;h2&gt;Sekcja 1&lt;/h2&gt;
+&lt;/section&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">OBRAZEK</div>
+                <div class="demo-area">
+                    <p style="padding: 30px; border: 2px dashed black; text-align: center; background: #f0f0f0;">
+                        [Tu byłby obrazek z pliku obrazek.jpg]
+                    </p>
+                </div>
+                <div class="code-area">&lt;img src="obrazek.jpg" alt="Opis obrazka"&gt;</div>
+                <div class="warning-box">⚠️ ZAWSZE używaj atrybutu "alt"!</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LISTA NIENUMEROWANA (UL)</div>
+                <div class="demo-area">
+                    <ul>
+                        <li>Element pierwszy</li>
+                        <li>Element drugi</li>
+                        <li>Element trzeci</li>
+                    </ul>
+                </div>
+                <div class="code-area">&lt;ul&gt;
+    &lt;li&gt;Element pierwszy&lt;/li&gt;
+    &lt;li&gt;Element drugi&lt;/li&gt;
+    &lt;li&gt;Element trzeci&lt;/li&gt;
+&lt;/ul&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LISTA NUMEROWANA (OL)</div>
+                <div class="demo-area">
+                    <ol>
+                        <li>Pierwszy</li>
+                        <li>Drugi</li>
+                        <li>Trzeci</li>
+                    </ol>
+                </div>
+                <div class="code-area">&lt;ol&gt;
+    &lt;li&gt;Pierwszy&lt;/li&gt;
+    &lt;li&gt;Drugi&lt;/li&gt;
+    &lt;li&gt;Trzeci&lt;/li&gt;
+&lt;/ol&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LISTA OPISÓW (DL) - SŁOWNICZEK</div>
+                <div class="demo-area">
+                    <dl>
+                        <dt><strong>HTML</strong></dt>
+                        <dd>Język znaczników</dd>
+                        <dt><strong>CSS</strong></dt>
+                        <dd>Kaskadowe arkusze stylów</dd>
+                        <dt><strong>JavaScript</strong></dt>
+                        <dd>Język programowania</dd>
+                    </dl>
+                </div>
+                <div class="code-area">&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Język znaczników&lt;/dd&gt;
+    
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Kaskadowe arkusze stylów&lt;/dd&gt;
+&lt;/dl&gt;</div>
+                <div class="note-box">DL używamy do słowniczków - dt to termin, dd to opis</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">TABELA</div>
+                <div class="demo-area">
+                    <table>
+                        <tr>
+                            <th>Imię</th>
+                            <th>Wiek</th>
+                        </tr>
+                        <tr>
+                            <td>Jan</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>Anna</td>
+                            <td>30</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="code-area">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Imię&lt;/th&gt;
+        &lt;th&gt;Wiek&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Jan&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</div>
+            </div>
+        </div>
+
+        <!-- ========== CSS ========== -->
+        <div id="css" class="section">
+            <h2 class="section-title">CSS - STYLOWANIE</h2>
+
+            <div class="example-box">
+                <div class="example-title">SELEKTOR KLASY (.klasa)</div>
+                <div class="demo-area">
+                    <div style="color: blue; font-weight: bold;">Ten tekst ma klasę i jest niebieski</div>
+                </div>
+                <div class="code-area">/* CSS */
+.klasa {
+    color: blue;
+}
+
+/* HTML */
+&lt;div class="klasa"&gt;Tekst&lt;/div&gt;</div>
+                <div class="note-box"><strong>KLASA</strong> - można używać wielokrotnie, zaczyna się od kropki (.)</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">SELEKTOR ID (#id)</div>
+                <div class="demo-area">
+                    <div style="color: red; font-weight: bold;">Ten tekst ma ID i jest czerwony</div>
+                </div>
+                <div class="code-area">/* CSS */
+#identyfikator {
+    color: red;
+}
+
+/* HTML */
+&lt;div id="identyfikator"&gt;Tekst&lt;/div&gt;</div>
+                <div class="note-box"><strong>ID</strong> - tylko raz na stronie!, zaczyna się od # (hash)</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">COLOR (kolor tekstu)</div>
+                <div class="demo-area">
+                    <p style="color: #000000;">Czarny tekst</p>
+                    <p style="color: #ff0000;">Czerwony tekst</p>
+                    <p style="color: #0000ff;">Niebieski tekst</p>
+                </div>
+                <div class="code-area">p {
+    color: #000000;  /* czarny */
+    color: #ff0000;  /* czerwony */
+    color: #0000ff;  /* niebieski */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FONT-SIZE (rozmiar czcionki)</div>
+                <div class="demo-area">
+                    <p style="font-size: 14px;">14px - mały tekst</p>
+                    <p style="font-size: 20px;">20px - średni tekst</p>
+                    <p style="font-size: 32px;">32px - duży tekst</p>
+                </div>
+                <div class="code-area">p {
+    font-size: 14px;
+    font-size: 20px;
+    font-size: 32px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">TEXT-ALIGN (wyrównanie)</div>
+                <div class="demo-area">
+                    <p style="text-align: left; border: 2px solid black; padding: 10px; margin: 5px 0;">Text align: left</p>
+                    <p style="text-align: center; border: 2px solid black; padding: 10px; margin: 5px 0;">Text align: center</p>
+                    <p style="text-align: right; border: 2px solid black; padding: 10px; margin: 5px 0;">Text align: right</p>
+                </div>
+                <div class="code-area">p {
+    text-align: left;    /* do lewej */
+    text-align: center;  /* środek */
+    text-align: right;   /* do prawej */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PADDING (odstęp wewnętrzny)</div>
+                <div class="demo-area">
+                    <div style="border: 2px solid black; padding: 5px; background: #f0f0f0; margin: 10px 0;">
+                        padding: 5px
+                    </div>
+                    <div style="border: 2px solid black; padding: 20px; background: #f0f0f0; margin: 10px 0;">
+                        padding: 20px
+                    </div>
+                    <div style="border: 2px solid black; padding: 40px; background: #f0f0f0; margin: 10px 0;">
+                        padding: 40px
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    padding: 5px;    /* mały odstęp */
+    padding: 20px;   /* średni odstęp */
+    padding: 40px;   /* duży odstęp */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">MARGIN (odstęp zewnętrzny)</div>
+                <div class="demo-area">
+                    <div style="border: 2px solid black; padding: 10px; background: #ddd; margin: 5px;">margin: 5px</div>
+                    <div style="border: 2px solid black; padding: 10px; background: #ddd; margin: 20px;">margin: 20px</div>
+                    <div style="border: 2px solid black; padding: 10px; background: #ddd; margin: 40px;">margin: 40px</div>
+                </div>
+                <div class="code-area">.box {
+    margin: 5px;
+    margin: 20px;
+    margin: 40px;
+    margin: 0 auto;  /* wycentrowanie */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BORDER (ramka)</div>
+                <div class="demo-area">
+                    <div style="border: 1px solid black; padding: 15px; margin: 10px 0;">border: 1px solid black</div>
+                    <div style="border: 3px solid black; padding: 15px; margin: 10px 0;">border: 3px solid black</div>
+                    <div style="border: 2px dashed black; padding: 15px; margin: 10px 0;">border: 2px dashed black</div>
+                    <div style="border: 2px dotted black; padding: 15px; margin: 10px 0;">border: 2px dotted black</div>
+                </div>
+                <div class="code-area">.box {
+    border: 1px solid black;   /* cienka linia */
+    border: 3px solid black;   /* gruba linia */
+    border: 2px dashed black;  /* przerywana */
+    border: 2px dotted black;  /* kropkowana */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: STATIC (normalna)</div>
+                <div class="demo-area">
+                    <div style="position: static; background: #ddd; padding: 15px; border: 2px solid black;">
+                        Position: static (normalna pozycja)
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: static;  /* domyślna pozycja */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: RELATIVE</div>
+                <div class="demo-area" style="position: relative; height: 150px;">
+                    <div style="position: relative; top: 20px; left: 30px; background: #ddd; padding: 15px; border: 2px solid black;">
+                        Position: relative<br>
+                        top: 20px; left: 30px<br>
+                        (przesunięty względem normalnej pozycji)
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: relative;
+    top: 20px;     /* w dół o 20px */
+    left: 30px;    /* w prawo o 30px */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: ABSOLUTE</div>
+                <div class="demo-area" style="position: relative; height: 150px;">
+                    <div style="position: absolute; top: 20px; right: 20px; background: #ddd; padding: 15px; border: 2px solid black;">
+                        Position: absolute<br>
+                        top: 20px; right: 20px
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: absolute;
+    top: 20px;      /* 20px od góry rodzica */
+    right: 20px;    /* 20px od prawej rodzica */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">DISPLAY: BLOCK</div>
+                <div class="demo-area">
+                    <div style="display: block; background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Block 1</div>
+                    <div style="display: block; background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Block 2</div>
+                </div>
+                <div class="code-area">.box {
+    display: block;  /* zajmuje całą szerokość, nowa linia */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">DISPLAY: INLINE</div>
+                <div class="demo-area">
+                    <span style="display: inline; background: #ddd; padding: 10px; border: 2px solid black;">Inline 1</span>
+                    <span style="display: inline; background: #ddd; padding: 10px; border: 2px solid black;">Inline 2</span>
+                </div>
+                <div class="code-area">.box {
+    display: inline;  /* w linii tekstu */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FLEXBOX - ROW</div>
+                <div class="demo-area" style="display: flex; flex-direction: row; gap: 10px;">
+                    <div style="flex: 1; background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1</div>
+                    <div style="flex: 1; background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">2</div>
+                    <div style="flex: 1; background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">3</div>
+                </div>
+                <div class="code-area">.container {
+    display: flex;
+    flex-direction: row;  /* obok siebie */
+    gap: 10px;            /* odstęp */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FLEXBOX - COLUMN</div>
+                <div class="demo-area" style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1</div>
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">2</div>
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">3</div>
+                </div>
+                <div class="code-area">.container {
+    display: flex;
+    flex-direction: column;  /* jeden pod drugim */
+    gap: 10px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FLOAT: LEFT</div>
+                <div class="demo-area" style="overflow: auto;">
+                    <div style="float: left; background: #ddd; padding: 15px; border: 2px solid black; margin-right: 10px;">Float left</div>
+                    <p>Tekst opływa element z lewej strony. Tekst opływa element z lewej strony.</p>
+                </div>
+                <div class="code-area">.box {
+    float: left;  /* element po lewej, tekst go opływa */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">GRID - 2 KOLUMNY</div>
+                <div class="demo-area" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">Kolumna 1</div>
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">Kolumna 2</div>
+                </div>
+                <div class="code-area">.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* 2 równe kolumny */
+    gap: 10px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">GRID - 3 KOLUMNY</div>
+                <div class="demo-area" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1</div>
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">2</div>
+                    <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">3</div>
+                </div>
+                <div class="code-area">.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 kolumny */
+    gap: 10px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BACKGROUND-COLOR (kolor tła)</div>
+                <div class="demo-area">
+                    <div style="background-color: #f0f0f0; padding: 15px; border: 2px solid black; margin: 10px 0;">background-color: #f0f0f0 (szary)</div>
+                    <div style="background-color: #000000; color: #fff; padding: 15px; border: 2px solid black; margin: 10px 0;">background-color: #000000 (czarny)</div>
+                </div>
+                <div class="code-area">.box {
+    background-color: #f0f0f0;  /* szary */
+    background-color: #000000;  /* czarny */
+    background-color: white;    /* biały */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">WIDTH I HEIGHT (szerokość i wysokość)</div>
+                <div class="demo-area">
+                    <div style="width: 200px; height: 100px; background: #ddd; border: 2px solid black; padding: 10px; margin: 10px 0;">
+                        width: 200px<br>height: 100px
+                    </div>
+                    <div style="width: 50%; height: 80px; background: #ddd; border: 2px solid black; padding: 10px; margin: 10px 0;">
+                        width: 50%<br>height: 80px
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    width: 200px;   /* stała szerokość */
+    width: 50%;     /* 50% rodzica */
+    height: 100px;  /* wysokość */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BORDER-RADIUS (zaokrąglenie rogów)</div>
+                <div class="demo-area">
+                    <div style="width: 150px; height: 80px; background: #ddd; border: 2px solid black; border-radius: 0; margin: 10px auto;">
+                        border-radius: 0
+                    </div>
+                    <div style="width: 150px; height: 80px; background: #ddd; border: 2px solid black; border-radius: 10px; margin: 10px auto;">
+                        border-radius: 10px
+                    </div>
+                    <div style="width: 150px; height: 80px; background: #ddd; border: 2px solid black; border-radius: 40px; margin: 10px auto;">
+                        border-radius: 40px
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    border-radius: 0;      /* ostre rogi */
+    border-radius: 10px;   /* lekko zaokrąglone */
+    border-radius: 40px;   /* bardzo zaokrąglone */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">CLEAR: BOTH (czyszczenie float)</div>
+                <div class="demo-area" style="overflow: auto;">
+                    <div style="float: left; background: #ddd; padding: 15px; border: 2px solid black; margin: 5px;">Float left</div>
+                    <div style="float: right; background: #ddd; padding: 15px; border: 2px solid black; margin: 5px;">Float right</div>
+                    <div style="clear: both; background: #f0f0f0; padding: 15px; border: 2px solid black; margin-top: 10px;">
+                        Clear both - jestem pod floatami
+                    </div>
+                </div>
+                <div class="code-area">.element {
+    clear: both;  /* idzie pod wszystkimi floatami */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">OVERFLOW: SCROLL</div>
+                <div class="demo-area">
+                    <div style="width: 100%; height: 100px; overflow: scroll; border: 2px solid black; padding: 10px;">
+                        <p>Treść która jest zbyt długa...</p>
+                        <p>Więcej treści...</p>
+                        <p>Jeszcze więcej...</p>
+                        <p>I jeszcze...</p>
+                        <p>Scrolluj żeby zobaczyć!</p>
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    overflow: scroll;  /* pojawią się scrollbary */
+    height: 100px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BOX-SHADOW (cień)</div>
+                <div class="demo-area">
+                    <div style="width: 150px; height: 100px; background: #ddd; border: 2px solid black; box-shadow: 10px 10px 20px rgba(0,0,0,0.5); margin: 30px auto;">
+                        Box z cieniem
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+    /* 10px - w prawo, 10px - w dół, 20px - rozmycie, kolor */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: ABSOLUTE - prawy górny róg</div>
+                <div class="demo-area" style="position: relative; height: 150px;">
+                    <div style="position: absolute; top: 10px; right: 10px; background: #ddd; padding: 15px; border: 2px solid black;">
+                        Prawy górny róg
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: ABSOLUTE - lewy dolny róg</div>
+                <div class="demo-area" style="position: relative; height: 150px;">
+                    <div style="position: absolute; bottom: 10px; left: 10px; background: #ddd; padding: 15px; border: 2px solid black;">
+                        Lewy dolny róg
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">POSITION: ABSOLUTE - wyśrodkowany</div>
+                <div class="demo-area" style="position: relative; height: 150px;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ddd; padding: 15px; border: 2px solid black;">
+                        Wyśrodkowany
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">Z-INDEX - warstwy</div>
+                <div class="demo-area" style="position: relative; height: 180px;">
+                    <div style="position: absolute; top: 20px; left: 20px; width: 100px; height: 100px; background: red; border: 2px solid black; z-index: 1; padding: 10px; color: white;">
+                        z-index: 1
+                    </div>
+                    <div style="position: absolute; top: 50px; left: 50px; width: 100px; height: 100px; background: blue; border: 2px solid black; z-index: 2; padding: 10px; color: white;">
+                        z-index: 2
+                    </div>
+                    <div style="position: absolute; top: 80px; left: 80px; width: 100px; height: 100px; background: green; border: 2px solid black; z-index: 3; padding: 10px; color: white;">
+                        z-index: 3
+                    </div>
+                </div>
+                <div class="code-area">.box1 { z-index: 1; }  /* najniżej */
+.box2 { z-index: 2; }  /* środek */
+.box3 { z-index: 3; }  /* najwyżej */</div>
+                <div class="note-box">z-index określa która warstwa jest na wierzchu (większa liczba = wyżej)</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">VISIBILITY: HIDDEN vs DISPLAY: NONE</div>
+                <div class="demo-area">
+                    <div style="background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Widoczny 1</div>
+                    <div style="visibility: hidden; background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Ukryty (visibility: hidden)</div>
+                    <div style="background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Widoczny 2</div>
+                    <hr style="margin: 20px 0; border: 2px solid black;">
+                    <div style="background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Widoczny 1</div>
+                    <div style="display: none; background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Ukryty (display: none)</div>
+                    <div style="background: #ddd; padding: 10px; border: 2px solid black; margin: 5px 0;">Widoczny 2</div>
+                </div>
+                <div class="code-area">/* visibility: hidden - ukrywa ale ZAJMUJE MIEJSCE */
+.box {
+    visibility: hidden;
+}
+
+/* display: none - ukrywa i NIE ZAJMUJE MIEJSCA */
+.box {
+    display: none;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">JUSTIFY-CONTENT - rozmieszczenie (flex)</div>
+                <div class="demo-area">
+                    <p><strong>flex-start (domyślne):</strong></p>
+                    <div style="display: flex; justify-content: flex-start; gap: 5px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                    
+                    <p><strong>center:</strong></p>
+                    <div style="display: flex; justify-content: center; gap: 5px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                    
+                    <p><strong>space-between:</strong></p>
+                    <div style="display: flex; justify-content: space-between; gap: 5px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                    
+                    <p><strong>space-around:</strong></p>
+                    <div style="display: flex; justify-content: space-around; gap: 5px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                </div>
+                <div class="code-area">.container {
+    display: flex;
+    justify-content: flex-start;   /* do lewej */
+    justify-content: center;       /* środek */
+    justify-content: space-between; /* rozciągnięte */
+    justify-content: space-around;  /* równo z odstępami */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">ALIGN-ITEMS - wyrównanie w pionie (flex)</div>
+                <div class="demo-area">
+                    <p><strong>flex-start:</strong></p>
+                    <div style="display: flex; align-items: flex-start; gap: 5px; height: 120px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 40px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 80px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                    
+                    <p><strong>center:</strong></p>
+                    <div style="display: flex; align-items: center; gap: 5px; height: 120px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 40px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 80px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                    
+                    <p><strong>flex-end:</strong></p>
+                    <div style="display: flex; align-items: flex-end; gap: 5px; height: 120px; margin: 10px 0; border: 2px solid black; padding: 10px;">
+                        <div style="width: 60px; height: 40px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 60px; background: #ddd; border: 2px solid black;"></div>
+                        <div style="width: 60px; height: 80px; background: #ddd; border: 2px solid black;"></div>
+                    </div>
+                </div>
+                <div class="code-area">.container {
+    display: flex;
+    align-items: flex-start;  /* do góry */
+    align-items: center;      /* środek */
+    align-items: flex-end;    /* do dołu */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">GRID - różne szerokości kolumn</div>
+                <div class="demo-area">
+                    <p><strong>1fr 1fr (równe):</strong></p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0;">
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1fr</div>
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1fr</div>
+                    </div>
+                    
+                    <p><strong>2fr 1fr (pierwsza 2x szersza):</strong></p>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin: 10px 0;">
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">2fr</div>
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">1fr</div>
+                    </div>
+                    
+                    <p><strong>300px auto (pierwsza stała):</strong></p>
+                    <div style="display: grid; grid-template-columns: 300px auto; gap: 10px; margin: 10px 0;">
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">300px</div>
+                        <div style="background: #ddd; padding: 20px; border: 2px solid black; text-align: center;">auto</div>
+                    </div>
+                </div>
+                <div class="code-area">.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;      /* równe */
+    grid-template-columns: 2fr 1fr;      /* 2:1 */
+    grid-template-columns: 300px auto;   /* stała + elastyczna */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">TRANSFORM - przesunięcie, obrót, skala</div>
+                <div class="demo-area">
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-around;">
+                        <div style="width: 80px; height: 80px; background: #ddd; border: 2px solid black; transform: translateX(20px); text-align: center; padding: 10px;">
+                            translateX(20px)
+                        </div>
+                        <div style="width: 80px; height: 80px; background: #ddd; border: 2px solid black; transform: rotate(15deg); text-align: center; padding: 10px;">
+                            rotate(15deg)
+                        </div>
+                        <div style="width: 80px; height: 80px; background: #ddd; border: 2px solid black; transform: scale(1.2); text-align: center; padding: 10px;">
+                            scale(1.2)
+                        </div>
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    transform: translateX(20px);  /* przesuń w prawo */
+    transform: translateY(20px);  /* przesuń w dół */
+    transform: rotate(15deg);     /* obróć o 15° */
+    transform: scale(1.2);        /* powiększ o 20% */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">OPACITY - przezroczystość</div>
+                <div class="demo-area">
+                    <div style="display: flex; gap: 10px;">
+                        <div style="width: 100px; height: 80px; background: #000; opacity: 1; text-align: center; padding: 10px; color: white;">
+                            opacity: 1
+                        </div>
+                        <div style="width: 100px; height: 80px; background: #000; opacity: 0.7; text-align: center; padding: 10px; color: white;">
+                            opacity: 0.7
+                        </div>
+                        <div style="width: 100px; height: 80px; background: #000; opacity: 0.3; text-align: center; padding: 10px; color: white;">
+                            opacity: 0.3
+                        </div>
+                    </div>
+                </div>
+                <div class="code-area">.box {
+    opacity: 1;    /* w pełni widoczny */
+    opacity: 0.5;  /* 50% przezroczystości */
+    opacity: 0;    /* niewidoczny */
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">:hover - efekt po najechaniu</div>
+                <div class="demo-area">
+                    <button style="padding: 15px 30px; background: #ddd; border: 3px solid black; font-size: 1em; cursor: pointer;" onmouseover="this.style.background='#000'; this.style.color='#fff';" onmouseout="this.style.background='#ddd'; this.style.color='#000';">
+                        NAJEDŹ NA MNIE
+                    </button>
+                </div>
+                <div class="code-area">button:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.05);
+}</div>
+            </div>
+        </div>
+
+        <!-- ========== JAVASCRIPT ========== -->
+        <div id="js" class="section">
+            <h2 class="section-title">JAVASCRIPT - PROGRAMOWANIE</h2>
+            <div class="warning-box">⚠️ NAJWAŻNIEJSZA CZĘŚĆ EGZAMINU!</div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 1: Co to jest zmienna?</div>
+                <div class="note-box">
+                    <strong>Zmienna</strong> to "pudełko" w którym przechowujemy wartość.<br>
+                    Możemy tam włożyć tekst, liczbę, lub cokolwiek innego.
+                </div>
+                <div class="demo-area">
+                    <button onclick="podstawa1()">POKAŻ PRZYKŁAD</button>
+                </div>
+                <div class="code-area">// Tworzymy zmienną o nazwie "imie"
+let imie = "Jan";
+
+// Tworzymy zmienną "wiek"
+let wiek = 25;
+
+// Wyświetlamy
+alert(imie);  // Pokaże: Jan
+alert(wiek);  // Pokaże: 25</div>
+                <div class="note-box">
+                    <strong>let</strong> - słowo do tworzenia zmiennej<br>
+                    <strong>imie</strong> - nazwa zmiennej<br>
+                    <strong>= "Jan"</strong> - przypisanie wartości
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 2: Typy danych</div>
+                <div class="note-box">
+                    W zmiennych możemy przechowywać różne <strong>typy</strong> danych
+                </div>
+                <div class="demo-area">
+                    <button onclick="podstawa2()">POKAŻ TYPY</button>
+                </div>
+                <div class="code-area">// TEKST (string)
+let imie = "Jan";
+let nazwisko = "Kowalski";
+
+// LICZBA (number)
+let wiek = 25;
+let cena = 19.99;
+
+// PRAWDA/FAŁSZ (boolean)
+let czyPelnoletni = true;
+let czyZalogowany = false;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 3: Łączenie tekstów</div>
+                <div class="demo-area">
+                    <button onclick="podstawa3()">POKAŻ PRZYKŁAD</button>
+                </div>
+                <div class="code-area">let imie = "Jan";
+let wiek = 25;
+
+// Łączymy używając znaku +
+let zdanie = "Witaj " + imie + ", masz " + wiek + " lat";
+
+alert(zdanie);
+// Wyświetli: Witaj Jan, masz 25 lat</div>
+                <div class="note-box">
+                    Znak <strong>+</strong> łączy teksty w jeden
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 4: Dodawanie liczb</div>
+                <div class="demo-area">
+                    <button onclick="podstawa4()">POKAŻ PRZYKŁAD</button>
+                </div>
+                <div class="code-area">let a = 5;
+let b = 3;
+
+// Dodajemy liczby
+let suma = a + b;
+
+alert("5 + 3 = " + suma);  // Wyświetli: 5 + 3 = 8</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 5: Co to jest funkcja?</div>
+                <div class="note-box">
+                    <strong>Funkcja</strong> to "przepis" który możemy wykonać kiedy chcemy.<br>
+                    Zapisujemy kod raz, a możemy go używać wielokrotnie.
+                </div>
+                <div class="demo-area">
+                    <button onclick="podstawa5()">URUCHOM FUNKCJĘ</button>
+                </div>
+                <div class="code-area">// Tworzymy funkcję
+function powitaj() {
+    alert("Witaj!");
+}
+
+// Wywołujemy (uruchamiamy) funkcję
+powitaj();</div>
+                <div class="note-box">
+                    <strong>function powitaj() { ... }</strong> - tworzymy funkcję<br>
+                    <strong>powitaj()</strong> - wywołujemy funkcję (nawiasy!)
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWA 6: Funkcja z parametrem</div>
+                <div class="note-box">
+                    Funkcja może przyjmować <strong>parametry</strong> - wartości które jej przekazujemy
+                </div>
+                <div class="demo-area">
+                    <button onclick="podstawa6()">URUCHOM</button>
+                </div>
+                <div class="code-area">// Funkcja przyjmująca parametr "imie"
+function powitaj(imie) {
+    alert("Witaj " + imie + "!");
+}
+
+// Wywołujemy z różnymi wartościami
+powitaj("Jan");    // Wyświetli: Witaj Jan!
+powitaj("Anna");   // Wyświetli: Witaj Anna!</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 1: Prosta zmienna</div>
+                <div class="demo-area">
+                    <button onclick="przyklad1()">URUCHOM PRZYKŁAD 1</button>
+                </div>
+                <div class="code-area">// Tworzymy zmienną
+let imie = "Jan";
+
+// Wyświetlamy w alert
+alert(imie);  // Pokaże: Jan</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    1. Tworzymy zmienną "imie" i wpisujemy "Jan"<br>
+                    2. alert(imie) pokazuje zawartość zmiennej w okienku
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 2: Łączenie tekstu</div>
+                <div class="demo-area">
+                    <button onclick="przyklad2()">URUCHOM PRZYKŁAD 2</button>
+                </div>
+                <div class="code-area">let imie = "Jan";
+let wiek = 25;
+
+// Łączymy teksty znakiem +
+alert("Witaj " + imie + ", masz " + wiek + " lat");
+// Pokaże: Witaj Jan, masz 25 lat</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    Używamy znaku <strong>+</strong> aby połączyć teksty i zmienne w jeden tekst
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 3: Dodawanie liczb</div>
+                <div class="demo-area">
+                    <button onclick="przyklad3()">URUCHOM PRZYKŁAD 3</button>
+                </div>
+                <div class="code-area">let a = 5;
+let b = 3;
+let suma = a + b;
+
+alert("5 + 3 = " + suma);  // Pokaże: 5 + 3 = 8</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    Tworzymy 3 zmienne: a, b, i suma. Do sumy zapisujemy wynik a + b
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 4: Funkcja - co to jest?</div>
+                <div class="note-box">
+                    <strong>Funkcja</strong> to "przepis" na jakąś czynność.<br>
+                    Tworzymy ją raz, a potem możemy wywoływać wielokrotnie.
+                </div>
+                <div class="demo-area">
+                    <button onclick="przyklad4()">URUCHOM PRZYKŁAD 4</button>
+                </div>
+                <div class="code-area">// Tworzymy funkcję o nazwie "powitaj"
+function powitaj() {
+    alert("Witaj!");
+}
+
+// Wywołujemy funkcję (uruchamiamy ją)
+powitaj();</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    1. function powitaj() { ... } - tworzymy funkcję<br>
+                    2. powitaj() - wywołujemy funkcję (nawiasy są ważne!)
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 5: Funkcja z parametrem</div>
+                <div class="demo-area">
+                    <button onclick="przyklad5()">URUCHOM PRZYKŁAD 5</button>
+                </div>
+                <div class="code-area">// Funkcja która bierze "imie" jako parametr
+function powitaj(imie) {
+    alert("Witaj " + imie + "!");
+}
+
+// Wywołujemy z różnymi imionami
+powitaj("Jan");    // Pokaże: Witaj Jan!
+powitaj("Anna");   // Pokaże: Witaj Anna!</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    Parametr (tutaj "imie") to wartość którą przekazujemy do funkcji w nawiasach
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 6: Pobieranie wartości z INPUT</div>
+                <div class="demo-area">
+                    <label>Wpisz swoje imię:</label>
+                    <input type="text" id="input-imie" placeholder="Twoje imię...">
+                    <button onclick="przyklad6()">POBIERZ WARTOŚĆ</button>
+                </div>
+                <div class="code-area">// HTML
+&lt;input type="text" id="mojInput"&gt;
+&lt;button onclick="pobierz()"&gt;Pobierz&lt;/button&gt;
+
+// JavaScript
+function pobierz() {
+    // 1. Pobieramy element input po ID
+    let pole = document.getElementById("mojInput");
+    
+    // 2. Pobieramy wartość z tego pola
+    let wartosc = pole.value;
+    
+    // 3. Wyświetlamy
+    alert("Wpisałeś: " + wartosc);
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie krok po kroku:</strong><br>
+                    1. document.getElementById("mojInput") - znajdujemy element o id="mojInput"<br>
+                    2. .value - pobieramy to co użytkownik wpisał<br>
+                    3. alert() - pokazujemy w okienku
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 7: Zmiana tekstu na stronie</div>
+                <div class="demo-area">
+                    <p id="tekst-do-zmiany" style="font-size: 20px; font-weight: bold;">Stary tekst</p>
+                    <button onclick="przyklad7()">ZMIEŃ TEKST</button>
+                </div>
+                <div class="code-area">// HTML
+&lt;p id="mojParagraf"&gt;Stary tekst&lt;/p&gt;
+&lt;button onclick="zmien()"&gt;Zmień&lt;/button&gt;
+
+// JavaScript
+function zmien() {
+    // 1. Pobieramy element
+    let paragraf = document.getElementById("mojParagraf");
+    
+    // 2. Zmieniamy jego tekst
+    paragraf.innerText = "Nowy tekst!";
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    .innerText = "tekst" - zmienia zawartość tekstową elementu
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 8: If - warunek</div>
+                <div class="note-box">
+                    <strong>IF</strong> (jeśli) pozwala wykonać kod tylko gdy warunek jest prawdziwy
+                </div>
+                <div class="demo-area">
+                    <label>Podaj swój wiek:</label>
+                    <input type="number" id="wiek-input" placeholder="Wiek...">
+                    <button onclick="przyklad8()">SPRAWDŹ WIEK</button>
+                </div>
+                <div class="code-area">function sprawdzWiek() {
+    let wiek = document.getElementById("wiek-input").value;
+    wiek = parseInt(wiek);  // Zamieniamy tekst na liczbę
+    
+    if (wiek >= 18) {
+        alert("Jesteś pełnoletni!");
+    } else {
+        alert("Jesteś niepełnoletni");
+    }
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - if (wiek >= 18) - sprawdzamy czy wiek jest większy lub równy 18<br>
+                    - else - w przeciwnym razie (gdy warunek NIE jest spełniony)
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 9: 2 textboxy + button → alert</div>
+                <div class="warning-box">⚠️ CZĘSTO NA EGZAMINIE!</div>
+                <div class="demo-area">
+                    <label>Tekst 1:</label>
+                    <input type="text" id="tekst1" placeholder="Wpisz coś...">
+                    <label>Tekst 2:</label>
+                    <input type="text" id="tekst2" placeholder="Wpisz coś...">
+                    <button onclick="przyklad9()">POKAŻ OBA TEKSTY</button>
+                </div>
+                <div class="code-area">// HTML
+&lt;input type="text" id="pole1"&gt;
+&lt;input type="text" id="pole2"&gt;
+&lt;button onclick="pokaz()"&gt;Pokaż&lt;/button&gt;
+
+// JavaScript
+function pokaz() {
+    // Pobieramy wartości z obu pól
+    let tekst1 = document.getElementById("pole1").value;
+    let tekst2 = document.getElementById("pole2").value;
+    
+    // Łączymy i pokazujemy
+    alert("Pole 1: " + tekst1 + ", Pole 2: " + tekst2);
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 10: Kalkulator (dodawanie)</div>
+                <div class="demo-area">
+                    <label>Liczba A:</label>
+                    <input type="number" id="kalk-a" placeholder="np. 5">
+                    <label>Liczba B:</label>
+                    <input type="number" id="kalk-b" placeholder="np. 3">
+                    <button onclick="przyklad10()">OBLICZ SUMĘ</button>
+                    <p id="wynik-kalk" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; font-weight: bold; display: none;"></p>
+                </div>
+                <div class="code-area">function oblicz() {
+    // Pobieramy wartości
+    let a = document.getElementById("kalk-a").value;
+    let b = document.getElementById("kalk-b").value;
+    
+    // WAŻNE! Zamieniamy tekst na liczby
+    a = parseFloat(a);
+    b = parseFloat(b);
+    
+    // Sprawdzamy czy to liczby
+    if (isNaN(a) || isNaN(b)) {
+        alert("Wpisz poprawne liczby!");
+        return;
+    }
+    
+    // Obliczamy
+    let suma = a + b;
+    
+    // Wyświetlamy
+    alert("Suma: " + suma);
+}</div>
+                <div class="note-box">
+                    <strong>Ważne:</strong><br>
+                    - parseFloat() zamienia tekst na liczbę<br>
+                    - isNaN() sprawdza czy to NIE jest liczba<br>
+                    - return kończy funkcję
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 11: Radio buttons (papier)</div>
+                <div class="warning-box">⚠️ BARDZO CZĘSTO NA EGZAMINIE!</div>
+                <div class="demo-area">
+                    <p><strong>Rodzaj papieru:</strong></p>
+                    <input type="radio" id="blysz" name="papier" checked>
+                    <label class="inline-label" for="blysz">Błyszczący (1.5 zł)</label>
+                    <br>
+                    <input type="radio" id="mat" name="papier">
+                    <label class="inline-label" for="mat">Matowy (2 zł)</label>
+                    <br>
+                    <label>Ilość kopii:</label>
+                    <input type="number" id="ilosc-kopii" min="1" value="1">
+                    <button onclick="przyklad11()">OBLICZ CENĘ</button>
+                    <p id="wynik-cena" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; font-weight: bold; display: none;"></p>
+                </div>
+                <div class="code-area">function obliczCene() {
+    // Pobieramy radio buttony
+    let blyszczacy = document.getElementById("blysz");
+    let matowy = document.getElementById("mat");
+    
+    // Sprawdzamy który jest zaznaczony
+    let cenaJed;
+    if (blyszczacy.checked) {
+        cenaJed = 1.5;
+    } else {
+        cenaJed = 2;
+    }
+    
+    // Pobieramy ilość
+    let ilosc = parseInt(document.getElementById("ilosc-kopii").value);
+    
+    // Obliczamy
+    let cena = cenaJed * ilosc;
+    
+    // Wyświetlamy
+    alert("Cena: " + cena + " zł");
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - .checked sprawdza czy radio button jest zaznaczony (true/false)<br>
+                    - Używamy if aby sprawdzić który jest zaznaczony
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 12: Checkbox (zainteresowania)</div>
+                <div class="demo-area">
+                    <p><strong>Zainteresowania:</strong></p>
+                    <input type="checkbox" id="ch-sport">
+                    <label class="inline-label" for="ch-sport">Sport</label>
+                    <br>
+                    <input type="checkbox" id="ch-muzyka">
+                    <label class="inline-label" for="ch-muzyka">Muzyka</label>
+                    <br>
+                    <input type="checkbox" id="ch-film">
+                    <label class="inline-label" for="ch-film">Film</label>
+                    <br>
+                    <button onclick="przyklad12()" style="margin-top: 10px;">POKAŻ WYBRANE</button>
+                </div>
+                <div class="code-area">function pokazWybrane() {
+    let wybrane = [];  // Pusta tablica
+    
+    // Sprawdzamy każdy checkbox
+    if (document.getElementById("ch-sport").checked) {
+        wybrane.push("Sport");  // Dodajemy do tablicy
+    }
+    if (document.getElementById("ch-muzyka").checked) {
+        wybrane.push("Muzyka");
+    }
+    if (document.getElementById("ch-film").checked) {
+        wybrane.push("Film");
+    }
+    
+    // Wyświetlamy
+    if (wybrane.length === 0) {
+        alert("Nic nie wybrano!");
+    } else {
+        alert("Wybrano: " + wybrane.join(", "));
+    }
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - [] tworzy pustą tablicę<br>
+                    - .push() dodaje element do tablicy<br>
+                    - .join(", ") łączy elementy tablicy w tekst, oddzielone przecinkami
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 13: Tworzenie nowych elementów</div>
+                <div class="warning-box">⚠️ DODAWANIE DO KOSZYKA - WAŻNE!</div>
+                <div class="demo-area">
+                    <label>Nazwa produktu:</label>
+                    <input type="text" id="produkt" placeholder="np. Koszulka">
+                    <button onclick="przyklad13()">DODAJ</button>
+                    <div id="lista-produktow" style="margin-top: 15px;"></div>
+                </div>
+                <div class="code-area">function dodajProdukt() {
+    // Pobieramy nazwę
+    let pole = document.getElementById("produkt");
+    let nazwa = pole.value;
+    
+    if (nazwa === "") {
+        alert("Wpisz nazwę!");
+        return;
+    }
+    
+    // Tworzymy nowy DIV
+    let nowyDiv = document.createElement("div");
+    nowyDiv.innerHTML = "✓ " + nazwa;
+    nowyDiv.style.padding = "10px";
+    nowyDiv.style.border = "2px solid black";
+    nowyDiv.style.margin = "5px 0";
+    nowyDiv.style.background = "#f0f0f0";
+    
+    // Dodajemy do listy
+    let lista = document.getElementById("lista-produktow");
+    lista.appendChild(nowyDiv);
+    
+    // Czyścimy pole
+    pole.value = "";
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - document.createElement("div") - tworzy nowy element DIV<br>
+                    - .innerHTML - ustawia zawartość<br>
+                    - .appendChild() - dodaje element jako dziecko
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 14: Konwersja systemów liczbowych</div>
+                <div class="demo-area">
+                    <label>Liczba dziesiętna:</label>
+                    <input type="number" id="dec-liczba" placeholder="np. 255">
+                    <button onclick="przyklad14()">KONWERTUJ</button>
+                    <div id="wynik-konw" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; display: none;"></div>
+                </div>
+                <div class="code-area">function konwertuj() {
+    let liczba = parseInt(document.getElementById("dec-liczba").value);
+    
+    if (isNaN(liczba)) {
+        alert("Wpisz liczbę!");
+        return;
+    }
+    
+    // Konwersje
+    let bin = liczba.toString(2);   // na binarny
+    let hex = liczba.toString(16);  // na hex
+    
+    // Wyświetlamy
+    alert("Binarne: " + bin + "\nHex: " + hex.toUpperCase());
+}</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - .toString(2) - zamienia na binarny (system o podstawie 2)<br>
+                    - .toString(16) - zamienia na hex (system o podstawie 16)
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 15: Select (lista rozwijana)</div>
+                <div class="demo-area">
+                    <label>Wybierz miasto:</label>
+                    <select id="miasto-select">
+                        <option value="">-- Wybierz --</option>
+                        <option value="warszawa">Warszawa</option>
+                        <option value="krakow">Kraków</option>
+                        <option value="gdansk">Gdańsk</option>
+                    </select>
+                    <button onclick="przyklad15()">POKAŻ WYBÓR</button>
+                </div>
+                <div class="code-area">function pokazMiasto() {
+    let select = document.getElementById("miasto-select");
+    let wybor = select.value;
+    
+    if (wybor === "") {
+        alert("Nie wybrano miasta!");
+    } else {
+        alert("Wybrano: " + wybor);
+    }
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 16: Pętla for</div>
+                <div class="demo-area">
+                    <button onclick="przyklad16()">URUCHOM PĘTLĘ</button>
+                </div>
+                <div class="code-area">// Pętla która wyświetli liczby od 1 do 5
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+
+// i++ oznacza i = i + 1 (zwiększ o 1)</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    1. let i = 1 - zaczynamy od 1<br>
+                    2. i <= 5 - dopóki i jest mniejsze lub równe 5<br>
+                    3. i++ - po każdym obiegu zwiększamy i o 1
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 17: Pasek postępu</div>
+                <div class="warning-box">⚠️ CZĘSTO NA EGZAMINIE!</div>
+                <div class="demo-area">
+                    <button onclick="przyklad17()">ZWIĘKSZ PASEK</button>
+                    <div style="width: 100%; height: 30px; border: 2px solid black; background: #f0f0f0; margin-top: 15px; position: relative;">
+                        <div id="pasek" style="width: 0%; height: 100%; background: #000;"></div>
+                    </div>
+                    <p id="procenty" style="margin-top: 10px; font-weight: bold;">0%</p>
+                </div>
+                <div class="code-area">let szerokosc = 0;
+
+function zwiekszPasek() {
+    // Pobieramy pasek
+    let pasek = document.getElementById("pasek");
+    
+    // Zwiększamy szerokość
+    szerokosc = szerokosc + 10;
+    
+    // Ograniczamy do 100
+    if (szerokosc > 100) {
+        szerokosc = 100;
+    }
+    
+    // Ustawiamy szerokość
+    pasek.style.width = szerokosc + "%";
+    
+    // Wyświetlamy procenty
+    document.getElementById("procenty").innerText = szerokosc + "%";
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 18: Ukrywanie/pokazywanie elementów</div>
+                <div class="demo-area">
+                    <button onclick="przyklad18ukryj()">UKRYJ</button>
+                    <button onclick="przyklad18pokaz()">POKAŻ</button>
+                    <div id="element-do-ukrycia" style="margin-top: 15px; padding: 20px; background: #f0f0f0; border: 2px solid black;">
+                        Ten element można ukryć i pokazać!
+                    </div>
+                </div>
+                <div class="code-area">// Ukrywanie
+function ukryj() {
+    let element = document.getElementById("element");
+    element.style.display = "none";
+}
+
+// Pokazywanie
+function pokaz() {
+    let element = document.getElementById("element");
+    element.style.display = "block";
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 19: Zmiana stylów CSS z JS</div>
+                <div class="demo-area">
+                    <div id="box-do-zmiany" style="width: 150px; height: 100px; background: #ddd; border: 2px solid black; padding: 15px; margin: 15px auto; text-align: center;">
+                        Kliknij przyciski
+                    </div>
+                    <button onclick="przyklad19czerwony()">CZERWONY</button>
+                    <button onclick="przyklad19niebieski()">NIEBIESKI</button>
+                    <button onclick="przyklad19duzy()">POWIĘKSZ</button>
+                </div>
+                <div class="code-area">function zmienKolor() {
+    let box = document.getElementById("box");
+    box.style.background = "red";
+    box.style.color = "white";
+    box.style.padding = "30px";
+    box.style.border = "5px solid black";
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 20: addEventListener</div>
+                <div class="note-box">addEventListener to lepszy sposób niż onclick</div>
+                <div class="demo-area">
+                    <button id="btn-listener">KLIKNIJ MNIE</button>
+                    <p id="listener-wynik" style="margin-top: 15px; font-weight: bold;"></p>
+                </div>
+                <div class="code-area">document.addEventListener("DOMContentLoaded", function() {
+    // Pobieramy przycisk
+    let button = document.getElementById("btn-listener");
+    
+    // Podpinamy funkcję do kliknięcia
+    button.addEventListener("click", function() {
+        alert("Kliknięto przycisk!");
+    });
+});</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - DOMContentLoaded czeka aż strona się załaduje<br>
+                    - addEventListener("click", funkcja) - podpina funkcję do eventu
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 21: Walidacja formularza</div>
+                <div class="warning-box">⚠️ MOŻE BYĆ NA EGZAMINIE!</div>
+                <div class="demo-area">
+                    <label>Imię (wymagane):</label>
+                    <input type="text" id="val-imie">
+                    <label>Wiek (min 18):</label>
+                    <input type="number" id="val-wiek">
+                    <input type="checkbox" id="val-zgoda">
+                    <label class="inline-label">Akceptuję regulamin</label>
+                    <br>
+                    <button onclick="przyklad21()" style="margin-top: 10px;">WALIDUJ</button>
+                </div>
+                <div class="code-area">function waliduj() {
+    let imie = document.getElementById("val-imie").value;
+    let wiek = parseInt(document.getElementById("val-wiek").value);
+    let zgoda = document.getElementById("val-zgoda").checked;
+    
+    // Sprawdzamy imię
+    if (imie === "") {
+        alert("Wpisz imię!");
+        return;
+    }
+    
+    // Sprawdzamy wiek
+    if (isNaN(wiek) || wiek < 18) {
+        alert("Musisz mieć min 18 lat!");
+        return;
+    }
+    
+    // Sprawdzamy zgodę
+    if (!zgoda) {
+        alert("Musisz zaakceptować regulamin!");
+        return;
+    }
+    
+    // Wszystko OK
+    alert("Formularz poprawny!");
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 22: Pętla - suma liczb</div>
+                <div class="demo-area">
+                    <label>Do jakiej liczby sumować? (1 + 2 + 3 + ...)</label>
+                    <input type="number" id="suma-do" placeholder="np. 10" value="10">
+                    <button onclick="przyklad22()">OBLICZ SUMĘ</button>
+                    <p id="wynik-suma" style="margin-top: 15px; font-weight: bold;"></p>
+                </div>
+                <div class="code-area">function obliczSume() {
+    let n = parseInt(document.getElementById("suma-do").value);
+    
+    let suma = 0;
+    for (let i = 1; i <= n; i++) {
+        suma = suma + i;  // dodajemy i do sumy
+    }
+    
+    alert("Suma od 1 do " + n + " = " + suma);
+}</div>
+                <div class="note-box">
+                    <strong>Przykład:</strong> Dla n=5: suma = 1+2+3+4+5 = 15
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 23: Sprawdzanie pliku</div>
+                <div class="demo-area">
+                    <label>Wybierz plik:</label>
+                    <input type="file" id="plik-input">
+                    <button onclick="przyklad23()">SPRAWDŹ PLIK</button>
+                </div>
+                <div class="code-area">function sprawdzPlik() {
+    let plik = document.getElementById("plik-input");
+    
+    // Sprawdzamy czy wybrano
+    if (plik.files.length === 0) {
+        alert("Nie wybrano pliku!");
+        return;
+    }
+    
+    // Pobieramy info o pliku
+    let nazwa = plik.files[0].name;
+    let rozmiar = plik.files[0].size;
+    
+    alert("Plik: " + nazwa + "\nRozmiar: " + rozmiar + " B");
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 24: Wszystkie operacje matematyczne</div>
+                <div class="demo-area">
+                    <label>Liczba A:</label>
+                    <input type="number" id="mat-a" value="10">
+                    <label>Liczba B:</label>
+                    <input type="number" id="mat-b" value="3">
+                    <button onclick="przyklad24()">OBLICZ WSZYSTKO</button>
+                    <div id="wynik-mat" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; display: none;"></div>
+                </div>
+                <div class="code-area">function obliczWszystko() {
+    let a = parseFloat(document.getElementById("mat-a").value);
+    let b = parseFloat(document.getElementById("mat-b").value);
+    
+    let wynik = 
+        "Dodawanie: " + a + " + " + b + " = " + (a + b) + "\n" +
+        "Odejmowanie: " + a + " - " + b + " = " + (a - b) + "\n" +
+        "Mnożenie: " + a + " * " + b + " = " + (a * b) + "\n" +
+        "Dzielenie: " + a + " / " + b + " = " + (a / b).toFixed(2) + "\n" +
+        "Reszta z dzielenia: " + a + " % " + b + " = " + (a % b);
+    
+    alert(wynik);
+}</div>
+                <div class="note-box">
+                    <strong>Operatory matematyczne:</strong><br>
+                    + dodawanie, - odejmowanie, * mnożenie, / dzielenie, % reszta z dzielenia
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 25: Pętla - wyświetlanie liczb</div>
+                <div class="demo-area">
+                    <label>Od jakiej liczby:</label>
+                    <input type="number" id="petla-od" value="1" style="width: 48%; margin-right: 2%;">
+                    <input type="number" id="petla-do" value="10" placeholder="Do jakiej" style="width: 48%;">
+                    <button onclick="przyklad25()">POKAŻ LICZBY</button>
+                    <div id="wynik-petla" style="margin-top: 15px; padding: 15px; background: #f0f0f0; border: 2px solid black; display: none;"></div>
+                </div>
+                <div class="code-area">function pokazLiczby() {
+    let od = parseInt(document.getElementById("petla-od").value);
+    let do_liczby = parseInt(document.getElementById("petla-do").value);
+    
+    let wynik = "";
+    for (let i = od; i <= do_liczby; i++) {
+        wynik = wynik + i + ", ";
+    }
+    
+    alert("Liczby: " + wynik);
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 26: Zmiana klasy CSS</div>
+                <div class="demo-area">
+                    <div id="box-klasa" style="padding: 20px; background: #ddd; border: 2px solid black; text-align: center; margin: 15px 0;">
+                        Kliknij przyciski
+                    </div>
+                    <button onclick="przyklad26dodaj()">DODAJ KLASĘ</button>
+                    <button onclick="przyklad26usun()">USUŃ KLASĘ</button>
+                </div>
+                <div class="code-area">// Dodanie klasy
+element.classList.add("nowa-klasa");
+
+// Usunięcie klasy
+element.classList.remove("stara-klasa");
+
+// Przełączenie (toggle)
+element.classList.toggle("aktywna");</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 27: innerHTML vs innerText</div>
+                <div class="demo-area">
+                    <div id="test-html" style="padding: 15px; border: 2px solid black; background: #f0f0f0; margin: 15px 0;">
+                        Początkowy tekst
+                    </div>
+                    <button onclick="przyklad27html()">innerHTML</button>
+                    <button onclick="przyklad27text()">innerText</button>
+                </div>
+                <div class="code-area">// innerHTML - wstawia HTML
+element.innerHTML = "&lt;strong&gt;Pogrubiony&lt;/strong&gt;";
+
+// innerText - wstawia czysty tekst
+element.innerText = "Zwykły tekst";</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 28: Licznik kliknięć</div>
+                <div class="demo-area">
+                    <button onclick="przyklad28()">KLIKNIJ MNIE</button>
+                    <p id="licznik-klikniec" style="margin-top: 15px; font-size: 2em; font-weight: bold;">0</p>
+                </div>
+                <div class="code-area">let licznik = 0;
+
+function klik() {
+    licznik = licznik + 1;  // lub licznik++
+    
+    let pole = document.getElementById("licznik-klikniec");
+    pole.innerText = licznik;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 29: Kalkulator z wszystkimi operacjami</div>
+                <div class="demo-area">
+                    <label>Liczba A:</label>
+                    <input type="number" id="kalk2-a" value="12">
+                    <label>Liczba B:</label>
+                    <input type="number" id="kalk2-b" value="5">
+                    <button onclick="przyklad29()">OBLICZ</button>
+                    <div id="wynik-kalk2" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; display: none;"></div>
+                </div>
+                <div class="code-area">function kalkulator() {
+    let a = parseFloat(document.getElementById("kalk2-a").value);
+    let b = parseFloat(document.getElementById("kalk2-b").value);
+    
+    if (isNaN(a) || isNaN(b)) {
+        alert("Wpisz liczby!");
+        return;
+    }
+    
+    let wynik = document.getElementById("wynik-kalk2");
+    wynik.innerHTML = 
+        "Suma: " + (a + b) + "&lt;br&gt;" +
+        "Różnica: " + (a - b) + "&lt;br&gt;" +
+        "Iloczyn: " + (a * b) + "&lt;br&gt;" +
+        "Iloraz: " + (a / b).toFixed(2) + "&lt;br&gt;" +
+        "Reszta: " + (a % b);
+    wynik.style.display = "block";
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 30: Tablice - podstawy</div>
+                <div class="demo-area">
+                    <button onclick="przyklad30()">POKAŻ TABLICĘ</button>
+                </div>
+                <div class="code-area">// Tworzenie tablicy
+let tablica = [1, 2, 3, 4, 5];
+
+// Dodawanie elementu
+tablica.push(6);  // [1, 2, 3, 4, 5, 6]
+
+// Usuwanie ostatniego
+tablica.pop();  // [1, 2, 3, 4, 5]
+
+// Długość tablicy
+let dlugosc = tablica.length;  // 5
+
+// Dostęp do elementu
+let pierwszy = tablica[0];  // 1 (indeksy od 0!)
+let drugi = tablica[1];     // 2</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 31: Kalkulator BMI</div>
+                <div class="demo-area">
+                    <label>Waga (kg):</label>
+                    <input type="number" id="bmi-waga" placeholder="np. 70">
+                    <label>Wzrost (m):</label>
+                    <input type="number" id="bmi-wzrost" placeholder="np. 1.75" step="0.01">
+                    <button onclick="przyklad31()">OBLICZ BMI</button>
+                    <div id="wynik-bmi" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; display: none;"></div>
+                </div>
+                <div class="code-area">function obliczBMI() {
+    let waga = parseFloat(document.getElementById("bmi-waga").value);
+    let wzrost = parseFloat(document.getElementById("bmi-wzrost").value);
+    
+    if (isNaN(waga) || isNaN(wzrost)) {
+        alert("Wpisz poprawne dane!");
+        return;
+    }
+    
+    // Wzór: BMI = waga / (wzrost^2)
+    let bmi = waga / (wzrost * wzrost);
+    
+    alert("Twoje BMI: " + bmi.toFixed(2));
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 32: Obliczanie rabatu</div>
+                <div class="demo-area">
+                    <label>Cena:</label>
+                    <input type="number" id="rabat-cena" value="100">
+                    <label>Rabat (%):</label>
+                    <input type="number" id="rabat-procent" value="20" min="0" max="100">
+                    <button onclick="przyklad32()">OBLICZ</button>
+                    <div id="wynik-rabat" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; display: none;"></div>
+                </div>
+                <div class="code-area">function obliczRabat() {
+    let cena = parseFloat(document.getElementById("rabat-cena").value);
+    let rabat = parseFloat(document.getElementById("rabat-procent").value);
+    
+    // Obliczamy wartość rabatu
+    let kwotaRabatu = (cena * rabat) / 100;
+    
+    // Cena po rabacie
+    let cenaPoRabacie = cena - kwotaRabatu;
+    
+    alert("Cena: " + cena + " zł\n" +
+          "Rabat: " + rabat + "%\n" +
+          "Do zapłaty: " + cenaPoRabacie + " zł");
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 33: Sprawdzanie czy liczba parzysta</div>
+                <div class="demo-area">
+                    <label>Podaj liczbę:</label>
+                    <input type="number" id="parzysta-liczba" placeholder="np. 7">
+                    <button onclick="przyklad33()">SPRAWDŹ</button>
+                </div>
+                <div class="code-area">function sprawdzParzystosc() {
+    let liczba = parseInt(document.getElementById("parzysta-liczba").value);
+    
+    if (isNaN(liczba)) {
+        alert("Wpisz liczbę!");
+        return;
+    }
+    
+    // Sprawdzamy resztę z dzielenia przez 2
+    if (liczba % 2 === 0) {
+        alert(liczba + " jest parzysta");
+    } else {
+        alert(liczba + " jest nieparzysta");
+    }
+}</div>
+                <div class="note-box">
+                    <strong>%</strong> (modulo) - reszta z dzielenia<br>
+                    Jeśli liczba % 2 === 0 to liczba jest parzysta
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 34: Silnia</div>
+                <div class="demo-area">
+                    <label>Oblicz silnię z liczby:</label>
+                    <input type="number" id="silnia-n" value="5" min="0">
+                    <button onclick="przyklad34()">OBLICZ</button>
+                    <p id="wynik-silnia" style="margin-top: 15px; font-weight: bold;"></p>
+                </div>
+                <div class="code-area">function silnia(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    
+    let wynik = 1;
+    for (let i = 2; i <= n; i++) {
+        wynik = wynik * i;
+    }
+    
+    return wynik;
+}
+
+// Użycie:
+let s = silnia(5);  // 5! = 1*2*3*4*5 = 120</div>
+                <div class="note-box">
+                    <strong>Silnia:</strong> 5! = 1 × 2 × 3 × 4 × 5 = 120
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 35: NWD (Największy Wspólny Dzielnik)</div>
+                <div class="demo-area">
+                    <label>Liczba A:</label>
+                    <input type="number" id="nwd-a" value="48" style="width: 48%; margin-right: 2%;">
+                    <input type="number" id="nwd-b" value="18" placeholder="Liczba B" style="width: 48%;">
+                    <button onclick="przyklad35()">OBLICZ NWD</button>
+                    <p id="wynik-nwd" style="margin-top: 15px; font-weight: bold;"></p>
+                </div>
+                <div class="code-area">function nwd(a, b) {
+    while (b !== 0) {
+        let temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Użycie:
+let wynik = nwd(48, 18);  // wynik: 6</div>
+                <div class="note-box">
+                    <strong>NWD(48, 18) = 6</strong><br>
+                    Algorytm Euklidesa - może być na egzaminie!
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 36: Zamiana elementów miejscami</div>
+                <div class="demo-area">
+                    <label>Tekst 1:</label>
+                    <input type="text" id="swap-a" value="PIERWSZY">
+                    <label>Tekst 2:</label>
+                    <input type="text" id="swap-b" value="DRUGI">
+                    <button onclick="przyklad36()">ZAMIEŃ MIEJSCAMI</button>
+                </div>
+                <div class="code-area">function zamien() {
+    let poleA = document.getElementById("swap-a");
+    let poleB = document.getElementById("swap-b");
+    
+    // Zapisujemy wartości
+    let temp = poleA.value;
+    
+    // Zamieniamy
+    poleA.value = poleB.value;
+    poleB.value = temp;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 37: Zmiana tła co kliknięcie</div>
+                <div class="demo-area">
+                    <div id="color-box" style="width: 200px; height: 200px; background: #ddd; border: 3px solid black; margin: 20px auto;"></div>
+                    <button onclick="przyklad37()">ZMIEŃ KOLOR</button>
+                </div>
+                <div class="code-area">let kolory = ["#ff0000", "#00ff00", "#0000ff", "#ffff00"];
+let index = 0;
+
+function zmienKolor() {
+    let box = document.getElementById("color-box");
+    box.style.background = kolory[index];
+    
+    index++;
+    if (index >= kolory.length) {
+        index = 0;  // Wracamy do początku
+    }
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 38: Licznik odwiedzin</div>
+                <div class="demo-area">
+                    <button onclick="przyklad38()">ODWIEDŹ STRONĘ</button>
+                    <p style="margin-top: 15px; font-size: 1.5em;">Odwiedzin: <span id="licznik-odw">0</span></p>
+                </div>
+                <div class="code-area">let licznikOdwiedzin = 0;
+
+function odwiedz() {
+    licznikOdwiedzin = licznikOdwiedzin + 1;
+    
+    let pole = document.getElementById("licznik-odw");
+    pole.innerText = licznikOdwiedzin;
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 39: Ukrywanie/pokazywanie paneli (zakładki)</div>
+                <div class="warning-box">⚠️ BARDZO CZĘSTO NA EGZAMINIE!</div>
+                <div class="demo-area">
+                    <button onclick="przyklad39panel(1)">PANEL 1</button>
+                    <button onclick="przyklad39panel(2)">PANEL 2</button>
+                    <button onclick="przyklad39panel(3)">PANEL 3</button>
+                    
+                    <div id="p39-panel1" style="display: none; margin-top: 15px; padding: 20px; background: #f0f0f0; border: 3px solid black;">
+                        <strong>PANEL 1</strong><br>
+                        Tutaj dane klienta...
+                    </div>
+                    <div id="p39-panel2" style="display: none; margin-top: 15px; padding: 20px; background: #f0f0f0; border: 3px solid black;">
+                        <strong>PANEL 2</strong><br>
+                        Tutaj adres...
+                    </div>
+                    <div id="p39-panel3" style="display: none; margin-top: 15px; padding: 20px; background: #f0f0f0; border: 3px solid black;">
+                        <strong>PANEL 3</strong><br>
+                        Tutaj kontakt...
+                    </div>
+                </div>
+                <div class="code-area">function ukryjWszystkie() {
+    document.getElementById("p39-panel1").style.display = "none";
+    document.getElementById("p39-panel2").style.display = "none";
+    document.getElementById("p39-panel3").style.display = "none";
+}
+
+function pokazPanel(numer) {
+    // Najpierw ukrywamy wszystkie
+    ukryjWszystkie();
+    
+    // Potem pokazujemy wybrany
+    document.getElementById("p39-panel" + numer).style.display = "block";
+}</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁAD 40: Dodawanie produktów do koszyka</div>
+                <div class="warning-box">⚠️ KLASYCZNY PRZYKŁAD Z EGZAMINU!</div>
+                <div class="demo-area">
+                    <label>Nazwa produktu:</label>
+                    <input type="text" id="koszyk-nazwa" placeholder="np. Laptop">
+                    <label>Cena:</label>
+                    <input type="number" id="koszyk-cena" placeholder="np. 2500">
+                    <button onclick="przyklad40()">DODAJ DO KOSZYKA</button>
+                    <div id="koszyk-lista" style="margin-top: 20px; border-top: 3px solid black; padding-top: 20px;">
+                        <strong>KOSZYK:</strong>
+                    </div>
+                    <p id="koszyk-suma" style="margin-top: 15px; padding: 15px; background: #000; color: #fff; font-weight: bold; display: none;"></p>
+                </div>
+                <div class="code-area">let sumaKoszyka = 0;
+
+function dodajDoKoszyka() {
+    let nazwa = document.getElementById("koszyk-nazwa").value;
+    let cena = parseFloat(document.getElementById("koszyk-cena").value);
+    
+    if (nazwa === "" || isNaN(cena)) {
+        alert("Wypełnij wszystkie pola!");
+        return;
+    }
+    
+    // Tworzymy nowy element
+    let produkt = document.createElement("div");
+    produkt.innerHTML = nazwa + " - " + cena + " zł";
+    produkt.style.padding = "10px";
+    produkt.style.border = "2px solid black";
+    produkt.style.margin = "5px 0";
+    produkt.style.background = "#f0f0f0";
+    
+    // Dodajemy do koszyka
+    document.getElementById("koszyk-lista").appendChild(produkt);
+    
+    // Zwiększamy sumę
+    sumaKoszyka = sumaKoszyka + cena;
+    document.getElementById("koszyk-suma").innerText = 
+        "SUMA: " + sumaKoszyka + " zł";
+    document.getElementById("koszyk-suma").style.display = "block";
+    
+    // Czyścimy pola
+    document.getElementById("koszyk-nazwa").value = "";
+    document.getElementById("koszyk-cena").value = "";
+}</div>
+            </div>
+        </div>
+
+        <!-- ========== PHP ========== -->
+        <div id="php" class="section">
+            <h2 class="section-title">PHP - BACKEND</h2>
+
+            <div class="example-box">
+                <div class="example-title">PODSTAWY PHP</div>
+                <div class="note-box">PHP działa na serwerze! Potrzebujesz XAMPP, WAMP lub innego serwera</div>
+                <div class="code-area">&lt;?php
+// ZMIENNE (zaczynają się od $)
+$imie = "Jan";
+$wiek = 25;
+
+// WYŚWIETLANIE
+echo "Witaj " . $imie;  // operator . łączy teksty
+echo $wiek;
+
+// FUNKCJE
+function dodaj($a, $b) {
+    return $a + $b;
+}
+
+$wynik = dodaj(5, 3);  // 8
+
+// WARUNKI
+if ($wiek >= 18) {
+    echo "Pełnoletni";
+} else {
+    echo "Niepełnoletni";
+}
+
+// PĘTLE
+for ($i = 0; $i < 5; $i++) {
+    echo $i;
+}
+?&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FORMULARZE - POST</div>
+                <div class="warning-box">⚠️ WAŻNE NA EGZAMINIE!</div>
+                <div class="code-area">&lt;!-- formularz.html --&gt;
+&lt;form method="POST" action="obsluga.php"&gt;
+    &lt;input type="text" name="imie"&gt;
+    &lt;button type="submit"&gt;Wyślij&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- obsluga.php --&gt;
+&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $imie = $_POST["imie"];
+    echo "Witaj " . $imie;
+}
+?&gt;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYDATNE FUNKCJE</div>
+                <div class="code-area">&lt;?php
+// TEKSTOWE
+strlen("tekst")              // długość: 5
+strtoupper("tekst")          // TEKST
+strtolower("TEKST")          // tekst
+
+// NUMERYCZNE
+abs(-5)                      // 5
+round(3.7)                   // 4
+rand(1, 10)                  // losowa 1-10
+
+// TABLICE
+$tab = array(1, 2, 3);
+count($tab)                  // 3
+sort($tab)                   // sortuje
+
+// DATA
+date("Y-m-d")                // 2024-01-15
+date("H:i:s")                // 14:30:00
+?&gt;</div>
+            </div>
+        </div>
+
+        <!-- ========== MySQL ========== -->
+        <div id="mysql" class="section">
+            <h2 class="section-title">SQL - ZAPYTANIA DO BAZY DANYCH</h2>
+            <div class="warning-box">⚠️ WAŻNE NA EGZAMINIE! BĘDZIESZ WPISYWAŁ W phpMyAdmin!</div>
+
+            <div class="example-box">
+                <div class="example-title">SELECT * - Pobierz wszystko</div>
+                <div class="note-box">
+                    Pobiera wszystkie kolumny i wszystkie wiersze z tabeli
+                </div>
+                <div class="code-area">SELECT * FROM osoby;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">SELECT - Wybrane kolumny</div>
+                <div class="note-box">
+                    Pobiera tylko wybrane kolumny
+                </div>
+                <div class="code-area">SELECT imie, nazwisko FROM osoby;
+
+SELECT imie, wiek, miasto FROM osoby;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">WHERE - Filtrowanie (liczby)</div>
+                <div class="note-box">
+                    Pobiera tylko wiersze spełniające warunek
+                </div>
+                <div class="code-area">-- Osoby starsze niż 30 lat
+SELECT * FROM osoby WHERE wiek > 30;
+
+-- Osoby mające dokładnie 25 lat
+SELECT * FROM osoby WHERE wiek = 25;
+
+-- Osoby młodsze niż 18 lat
+SELECT * FROM osoby WHERE wiek < 18;
+
+-- Osoby w wieku 18-30 lat
+SELECT * FROM osoby WHERE wiek >= 18 AND wiek <= 30;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">WHERE - Filtrowanie (tekst)</div>
+                <div class="code-area">-- Osoby o imieniu Jan
+SELECT * FROM osoby WHERE imie = 'Jan';
+
+-- Osoby z Warszawy
+SELECT * FROM osoby WHERE miasto = 'Warszawa';
+
+-- Osoby których imię zaczyna się na 'A'
+SELECT * FROM osoby WHERE imie LIKE 'A%';</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">WHERE - Funkcje daty (YEAR)</div>
+                <div class="warning-box">⚠️ CZĘSTO NA EGZAMINIE!</div>
+                <div class="code-area">-- Osoby urodzone po roku 2000
+SELECT imie, nazwisko 
+FROM osoby 
+WHERE YEAR(dataUr) > 2000;
+
+-- Osoby urodzone w 1995 roku
+SELECT * FROM osoby WHERE YEAR(dataUr) = 1995;
+
+-- Osoby urodzone w latach 1990-2000
+SELECT * FROM osoby 
+WHERE YEAR(dataUr) >= 1990 AND YEAR(dataUr) <= 2000;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">ORDER BY - Sortowanie</div>
+                <div class="code-area">-- Sortowanie rosnące (od najmniejszego)
+SELECT * FROM osoby ORDER BY wiek ASC;
+
+-- Sortowanie malejące (od największego)
+SELECT * FROM osoby ORDER BY wiek DESC;
+
+-- Sortowanie alfabetyczne
+SELECT * FROM osoby ORDER BY nazwisko ASC;
+
+-- Sortowanie po kilku kolumnach
+SELECT * FROM osoby ORDER BY miasto ASC, nazwisko ASC;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">DISTINCT - Unikalne wartości</div>
+                <div class="code-area">-- Lista unikalnych miast (bez powtórzeń)
+SELECT DISTINCT miasto FROM osoby;
+
+-- Unikalne miasta posortowane
+SELECT DISTINCT miasto 
+FROM adresy 
+ORDER BY miasto ASC;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">COUNT - Liczenie</div>
+                <div class="warning-box">⚠️ WAŻNE!</div>
+                <div class="code-area">-- Ile jest osób w tabeli?
+SELECT COUNT(*) FROM osoby;
+
+-- Ile osób ma więcej niż 30 lat?
+SELECT COUNT(*) FROM osoby WHERE wiek > 30;
+
+-- Zliczanie z nazwą kolumny
+SELECT COUNT(*) AS liczba_osob FROM osoby;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">SUM, AVG, MIN, MAX - Funkcje agregujące</div>
+                <div class="code-area">-- Suma wszystkich wieków
+SELECT SUM(wiek) FROM osoby;
+
+-- Średnia wieku
+SELECT AVG(wiek) FROM osoby;
+
+-- Najmłodsza osoba
+SELECT MIN(wiek) FROM osoby;
+
+-- Najstarsza osoba
+SELECT MAX(wiek) FROM osoby;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">JOIN - Łączenie tabel</div>
+                <div class="warning-box">⚠️ TRUDNE ALE WAŻNE!</div>
+                <div class="code-area">-- Pobierz osoby i ich numery telefonów
+SELECT osoby.imie, osoby.nazwisko, telefony.numer
+FROM osoby
+JOIN telefony ON osoby.id = telefony.Osoby_id;
+
+-- To samo co wyżej (INNER JOIN)
+SELECT osoby.imie, telefony.numer
+FROM osoby
+INNER JOIN telefony ON osoby.id = telefony.osoby_id;</div>
+                <div class="note-box">
+                    <strong>Wyjaśnienie:</strong><br>
+                    - JOIN łączy dwie tabele<br>
+                    - ON określa jak je łączyć (po jakich kolumnach)<br>
+                    - osoby.id = telefony.Osoby_id - klucz obcy
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LEFT JOIN - Wszystkie z lewej tabeli</div>
+                <div class="code-area">-- Wszystkie osoby + ich telefony (jeśli mają)
+SELECT osoby.imie, telefony.numer
+FROM osoby
+LEFT JOIN telefony ON osoby.id = telefony.Osoby_id;</div>
+                <div class="note-box">
+                    LEFT JOIN pokaże wszystkie rekordy z lewej tabeli (osoby),<br>
+                    nawet jeśli nie mają dopasowania w prawej tabeli (telefony)
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">WHERE z AND i OR</div>
+                <div class="code-area">-- Osoby z Warszawy starsze niż 25 lat
+SELECT * FROM osoby 
+WHERE miasto = 'Warszawa' AND wiek > 25;
+
+-- Osoby z Warszawy LUB Krakowa
+SELECT * FROM osoby 
+WHERE miasto = 'Warszawa' OR miasto = 'Krakow';
+
+-- Osoby z Warszawy lub starsze niż 40 lat
+SELECT * FROM osoby 
+WHERE miasto = 'Warszawa' OR wiek > 40;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LIKE - Wyszukiwanie wzorców</div>
+                <div class="code-area">-- Imiona zaczynające się na 'A'
+SELECT * FROM osoby WHERE imie LIKE 'A%';
+
+-- Imiona kończące się na 'a'
+SELECT * FROM osoby WHERE imie LIKE '%a';
+
+-- Imiona zawierające 'an'
+SELECT * FROM osoby WHERE imie LIKE '%an%';
+
+-- Dokładnie 3 litery, zaczyna się na 'J'
+SELECT * FROM osoby WHERE imie LIKE 'J__';</div>
+                <div class="note-box">
+                    <strong>%</strong> - dowolna ilość znaków<br>
+                    <strong>_</strong> - dokładnie jeden znak
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">BETWEEN - Zakres</div>
+                <div class="code-area">-- Osoby w wieku 20-30 lat
+SELECT * FROM osoby WHERE wiek BETWEEN 20 AND 30;
+
+-- Osoby urodzone między 1990 a 2000 rokiem
+SELECT * FROM osoby 
+WHERE YEAR(dataUr) BETWEEN 1990 AND 2000;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">IN - Wiele wartości</div>
+                <div class="code-area">-- Osoby z Warszawy, Krakowa lub Gdańska
+SELECT * FROM osoby 
+WHERE miasto IN ('Warszawa', 'Krakow', 'Gdansk');
+
+-- Osoby mające 20, 25 lub 30 lat
+SELECT * FROM osoby WHERE wiek IN (20, 25, 30);</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">LIMIT - Ograniczenie wyników</div>
+                <div class="code-area">-- Tylko pierwsze 5 osób
+SELECT * FROM osoby LIMIT 5;
+
+-- 10 najstarszych osób
+SELECT * FROM osoby ORDER BY wiek DESC LIMIT 10;
+
+-- 5 osób z największą pensją
+SELECT * FROM pracownicy ORDER BY pensja DESC LIMIT 5;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">GROUP BY - Grupowanie</div>
+                <div class="code-area">-- Ile osób jest w każdym mieście?
+SELECT miasto, COUNT(*) AS liczba
+FROM osoby
+GROUP BY miasto;
+
+-- Średni wiek w każdym mieście
+SELECT miasto, AVG(wiek) AS sredni_wiek
+FROM osoby
+GROUP BY miasto;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">ALTER TABLE - Modyfikacja struktury</div>
+                <div class="code-area">-- Dodaj nową kolumnę
+ALTER TABLE adresy
+ADD COLUMN numerMieszkania INT AFTER numer;
+
+-- Usuń kolumnę
+ALTER TABLE adresy
+DROP COLUMN numerMieszkania;
+
+-- Zmień typ kolumny
+ALTER TABLE osoby
+MODIFY COLUMN wiek INT;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">PRZYKŁADY Z EGZAMINÓW</div>
+                <div class="warning-box">⚠️ TAKIE ZADANIA CZĘSTO PADAJĄ!</div>
+                
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 1: Osoby urodzone po 2000 roku</h3>
+                <div class="code-area">SELECT imie, nazwisko
+FROM osoby
+WHERE YEAR(dataUr) > 2000;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 2: Lista unikalnych miast</h3>
+                <div class="code-area">SELECT DISTINCT miasto
+FROM adresy
+ORDER BY miasto ASC;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 3: Osoby i ich telefony</h3>
+                <div class="code-area">SELECT osoby.imie, osoby.nazwisko, telefony.numer
+FROM osoby
+JOIN telefony ON osoby.id = telefony.Osoby_id;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 4: 10 najstarszych osób</h3>
+                <div class="code-area">SELECT imie, nazwisko, wiek
+FROM osoby
+ORDER BY wiek DESC
+LIMIT 10;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 5: Ile osób ma każdy wiek?</h3>
+                <div class="code-area">SELECT wiek, COUNT(*) AS liczba_osob
+FROM osoby
+GROUP BY wiek
+ORDER BY wiek ASC;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 6: Osoby z Warszawy młodsze niż 30 lat</h3>
+                <div class="code-area">SELECT imie, nazwisko, wiek
+FROM osoby
+WHERE miasto = 'Warszawa' AND wiek < 30;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 7: Imiona zaczynające się na 'A'</h3>
+                <div class="code-area">SELECT imie, nazwisko
+FROM osoby
+WHERE imie LIKE 'A%'
+ORDER BY nazwisko ASC;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 8: Średni wiek osób</h3>
+                <div class="code-area">SELECT AVG(wiek) AS sredni_wiek FROM osoby;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 9: Osoby z NULL w kolumnie</h3>
+                <div class="code-area">-- Osoby bez telefonu (NULL)
+SELECT * FROM osoby WHERE telefon IS NULL;
+
+-- Osoby z telefonem (nie NULL)
+SELECT * FROM osoby WHERE telefon IS NOT NULL;</div>
+
+                <h3 style="margin: 20px 0; font-size: 1.3em;">Zadanie 10: Użycie kilku warunków</h3>
+                <div class="code-area">-- Osoby z Warszawy lub Krakowa, starsze niż 25 lat
+SELECT imie, nazwisko, miasto, wiek
+FROM osoby
+WHERE (miasto = 'Warszawa' OR miasto = 'Krakow') 
+  AND wiek > 25;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FUNKCJE TEKSTOWE W SQL</div>
+                <div class="code-area">-- Wielkie litery
+SELECT UPPER(imie) FROM osoby;
+
+-- Małe litery
+SELECT LOWER(imie) FROM osoby;
+
+-- Łączenie tekstów
+SELECT CONCAT(imie, ' ', nazwisko) AS pelne_imie FROM osoby;
+
+-- Długość tekstu
+SELECT imie, LENGTH(imie) AS dlugosc FROM osoby;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">FUNKCJE DATY W SQL</div>
+                <div class="code-area">-- Pobierz rok z daty
+SELECT YEAR(dataUr) FROM osoby;
+
+-- Pobierz miesiąc
+SELECT MONTH(dataUr) FROM osoby;
+
+-- Pobierz dzień
+SELECT DAY(dataUr) FROM osoby;
+
+-- Aktualna data
+SELECT NOW();
+
+-- Dzisiejsza data
+SELECT CURDATE();</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">ŚCIĄGAWKA SQL - NAJWAŻNIEJSZE</div>
+                <div class="warning-box">⚠️ NAUCZ SIĘ NA PAMIĘĆ!</div>
+                <div class="code-area">-- PODSTAWOWE ZAPYTANIA:
+SELECT * FROM tabela;                    -- wszystko
+SELECT kolumna1, kolumna2 FROM tabela;   -- wybrane kolumny
+
+-- FILTROWANIE:
+WHERE wiek > 30                          -- większe niż
+WHERE wiek < 30                          -- mniejsze niż
+WHERE wiek = 30                          -- równe
+WHERE miasto = 'Warszawa'                -- tekst
+WHERE imie LIKE 'A%'                     -- zaczyna się na A
+WHERE wiek BETWEEN 20 AND 30             -- zakres
+
+-- ŁĄCZENIE WARUNKÓW:
+WHERE wiek > 25 AND miasto = 'Warszawa'  -- oba warunki
+WHERE wiek > 40 OR miasto = 'Krakow'     -- jeden z warunków
+
+-- SORTOWANIE:
+ORDER BY wiek ASC                        -- rosnąco
+ORDER BY wiek DESC                       -- malejąco
+
+-- OGRANICZENIE:
+LIMIT 10                                 -- tylko 10 wyników
+
+-- FUNKCJE:
+COUNT(*)                                 -- policz wiersze
+AVG(wiek)                                -- średnia
+SUM(wiek)                                -- suma
+MIN(wiek)                                -- minimum
+MAX(wiek)                                -- maximum
+
+-- DATA:
+YEAR(data)                               -- pobierz rok
+MONTH(data)                              -- pobierz miesiąc
+
+-- ŁĄCZENIE TABEL:
+SELECT t1.kolumna, t2.kolumna
+FROM tabela1 AS t1
+JOIN tabela2 AS t2 ON t1.id = t2.tabela1_id;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">TYPOWE ZADANIA EGZAMINACYJNE</div>
+                <div class="warning-box">⚠️ PRZEĆWICZ TE PRZYKŁADY!</div>
+                
+                <h3 style="margin: 20px 0;">1. Wyświetl osoby z danego miasta:</h3>
+                <div class="code-area">SELECT imie, nazwisko, wiek
+FROM osoby
+WHERE miasto = 'Warszawa';</div>
+
+                <h3 style="margin: 20px 0;">2. Policz ile jest osób w każdym mieście:</h3>
+                <div class="code-area">SELECT miasto, COUNT(*) AS liczba
+FROM osoby
+GROUP BY miasto;</div>
+
+                <h3 style="margin: 20px 0;">3. Najstarsza osoba w bazie:</h3>
+                <div class="code-area">SELECT imie, nazwisko, wiek
+FROM osoby
+ORDER BY wiek DESC
+LIMIT 1;</div>
+
+                <h3 style="margin: 20px 0;">4. Osoby urodzone w latach 90:</h3>
+                <div class="code-area">SELECT imie, nazwisko, dataUr
+FROM osoby
+WHERE YEAR(dataUr) BETWEEN 1990 AND 1999;</div>
+
+                <h3 style="margin: 20px 0;">5. Średni wiek osób z Warszawy:</h3>
+                <div class="code-area">SELECT AVG(wiek) AS sredni_wiek
+FROM osoby
+WHERE miasto = 'Warszawa';</div>
+
+                <h3 style="margin: 20px 0;">6. Osoby posortowane alfabetycznie:</h3>
+                <div class="code-area">SELECT nazwisko, imie
+FROM osoby
+ORDER BY nazwisko ASC, imie ASC;</div>
+
+                <h3 style="margin: 20px 0;">7. Ile osób ma więcej niż 30 lat:</h3>
+                <div class="code-area">SELECT COUNT(*) AS liczba
+FROM osoby
+WHERE wiek > 30;</div>
+
+                <h3 style="margin: 20px 0;">8. Osoby których nazwisko zawiera 'ski':</h3>
+                <div class="code-area">SELECT imie, nazwisko
+FROM osoby
+WHERE nazwisko LIKE '%ski%';</div>
+
+                <h3 style="margin: 20px 0;">9. 5 najmłodszych osób:</h3>
+                <div class="code-area">SELECT imie, nazwisko, wiek
+FROM osoby
+ORDER BY wiek ASC
+LIMIT 5;</div>
+
+                <h3 style="margin: 20px 0;">10. Osoby bez podanego wieku (NULL):</h3>
+                <div class="code-area">SELECT imie, nazwisko
+FROM osoby
+WHERE wiek IS NULL;</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">UPDATE - Aktualizacja danych</div>
+                <div class="code-area">-- Zmień wiek osoby o ID = 5
+UPDATE osoby
+SET wiek = 26
+WHERE id = 5;
+
+-- Zmień miasto dla wszystkich Janów
+UPDATE osoby
+SET miasto = 'Warszawa'
+WHERE imie = 'Jan';</div>
+                <div class="note-box">⚠️ Zawsze używaj WHERE w UPDATE! Bez tego zmienisz WSZYSTKIE rekordy!</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">DELETE - Usuwanie</div>
+                <div class="code-area">-- Usuń osobę o ID = 5
+DELETE FROM osoby WHERE id = 5;
+
+-- Usuń wszystkie osoby starsze niż 100 lat
+DELETE FROM osoby WHERE wiek > 100;</div>
+                <div class="note-box">⚠️ Zawsze używaj WHERE w DELETE! Bez tego usuniesz WSZYSTKO!</div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">INSERT - Dodawanie rekordów</div>
+                <div class="code-area">-- Dodaj nową osobę
+INSERT INTO osoby (imie, nazwisko, wiek, miasto)
+VALUES ('Jan', 'Kowalski', 25, 'Warszawa');
+
+-- Dodaj kilka osób naraz
+INSERT INTO osoby (imie, nazwisko, wiek)
+VALUES 
+    ('Anna', 'Nowak', 30),
+    ('Piotr', 'Wiśniewski', 28),
+    ('Ewa', 'Kowalczyk', 35);</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Podstawy JavaScript
+        function podstawa1() {
+            let imie = "Jan";
+            let wiek = 25;
+            alert(imie);
+            setTimeout(function() {
+                alert(wiek);
+            }, 500);
+        }
+
+        function podstawa2() {
+            let tekst = "Jan";
+            let liczba = 25;
+            let prawda = true;
+            alert("Tekst: " + tekst + "\nLiczba: " + liczba + "\nBoolean: " + prawda);
+        }
+
+        function podstawa3() {
+            let imie = "Jan";
+            let wiek = 25;
+            let zdanie = "Witaj " + imie + ", masz " + wiek + " lat";
+            alert(zdanie);
+        }
+
+        function podstawa4() {
+            let a = 5;
+            let b = 3;
+            let suma = a + b;
+            alert("5 + 3 = " + suma);
+        }
+
+        function podstawa5() {
+            alert("Witaj!");
+        }
+
+        function podstawa6() {
+            alert("Witaj Jan!");
+            setTimeout(function() {
+                alert("Witaj Anna!");
+            }, 1000);
+        }
+
+        // Przykłady JavaScript
+        function przyklad1() {
+            let imie = "Jan";
+            alert(imie);
+        }
+
+        function przyklad2() {
+            let imie = "Jan";
+            let wiek = 25;
+            alert("Witaj " + imie + ", masz " + wiek + " lat");
+        }
+
+        function przyklad3() {
+            let a = 5;
+            let b = 3;
+            let suma = a + b;
+            alert("5 + 3 = " + suma);
+        }
+
+        function przyklad4() {
+            alert("Witaj!");
+        }
+
+        function przyklad5() {
+            alert("Witaj Jan!");
+            setTimeout(function() {
+                alert("Witaj Anna!");
+            }, 1000);
+        }
+
+        function przyklad6() {
+            let pole = document.getElementById("input-imie");
+            let wartosc = pole.value;
+            alert("Wpisałeś: " + wartosc);
+        }
+
+        function przyklad7() {
+            let paragraf = document.getElementById("tekst-do-zmiany");
+            paragraf.innerText = "NOWY TEKST!";
+        }
+
+        function przyklad8() {
+            let wiek = document.getElementById("wiek-input").value;
+            wiek = parseInt(wiek);
+            
+            if (isNaN(wiek)) {
+                alert("Wpisz poprawny wiek!");
+                return;
+            }
+            
+            if (wiek >= 18) {
+                alert("Jesteś pełnoletni!");
+            } else {
+                alert("Jesteś niepełnoletni");
+            }
+        }
+
+        function przyklad9() {
+            let tekst1 = document.getElementById("tekst1").value;
+            let tekst2 = document.getElementById("tekst2").value;
+            alert("Pole 1: " + tekst1 + ", Pole 2: " + tekst2);
+        }
+
+        function przyklad10() {
+            let a = document.getElementById("kalk-a").value;
+            let b = document.getElementById("kalk-b").value;
+            
+            a = parseFloat(a);
+            b = parseFloat(b);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert("Wpisz poprawne liczby!");
+                return;
+            }
+            
+            let suma = a + b;
+            let wynik = document.getElementById("wynik-kalk");
+            wynik.innerHTML = "Wynik: " + a + " + " + b + " = " + suma;
+            wynik.style.display = "block";
+        }
+
+        function przyklad11() {
+            let blyszczacy = document.getElementById("blysz");
+            let cenaJed = blyszczacy.checked ? 1.5 : 2;
+            let ilosc = parseInt(document.getElementById("ilosc-kopii").value);
+            
+            if (isNaN(ilosc) || ilosc <= 0) {
+                alert("Wpisz poprawną ilość!");
+                return;
+            }
+            
+            let cena = cenaJed * ilosc;
+            let wynik = document.getElementById("wynik-cena");
+            wynik.innerText = "Cena: " + cena + " zł";
+            wynik.style.display = "block";
+        }
+
+        function przyklad12() {
+            let wybrane = [];
+            
+            if (document.getElementById("ch-sport").checked) {
+                wybrane.push("Sport");
+            }
+            if (document.getElementById("ch-muzyka").checked) {
+                wybrane.push("Muzyka");
+            }
+            if (document.getElementById("ch-film").checked) {
+                wybrane.push("Film");
+            }
+            
+            if (wybrane.length === 0) {
+                alert("Nic nie wybrano!");
+            } else {
+                alert("Wybrano: " + wybrane.join(", "));
+            }
+        }
+
+        function przyklad13() {
+            let pole = document.getElementById("produkt");
+            let nazwa = pole.value;
+            
+            if (nazwa === "") {
+                alert("Wpisz nazwę!");
+                return;
+            }
+            
+            let nowyDiv = document.createElement("div");
+            nowyDiv.innerHTML = "✓ " + nazwa;
+            nowyDiv.style.padding = "10px";
+            nowyDiv.style.border = "2px solid black";
+            nowyDiv.style.margin = "5px 0";
+            nowyDiv.style.background = "#f0f0f0";
+            
+            document.getElementById("lista-produktow").appendChild(nowyDiv);
+            pole.value = "";
+        }
+
+        function przyklad14() {
+            let liczba = parseInt(document.getElementById("dec-liczba").value);
+            
+            if (isNaN(liczba)) {
+                alert("Wpisz liczbę!");
+                return;
+            }
+            
+            let bin = liczba.toString(2);
+            let hex = liczba.toString(16);
+            
+            let wynik = document.getElementById("wynik-konw");
+            wynik.innerHTML = "Binarne (BIN): " + bin + "<br>Szesnastkowe (HEX): " + hex.toUpperCase();
+            wynik.style.display = "block";
+        }
+
+        function przyklad15() {
+            let select = document.getElementById("miasto-select");
+            let wybor = select.value;
+            
+            if (wybor === "") {
+                alert("Nie wybrano miasta!");
+            } else {
+                alert("Wybrano: " + wybor);
+            }
+        }
+
+        function przyklad16() {
+            let wynik = "";
+            for (let i = 1; i <= 5; i++) {
+                wynik += i + ", ";
+            }
+            alert("Liczby od 1 do 5: " + wynik);
+        }
+
+        let szerokoscPaska = 0;
+        function przyklad17() {
+            let pasek = document.getElementById("pasek");
+            szerokoscPaska = szerokoscPaska + 10;
+            if (szerokoscPaska > 100) szerokoscPaska = 100;
+            pasek.style.width = szerokoscPaska + "%";
+            document.getElementById("procenty").innerText = szerokoscPaska + "%";
+        }
+
+        function przyklad18ukryj() {
+            document.getElementById("element-do-ukrycia").style.display = "none";
+        }
+
+        function przyklad18pokaz() {
+            document.getElementById("element-do-ukrycia").style.display = "block";
+        }
+
+        function przyklad19czerwony() {
+            let box = document.getElementById("box-do-zmiany");
+            box.style.background = "red";
+            box.style.color = "white";
+        }
+
+        function przyklad19niebieski() {
+            let box = document.getElementById("box-do-zmiany");
+            box.style.background = "blue";
+            box.style.color = "white";
+        }
+
+        function przyklad19duzy() {
+            let box = document.getElementById("box-do-zmiany");
+            box.style.width = "250px";
+            box.style.height = "150px";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let btn = document.getElementById("btn-listener");
+            if (btn) {
+                btn.addEventListener("click", function() {
+                    document.getElementById("listener-wynik").innerText = "Przycisk został kliknięty!";
+                });
+            }
+        });
+
+        function przyklad21() {
+            let imie = document.getElementById("val-imie").value;
+            let wiek = parseInt(document.getElementById("val-wiek").value);
+            let zgoda = document.getElementById("val-zgoda").checked;
+            
+            if (imie === "") {
+                alert("Wpisz imię!");
+                return;
+            }
+            
+            if (isNaN(wiek) || wiek < 18) {
+                alert("Musisz mieć min 18 lat!");
+                return;
+            }
+            
+            if (!zgoda) {
+                alert("Musisz zaakceptować regulamin!");
+                return;
+            }
+            
+            alert("Formularz poprawny! Dane: " + imie + ", " + wiek + " lat");
+        }
+
+        function przyklad22() {
+            let n = parseInt(document.getElementById("suma-do").value);
+            
+            if (isNaN(n) || n <= 0) {
+                alert("Wpisz liczbę większą od 0!");
+                return;
+            }
+            
+            let suma = 0;
+            for (let i = 1; i <= n; i++) {
+                suma = suma + i;
+            }
+            
+            let wynik = document.getElementById("wynik-suma");
+            wynik.innerText = "Suma od 1 do " + n + " = " + suma;
+        }
+
+        function przyklad23() {
+            let plik = document.getElementById("plik-input");
+            
+            if (plik.files.length === 0) {
+                alert("Nie wybrano pliku!");
+                return;
+            }
+            
+            let nazwa = plik.files[0].name;
+            let rozmiar = plik.files[0].size;
+            
+            alert("Plik: " + nazwa + "\nRozmiar: " + rozmiar + " bajtów");
+        }
+
+        function przyklad24() {
+            let a = parseFloat(document.getElementById("mat-a").value);
+            let b = parseFloat(document.getElementById("mat-b").value);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert("Wpisz liczby!");
+                return;
+            }
+            
+            let wynik = document.getElementById("wynik-mat");
+            wynik.innerHTML = 
+                "Dodawanie: " + a + " + " + b + " = " + (a + b) + "<br>" +
+                "Odejmowanie: " + a + " - " + b + " = " + (a - b) + "<br>" +
+                "Mnożenie: " + a + " * " + b + " = " + (a * b) + "<br>" +
+                "Dzielenie: " + a + " / " + b + " = " + (a / b).toFixed(2) + "<br>" +
+                "Reszta: " + a + " % " + b + " = " + (a % b);
+            wynik.style.display = "block";
+        }
+
+        function przyklad25() {
+            let od = parseInt(document.getElementById("petla-od").value);
+            let do_liczby = parseInt(document.getElementById("petla-do").value);
+            
+            let wynik_tekst = "";
+            for (let i = od; i <= do_liczby; i++) {
+                wynik_tekst += i + ", ";
+            }
+            
+            let wynik = document.getElementById("wynik-petla");
+            wynik.innerText = wynik_tekst;
+            wynik.style.display = "block";
+        }
+
+        function przyklad26dodaj() {
+            let box = document.getElementById("box-klasa");
+            box.style.background = "#000";
+            box.style.color = "#fff";
+        }
+
+        function przyklad26usun() {
+            let box = document.getElementById("box-klasa");
+            box.style.background = "#ddd";
+            box.style.color = "#000";
+        }
+
+        function przyklad27html() {
+            document.getElementById("test-html").innerHTML = "<strong>Pogrubiony tekst przez HTML</strong>";
+        }
+
+        function przyklad27text() {
+            document.getElementById("test-html").innerText = "Zwykły tekst";
+        }
+
+        let licznikKlikniec = 0;
+        function przyklad28() {
+            licznikKlikniec++;
+            document.getElementById("licznik-klikniec").innerText = licznikKlikniec;
+        }
+
+        function przyklad29() {
+            let a = parseFloat(document.getElementById("kalk2-a").value);
+            let b = parseFloat(document.getElementById("kalk2-b").value);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert("Wpisz liczby!");
+                return;
+            }
+            
+            let wynik = document.getElementById("wynik-kalk2");
+            wynik.innerHTML = 
+                "Suma: " + (a + b) + "<br>" +
+                "Różnica: " + (a - b) + "<br>" +
+                "Iloczyn: " + (a * b) + "<br>" +
+                "Iloraz: " + (a / b).toFixed(2) + "<br>" +
+                "Reszta: " + (a % b);
+            wynik.style.display = "block";
+        }
+
+        function przyklad30() {
+            let tablica = [1, 2, 3, 4, 5];
+            alert("Tablica: " + tablica.join(", ") + "\nDługość: " + tablica.length + "\nPierwszy element: " + tablica[0]);
+        }
+
+        function przyklad31() {
+            let waga = parseFloat(document.getElementById("bmi-waga").value);
+            let wzrost = parseFloat(document.getElementById("bmi-wzrost").value);
+            
+            if (isNaN(waga) || isNaN(wzrost)) {
+                alert("Wpisz poprawne dane!");
+                return;
+            }
+            
+            let bmi = waga / (wzrost * wzrost);
+            let wynik = document.getElementById("wynik-bmi");
+            wynik.innerHTML = "Twoje BMI: " + bmi.toFixed(2);
+            wynik.style.display = "block";
+        }
+
+        function przyklad32() {
+            let cena = parseFloat(document.getElementById("rabat-cena").value);
+            let rabat = parseFloat(document.getElementById("rabat-procent").value);
+            
+            let kwotaRabatu = (cena * rabat) / 100;
+            let cenaPoRabacie = cena - kwotaRabatu;
+            
+            let wynik = document.getElementById("wynik-rabat");
+            wynik.innerHTML = 
+                "Cena: " + cena + " zł<br>" +
+                "Rabat: " + rabat + "%<br>" +
+                "Oszczędzasz: " + kwotaRabatu + " zł<br>" +
+                "Do zapłaty: " + cenaPoRabacie + " zł";
+            wynik.style.display = "block";
+        }
+
+        function przyklad33() {
+            let liczba = parseInt(document.getElementById("parzysta-liczba").value);
+            
+            if (isNaN(liczba)) {
+                alert("Wpisz liczbę!");
+                return;
+            }
+            
+            if (liczba % 2 === 0) {
+                alert(liczba + " jest PARZYSTA");
+            } else {
+                alert(liczba + " jest NIEPARZYSTA");
+            }
+        }
+
+        function silnia(n) {
+            if (n === 0 || n === 1) return 1;
+            let wynik = 1;
+            for (let i = 2; i <= n; i++) {
+                wynik = wynik * i;
+            }
+            return wynik;
+        }
+
+        function przyklad34() {
+            let n = parseInt(document.getElementById("silnia-n").value);
+            
+            if (isNaN(n) || n < 0) {
+                alert("Wpisz liczbę >= 0!");
+                return;
+            }
+            
+            let s = silnia(n);
+            document.getElementById("wynik-silnia").innerText = n + "! = " + s;
+        }
+
+        function nwd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function przyklad35() {
+            let a = parseInt(document.getElementById("nwd-a").value);
+            let b = parseInt(document.getElementById("nwd-b").value);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert("Wpisz liczby!");
+                return;
+            }
+            
+            let wynik = nwd(a, b);
+            document.getElementById("wynik-nwd").innerText = "NWD(" + a + ", " + b + ") = " + wynik;
+        }
+
+        function przyklad36() {
+            let poleA = document.getElementById("swap-a");
+            let poleB = document.getElementById("swap-b");
+            
+            let temp = poleA.value;
+            poleA.value = poleB.value;
+            poleB.value = temp;
+        }
+
+        let kolorIndex = 0;
+        let kolory = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
+        function przyklad37() {
+            let box = document.getElementById("color-box");
+            box.style.background = kolory[kolorIndex];
+            kolorIndex++;
+            if (kolorIndex >= kolory.length) kolorIndex = 0;
+        }
+
+        let licznikOdwiedzin = 0;
+        function przyklad38() {
+            licznikOdwiedzin++;
+            document.getElementById("licznik-odw").innerText = licznikOdwiedzin;
+        }
+
+        function przyklad39panel(nr) {
+            document.getElementById("p39-panel1").style.display = "none";
+            document.getElementById("p39-panel2").style.display = "none";
+            document.getElementById("p39-panel3").style.display = "none";
+            document.getElementById("p39-panel" + nr).style.display = "block";
+        }
+
+        let sumaKoszyka = 0;
+        function przyklad40() {
+            let nazwa = document.getElementById("koszyk-nazwa").value;
+            let cena = parseFloat(document.getElementById("koszyk-cena").value);
+            
+            if (nazwa === "" || isNaN(cena)) {
+                alert("Wypełnij wszystkie pola!");
+                return;
+            }
+            
+            let produkt = document.createElement("div");
+            produkt.innerHTML = nazwa + " - " + cena + " zł";
+            produkt.style.padding = "10px";
+            produkt.style.border = "2px solid black";
+            produkt.style.margin = "5px 0";
+            produkt.style.background = "#f0f0f0";
+            
+            document.getElementById("koszyk-lista").appendChild(produkt);
+            
+            sumaKoszyka += cena;
+            let suma = document.getElementById("koszyk-suma");
+            suma.innerText = "SUMA KOSZYKA: " + sumaKoszyka.toFixed(2) + " zł";
+            suma.style.display = "block";
+            
+            document.getElementById("koszyk-nazwa").value = "";
+            document.getElementById("koszyk-cena").value = "";
+        }
+    </script>
+</body>
+</html>
