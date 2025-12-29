@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nauka HTML, CSS, JS i PHP - INF 04</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4a9eff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 12px 30px;
+            background: rgba(74, 158, 255, 0.1);
+            border: 2px solid rgba(74, 158, 255, 0.3);
+            border-radius: 8px;
+            color: #4a9eff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .nav-tab:hover {
+            background: rgba(74, 158, 255, 0.2);
+            border-color: #4a9eff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.2);
+        }
+
+        .nav-tab.active {
+            background: #4a9eff;
+            color: #1a1a2e;
+            border-color: #4a9eff;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #4a9eff;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(74, 158, 255, 0.3);
+        }
+
+        .code-panel {
+            background: #0f1419;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .code-panel h3 {
+            color: #4a9eff;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-panel h3::before {
+            content: "📄";
+            font-size: 1.2em;
+        }
+
+        pre {
+            background: #1e2329;
+            border: 1px solid rgba(74, 158, 255, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .code-block {
+            color: #a9b7c6;
+        }
+
+        .code-tag { color: #e06c75; }
+        .code-attr { color: #d19a66; }
+        .code-string { color: #98c379; }
+        .code-comment { color: #5c6370; font-style: italic; }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .flip-card {
+            background: transparent;
+            perspective: 1000px;
+            height: 250px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.15) 0%, rgba(74, 158, 255, 0.05) 100%);
+            border: 2px solid rgba(74, 158, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flip-card-front:hover {
+            border-color: #4a9eff;
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        .flip-card-back {
+            background: #0f1419;
+            border: 2px solid rgba(74, 158, 255, 0.3);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .flip-card-title {
+            font-size: 1.3em;
+            color: #4a9eff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .flip-card-demo {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .template-example {
+            background: #0f1419;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .template-preview {
+            background: #1e2329;
+            border: 1px solid rgba(74, 158, 255, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+
+        .template-preview header {
+            background: rgba(74, 158, 255, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .template-preview nav {
+            background: rgba(74, 158, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .template-preview main {
+            background: rgba(74, 158, 255, 0.05);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+
+        .template-preview footer {
+            background: rgba(74, 158, 255, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .form-example {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .form-preview {
+            background: #0f1419;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-preview h3 {
+            color: #4a9eff;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #1e2329;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a9eff;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.2);
+        }
+
+        .form-group input[type="checkbox"],
+        .form-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .form-group .checkbox-group,
+        .form-group .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group .checkbox-item,
+        .form-group .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+        button[type="submit"],
+        button[type="reset"] {
+            padding: 12px 30px;
+            background: #4a9eff;
+            border: none;
+            border-radius: 6px;
+            color: #1a1a2e;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button[type="reset"]:hover {
+            background: #5ba8ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.4);
+        }
+
+        button[type="reset"] {
+            background: rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+        }
+
+        button[type="reset"]:hover {
+            background: rgba(74, 158, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .form-example {
+                grid-template-columns: 1fr;
+            }
+
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .click-hint {
+            color: #5c6370;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .accordion-header {
+            cursor: pointer;
+            padding: 15px 20px;
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .accordion-header:hover {
+            background: rgba(74, 158, 255, 0.15);
+            border-color: #4a9eff;
+        }
+
+        .accordion-header::after {
+            content: "▼";
+            color: #4a9eff;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+        }
+
+        .template-element {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .template-element:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+        }
+
+        .template-element.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .code-highlight {
+            background: #ffd700 !important;
+            color: #1a1a2e !important;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .css-box {
+            width: 100px;
+            height: 100px;
+            background: #4a9eff;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .position-container {
+            position: relative;
+            background: rgba(74, 158, 255, 0.1);
+            border: 2px dashed rgba(74, 158, 255, 0.3);
+            border-radius: 10px;
+            min-height: 300px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .position-box {
+            width: 80px;
+            height: 80px;
+            background: #4a9eff;
+            border: 2px solid #5ba8ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: move;
+            transition: box-shadow 0.3s ease;
+            user-select: none;
+        }
+
+        .position-box:hover {
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.5);
+        }
+
+        .position-box.dragging {
+            opacity: 0.8;
+            cursor: grabbing;
+            z-index: 1000;
+        }
+
+        .draggable-box {
+            cursor: move;
+        }
+
+        .code-update {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .css-property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nauka Technologii Webowych</h1>
+            <p class="subtitle">Przygotowanie do egzaminu INF 04</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('html')">HTML</div>
+            <div class="nav-tab" onclick="showSection('css')">CSS</div>
+            <div class="nav-tab" onclick="showSection('js')">JavaScript</div>
+            <div class="nav-tab" onclick="showSection('php')">PHP</div>
+        </nav>
+
+        <!-- Sekcja HTML -->
+        <section id="html" class="section active">
+            <h2 class="section-title">HTML - Podstawy</h2>
+
+            <!-- Panel z kodem startowym HTML -->
+            <div class="code-panel">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 style="margin: 0;">Standardowa struktura pliku HTML</h3>
+                </div>
+                <div class="accordion-content">
+                    <pre><code class="code-block"><span class="code-comment">&lt;!-- Podstawowa struktura dokumentu HTML5 --&gt;</span>
+<span class="code-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-string">"pl"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;head&gt;</span>
+    <span class="code-tag">&lt;meta</span> <span class="code-attr">charset</span>=<span class="code-string">"UTF-8"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;meta</span> <span class="code-attr">name</span>=<span class="code-string">"viewport"</span> <span class="code-attr">content</span>=<span class="code-string">"width=device-width, initial-scale=1.0"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;title&gt;</span>Tytuł strony<span class="code-tag">&lt;/title&gt;</span>
+<span class="code-tag">&lt;/head&gt;</span>
+<span class="code-tag">&lt;body&gt;</span>
+    <span class="code-comment">&lt;!-- Zawartość strony --&gt;</span>
+<span class="code-tag">&lt;/body&gt;</span>
+<span class="code-tag">&lt;/html&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Panel z kodem startowym CSS -->
+            <div class="code-panel">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 style="margin: 0;">Standardowa struktura pliku CSS</h3>
+                </div>
+                <div class="accordion-content">
+                    <p style="color: #b0b0b0; margin-bottom: 15px;">Dołączanie pliku CSS w HTML:</p>
+                    <pre style="margin-bottom: 20px;"><code class="code-block"><span class="code-tag">&lt;link</span> <span class="code-attr">rel</span>=<span class="code-string">"stylesheet"</span> <span class="code-attr">href</span>=<span class="code-string">"style.css"</span><span class="code-tag">&gt;</span></code></pre>
+                    <p style="color: #b0b0b0; margin-bottom: 15px;">Zawartość pliku style.css:</p>
+                    <pre><code class="code-block"><span class="code-comment">/* Reset i podstawowe style */</span>
+<span class="code-tag">*</span> {
+    <span class="code-attr">margin</span>: <span class="code-string">0</span>;
+    <span class="code-attr">padding</span>: <span class="code-string">0</span>;
+    <span class="code-attr">box-sizing</span>: <span class="code-string">border-box</span>;
+}
+
+<span class="code-tag">body</span> {
+    <span class="code-attr">font-family</span>: <span class="code-string">Arial, sans-serif</span>;
+    <span class="code-attr">line-height</span>: <span class="code-string">1.6</span>;
+    <span class="code-attr">color</span>: <span class="code-string">#333</span>;
+}
+
+<span class="code-comment">/* Twoje style */</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Panel z kodem startowym JavaScript -->
+            <div class="code-panel">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 style="margin: 0;">Standardowa struktura pliku JavaScript</h3>
+                </div>
+                <div class="accordion-content">
+                    <p style="color: #b0b0b0; margin-bottom: 15px;">Dołączanie pliku JavaScript w HTML:</p>
+                    <pre style="margin-bottom: 20px;"><code class="code-block"><span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-string">"script.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span></code></pre>
+                    <p style="color: #b0b0b0; margin-bottom: 15px;">Zawartość pliku script.js:</p>
+                    <pre><code class="code-block"><span class="code-tag">document.addEventListener</span>(<span class="code-string">'DOMContentLoaded'</span>, <span class="code-tag">function</span>() {
+    <span class="code-tag">console.log</span>(<span class="code-string">'Strona załadowana'</span>);
+});
+
+<span class="code-tag">function</span> <span class="code-attr">mojaFunkcja</span>() {
+    <span class="code-tag">console.log</span>(<span class="code-string">'Funkcja wykonana'</span>);
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Przykład standardowego template -->
+            <div class="template-example">
+                <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.4em;">Standardowy template strony (Header, Nav, Main, Footer)</h3>
+                
+                <div class="template-preview">
+                    <div class="flip-card" style="height: auto; margin-bottom: 15px;" onclick="flipTemplateElement(this, 'header')">
+                        <div class="flip-card-inner" style="position: relative; transform-style: preserve-3d;">
+                            <div class="flip-card-front" style="position: relative; backface-visibility: hidden;">
+                                <header style="background: rgba(74, 158, 255, 0.2); padding: 15px; border-radius: 5px;">
+                                    <h1>Nagłówek strony</h1>
+                                </header>
+                            </div>
+                            <div class="flip-card-back" style="position: absolute; top: 0; left: 0; width: 100%; backface-visibility: hidden; transform: rotateY(180deg);">
+                                <pre style="background: transparent; border: none; padding: 10px; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;header&gt;</span>
+    <span class="code-tag">&lt;h1&gt;</span>Nagłówek strony<span class="code-tag">&lt;/h1&gt;</span>
+<span class="code-tag">&lt;/header&gt;</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" style="height: auto; margin-bottom: 15px;" onclick="flipTemplateElement(this, 'nav')">
+                        <div class="flip-card-inner" style="position: relative; transform-style: preserve-3d;">
+                            <div class="flip-card-front" style="position: relative; backface-visibility: hidden;">
+                                <nav style="background: rgba(74, 158, 255, 0.1); padding: 10px; border-radius: 5px;">
+                                    <a href="#" style="color: #4a9eff; margin-right: 15px; text-decoration: none;">Strona główna</a>
+                                    <a href="#" style="color: #4a9eff; margin-right: 15px; text-decoration: none;">O nas</a>
+                                    <a href="#" style="color: #4a9eff; text-decoration: none;">Kontakt</a>
+                                </nav>
+                            </div>
+                            <div class="flip-card-back" style="position: absolute; top: 0; left: 0; width: 100%; backface-visibility: hidden; transform: rotateY(180deg);">
+                                <pre style="background: transparent; border: none; padding: 10px; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;nav&gt;</span>
+    <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>Strona główna<span class="code-tag">&lt;/a&gt;</span>
+    <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>O nas<span class="code-tag">&lt;/a&gt;</span>
+    <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>Kontakt<span class="code-tag">&lt;/a&gt;</span>
+<span class="code-tag">&lt;/nav&gt;</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" style="height: auto; margin-bottom: 15px;" onclick="flipTemplateElement(this, 'main')">
+                        <div class="flip-card-inner" style="position: relative; transform-style: preserve-3d;">
+                            <div class="flip-card-front" style="position: relative; backface-visibility: hidden;">
+                                <main style="background: rgba(74, 158, 255, 0.05); padding: 20px; border-radius: 5px; min-height: 100px;">
+                                    <h2>Główna zawartość</h2>
+                                    <p>To jest główna sekcja strony z treścią.</p>
+                                </main>
+                            </div>
+                            <div class="flip-card-back" style="position: absolute; top: 0; left: 0; width: 100%; backface-visibility: hidden; transform: rotateY(180deg);">
+                                <pre style="background: transparent; border: none; padding: 10px; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;main&gt;</span>
+    <span class="code-tag">&lt;h2&gt;</span>Główna zawartość<span class="code-tag">&lt;/h2&gt;</span>
+    <span class="code-tag">&lt;p&gt;</span>To jest główna sekcja strony z treścią.<span class="code-tag">&lt;/p&gt;</span>
+<span class="code-tag">&lt;/main&gt;</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" style="height: auto;" onclick="flipTemplateElement(this, 'footer')">
+                        <div class="flip-card-inner" style="position: relative; transform-style: preserve-3d;">
+                            <div class="flip-card-front" style="position: relative; backface-visibility: hidden;">
+                                <footer style="background: rgba(74, 158, 255, 0.2); padding: 15px; border-radius: 5px; text-align: center;">
+                                    <p>&copy; 2024 Wszelkie prawa zastrzeżone</p>
+                                </footer>
+                            </div>
+                            <div class="flip-card-back" style="position: absolute; top: 0; left: 0; width: 100%; backface-visibility: hidden; transform: rotateY(180deg);">
+                                <pre style="background: transparent; border: none; padding: 10px; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;footer&gt;</span>
+    <span class="code-tag">&lt;p&gt;</span>&amp;copy; 2024 Wszelkie prawa zastrzeżone<span class="code-tag">&lt;/p&gt;</span>
+<span class="code-tag">&lt;/footer&gt;</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre><code class="code-block"><span class="code-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-string">"pl"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;head&gt;</span>
+    <span class="code-tag">&lt;meta</span> <span class="code-attr">charset</span>=<span class="code-string">"UTF-8"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;title&gt;</span>Moja Strona<span class="code-tag">&lt;/title&gt;</span>
+<span class="code-tag">&lt;/head&gt;</span>
+<span class="code-tag">&lt;body&gt;</span>
+    <span class="code-tag">&lt;header&gt;</span>
+        <span class="code-tag">&lt;h1&gt;</span>Nagłówek strony<span class="code-tag">&lt;/h1&gt;</span>
+    <span class="code-tag">&lt;/header&gt;</span>
+    
+    <span class="code-tag">&lt;nav&gt;</span>
+        <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>Strona główna<span class="code-tag">&lt;/a&gt;</span>
+        <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>O nas<span class="code-tag">&lt;/a&gt;</span>
+        <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#"</span><span class="code-tag">&gt;</span>Kontakt<span class="code-tag">&lt;/a&gt;</span>
+    <span class="code-tag">&lt;/nav&gt;</span>
+    
+    <span class="code-tag">&lt;main&gt;</span>
+        <span class="code-tag">&lt;h2&gt;</span>Główna zawartość<span class="code-tag">&lt;/h2&gt;</span>
+        <span class="code-tag">&lt;p&gt;</span>To jest główna sekcja strony z treścią.<span class="code-tag">&lt;/p&gt;</span>
+    <span class="code-tag">&lt;/main&gt;</span>
+    
+    <span class="code-tag">&lt;footer&gt;</span>
+        <span class="code-tag">&lt;p&gt;</span>&amp;copy; 2024 Wszelkie prawa zastrzeżone<span class="code-tag">&lt;/p&gt;</span>
+    <span class="code-tag">&lt;/footer&gt;</span>
+<span class="code-tag">&lt;/body&gt;</span>
+<span class="code-tag">&lt;/html&gt;</span></code></pre>
+            </div>
+
+            <!-- Pełny formularz -->
+            <div class="form-example">
+                <div class="form-preview">
+                    <h3>Pełny formularz HTML</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="text">Pole tekstowe:</label>
+                            <input type="text" id="text" name="text" placeholder="Wpisz tekst">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Hasło:</label>
+                            <input type="password" id="password" name="password" placeholder="Hasło">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="number">Liczba:</label>
+                            <input type="number" id="number" name="number" min="0" max="100" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Data:</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Czas:</label>
+                            <input type="time" id="time" name="time">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="datetime">Data i czas:</label>
+                            <input type="datetime-local" id="datetime" name="datetime">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color">Kolor:</label>
+                            <input type="color" id="color" name="color" value="#4a9eff">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="range">Zakres:</label>
+                            <input type="range" id="range" name="range" min="0" max="100" value="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file">Plik:</label>
+                            <input type="file" id="file" name="file">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="select">Lista wyboru:</label>
+                            <select id="select" name="select">
+                                <option value="">Wybierz opcję</option>
+                                <option value="1">Opcja 1</option>
+                                <option value="2">Opcja 2</option>
+                                <option value="3">Opcja 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textarea">Obszar tekstowy:</label>
+                            <textarea id="textarea" name="textarea" rows="4" placeholder="Wpisz dłuższy tekst..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Checkboxy:</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="check1" name="check" value="1">
+                                    <label for="check1" style="margin: 0;">Opcja 1</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="check2" name="check" value="2">
+                                    <label for="check2" style="margin: 0;">Opcja 2</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="check3" name="check" value="3">
+                                    <label for="check3" style="margin: 0;">Opcja 3</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Radio buttons:</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="radio1" name="radio" value="1">
+                                    <label for="radio1" style="margin: 0;">Opcja A</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="radio2" name="radio" value="2">
+                                    <label for="radio2" style="margin: 0;">Opcja B</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="radio3" name="radio" value="3">
+                                    <label for="radio3" style="margin: 0;">Opcja C</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url">URL:</label>
+                            <input type="url" id="url" name="url" placeholder="https://example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tel">Telefon:</label>
+                            <input type="tel" id="tel" name="tel" placeholder="+48 123 456 789">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="search">Wyszukiwarka:</label>
+                            <input type="search" id="search" name="search" placeholder="Szukaj...">
+                        </div>
+
+                        <button type="submit">Wyślij</button>
+                        <button type="reset">Resetuj</button>
+                    </form>
+                </div>
+
+                <div class="code-panel">
+                    <h3>Kod formularza</h3>
+                    <pre><code id="form-code-block" class="code-block"><span class="code-tag">&lt;form</span> <span class="code-attr">action</span>=<span class="code-string">"#"</span> <span class="code-attr">method</span>=<span class="code-string">"POST"</span><span class="code-tag">&gt;</span>
+    <span class="code-comment">&lt;!-- Pole tekstowe --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"text"</span><span class="code-tag">&gt;</span>Pole tekstowe:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"text"</span> <span class="code-attr">id</span>=<span class="code-string">"text"</span> <span class="code-attr">name</span>=<span class="code-string">"text"</span> <span class="code-attr">placeholder</span>=<span class="code-string">"Wpisz tekst"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Email --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"email"</span><span class="code-tag">&gt;</span>Email:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"email"</span> <span class="code-attr">id</span>=<span class="code-string">"email"</span> <span class="code-attr">name</span>=<span class="code-string">"email"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Hasło --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"password"</span><span class="code-tag">&gt;</span>Hasło:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"password"</span> <span class="code-attr">id</span>=<span class="code-string">"password"</span> <span class="code-attr">name</span>=<span class="code-string">"password"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Liczba --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"number"</span><span class="code-tag">&gt;</span>Liczba:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"number"</span> <span class="code-attr">id</span>=<span class="code-string">"number"</span> <span class="code-attr">min</span>=<span class="code-string">"0"</span> <span class="code-attr">max</span>=<span class="code-string">"100"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Data --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"date"</span><span class="code-tag">&gt;</span>Data:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"date"</span> <span class="code-attr">id</span>=<span class="code-string">"date"</span> <span class="code-attr">name</span>=<span class="code-string">"date"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Czas --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"time"</span><span class="code-tag">&gt;</span>Czas:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"time"</span> <span class="code-attr">id</span>=<span class="code-string">"time"</span> <span class="code-attr">name</span>=<span class="code-string">"time"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Data i czas --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"datetime"</span><span class="code-tag">&gt;</span>Data i czas:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"datetime-local"</span> <span class="code-attr">id</span>=<span class="code-string">"datetime"</span> <span class="code-attr">name</span>=<span class="code-string">"datetime"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Kolor --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"color"</span><span class="code-tag">&gt;</span>Kolor:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"color"</span> <span class="code-attr">id</span>=<span class="code-string">"color"</span> <span class="code-attr">name</span>=<span class="code-string">"color"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Zakres --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"range"</span><span class="code-tag">&gt;</span>Zakres:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"range"</span> <span class="code-attr">id</span>=<span class="code-string">"range"</span> <span class="code-attr">min</span>=<span class="code-string">"0"</span> <span class="code-attr">max</span>=<span class="code-string">"100"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Plik --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"file"</span><span class="code-tag">&gt;</span>Plik:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"file"</span> <span class="code-attr">id</span>=<span class="code-string">"file"</span> <span class="code-attr">name</span>=<span class="code-string">"file"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Lista wyboru --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"select"</span><span class="code-tag">&gt;</span>Lista wyboru:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;select</span> <span class="code-attr">id</span>=<span class="code-string">"select"</span> <span class="code-attr">name</span>=<span class="code-string">"select"</span><span class="code-tag">&gt;</span>
+        <span class="code-tag">&lt;option</span> <span class="code-attr">value</span>=<span class="code-string">""</span><span class="code-tag">&gt;</span>Wybierz opcję<span class="code-tag">&lt;/option&gt;</span>
+        <span class="code-tag">&lt;option</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>Opcja 1<span class="code-tag">&lt;/option&gt;</span>
+    <span class="code-tag">&lt;/select&gt;</span>
+
+    <span class="code-comment">&lt;!-- Obszar tekstowy --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"textarea"</span><span class="code-tag">&gt;</span>Obszar tekstowy:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;textarea</span> <span class="code-attr">id</span>=<span class="code-string">"textarea"</span> <span class="code-attr">name</span>=<span class="code-string">"textarea"</span> <span class="code-attr">rows</span>=<span class="code-string">"4"</span><span class="code-tag">&gt;&lt;/textarea&gt;</span>
+
+    <span class="code-comment">&lt;!-- Checkboxy --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"checkbox"</span> <span class="code-attr">id</span>=<span class="code-string">"check1"</span> <span class="code-attr">name</span>=<span class="code-string">"check"</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"check1"</span><span class="code-tag">&gt;</span>Opcja 1<span class="code-tag">&lt;/label&gt;</span>
+
+    <span class="code-comment">&lt;!-- Radio buttons --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"radio"</span> <span class="code-attr">id</span>=<span class="code-string">"radio1"</span> <span class="code-attr">name</span>=<span class="code-string">"radio"</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"radio1"</span><span class="code-tag">&gt;</span>Opcja A<span class="code-tag">&lt;/label&gt;</span>
+
+    <span class="code-comment">&lt;!-- URL --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"url"</span> <span class="code-attr">id</span>=<span class="code-string">"url"</span> <span class="code-attr">name</span>=<span class="code-string">"url"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Telefon --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"tel"</span> <span class="code-attr">id</span>=<span class="code-string">"tel"</span> <span class="code-attr">name</span>=<span class="code-string">"tel"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Wyszukiwarka --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"search"</span> <span class="code-attr">id</span>=<span class="code-string">"search"</span> <span class="code-attr">name</span>=<span class="code-string">"search"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-tag">&lt;button</span> <span class="code-attr">type</span>=<span class="code-string">"submit"</span><span class="code-tag">&gt;</span>Wyślij<span class="code-tag">&lt;/button&gt;</span>
+    <span class="code-tag">&lt;button</span> <span class="code-attr">type</span>=<span class="code-string">"reset"</span><span class="code-tag">&gt;</span>Resetuj<span class="code-tag">&lt;/button&gt;</span>
+<span class="code-tag">&lt;/form&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Karty z przykładami elementów HTML -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Przykłady elementów HTML</h3>
+            <p class="click-hint" style="margin-bottom: 30px; text-align: center;">Kliknij na kartę, aby zobaczyć kod elementu</p>
+            
+            <div class="example-grid">
+                <!-- Nagłówki -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Nagłówki</div>
+                            <div class="flip-card-demo">
+                                <h1 style="font-size: 0.5em; margin: 5px 0;">H1</h1>
+                                <h2 style="font-size: 0.4em; margin: 5px 0;">H2</h2>
+                                <h3 style="font-size: 0.35em; margin: 5px 0;">H3</h3>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod nagłówków</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;h1&gt;</span>Nagłówek 1<span class="code-tag">&lt;/h1&gt;</span>
+<span class="code-tag">&lt;h2&gt;</span>Nagłówek 2<span class="code-tag">&lt;/h2&gt;</span>
+<span class="code-tag">&lt;h3&gt;</span>Nagłówek 3<span class="code-tag">&lt;/h3&gt;</span>
+<span class="code-tag">&lt;h4&gt;</span>Nagłówek 4<span class="code-tag">&lt;/h4&gt;</span>
+<span class="code-tag">&lt;h5&gt;</span>Nagłówek 5<span class="code-tag">&lt;/h5&gt;</span>
+<span class="code-tag">&lt;h6&gt;</span>Nagłówek 6<span class="code-tag">&lt;/h6&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paragraf -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Paragraf</div>
+                            <div class="flip-card-demo" style="font-size: 1.2em;">P</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod paragrafu</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;p&gt;</span>To jest paragraf tekstu.<span class="code-tag">&lt;/p&gt;</span>
+<span class="code-tag">&lt;p&gt;</span>Kolejny paragraf z <span class="code-tag">&lt;br&gt;</span> podziałem linii.<span class="code-tag">&lt;/p&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista nienumerowana -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Lista nienumerowana</div>
+                            <div class="flip-card-demo" style="font-size: 1em; text-align: left;">
+                                <ul style="list-style: disc; padding-left: 20px;">
+                                    <li>Element 1</li>
+                                    <li>Element 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod listy</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;ul&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Element 1<span class="code-tag">&lt;/li&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Element 2<span class="code-tag">&lt;/li&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Element 3<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;/ul&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista numerowana -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Lista numerowana</div>
+                            <div class="flip-card-demo" style="font-size: 1em; text-align: left;">
+                                <ol style="padding-left: 20px;">
+                                    <li>Pierwszy</li>
+                                    <li>Drugi</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod listy</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;ol&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Pierwszy<span class="code-tag">&lt;/li&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Drugi<span class="code-tag">&lt;/li&gt;</span>
+    <span class="code-tag">&lt;li&gt;</span>Trzeci<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;/ol&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Link -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Link</div>
+                            <div class="flip-card-demo" style="font-size: 1.2em;">
+                                <a href="#" style="color: #4a9eff; text-decoration: underline;">Link</a>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod linku</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"https://example.com"</span><span class="code-tag">&gt;</span>Tekst linku<span class="code-tag">&lt;/a&gt;</span>
+<span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-string">"#sekcja"</span> <span class="code-attr">target</span>=<span class="code-string">"_blank"</span><span class="code-tag">&gt;</span>Link w nowej karcie<span class="code-tag">&lt;/a&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Obraz -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Obraz</div>
+                            <div class="flip-card-demo" style="font-size: 3em;">🖼️</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod obrazu</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-string">"obraz.jpg"</span> <span class="code-attr">alt</span>=<span class="code-string">"Opis obrazu"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-string">"obraz.jpg"</span> <span class="code-attr">width</span>=<span class="code-string">"300"</span> <span class="code-attr">height</span>=<span class="code-string">"200"</span><span class="code-tag">&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Tabela</div>
+                            <div class="flip-card-demo" style="font-size: 0.8em;">
+                                <table style="border-collapse: collapse; width: 100%;">
+                                    <tr>
+                                        <td style="border: 1px solid #4a9eff; padding: 5px;">A</td>
+                                        <td style="border: 1px solid #4a9eff; padding: 5px;">B</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod tabeli</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.75em;"><span class="code-tag">&lt;table&gt;</span>
+    <span class="code-tag">&lt;tr&gt;</span>
+        <span class="code-tag">&lt;th&gt;</span>Nagłówek 1<span class="code-tag">&lt;/th&gt;</span>
+        <span class="code-tag">&lt;th&gt;</span>Nagłówek 2<span class="code-tag">&lt;/th&gt;</span>
+    <span class="code-tag">&lt;/tr&gt;</span>
+    <span class="code-tag">&lt;tr&gt;</span>
+        <span class="code-tag">&lt;td&gt;</span>Komórka 1<span class="code-tag">&lt;/td&gt;</span>
+        <span class="code-tag">&lt;td&gt;</span>Komórka 2<span class="code-tag">&lt;/td&gt;</span>
+    <span class="code-tag">&lt;/tr&gt;</span>
+<span class="code-tag">&lt;/table&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Div -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Div</div>
+                            <div class="flip-card-demo" style="font-size: 1.2em;">📦</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod div</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-string">"kontener"</span><span class="code-tag">&gt;</span>
+    <span class="code-comment">&lt;!-- Zawartość --&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span>
+<span class="code-tag">&lt;div</span> <span class="code-attr">id</span>=<span class="code-string">"unikalny"</span><span class="code-tag">&gt;</span>
+    <span class="code-comment">&lt;!-- Zawartość --&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Span -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Span</div>
+                            <div class="flip-card-demo" style="font-size: 1.2em;">✨</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod span</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;p&gt;</span>Tekst z <span class="code-tag">&lt;span</span> <span class="code-attr">style</span>=<span class="code-string">"color: red;"</span><span class="code-tag">&gt;</span>wyróżnionym<span class="code-tag">&lt;/span&gt;</span> fragmentem.<span class="code-tag">&lt;/p&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Przycisk</div>
+                            <div class="flip-card-demo">
+                                <button style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 5px; color: #1a1a2e; cursor: pointer;">Kliknij</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod przycisku</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;button</span> <span class="code-attr">type</span>=<span class="code-string">"button"</span><span class="code-tag">&gt;</span>Kliknij<span class="code-tag">&lt;/button&gt;</span>
+<span class="code-tag">&lt;button</span> <span class="code-attr">onclick</span>=<span class="code-string">"alert('Witaj!')"</span><span class="code-tag">&gt;</span>Przycisk z akcją<span class="code-tag">&lt;/button&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong i Em -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Pogrubienie i kursywa</div>
+                            <div class="flip-card-demo" style="font-size: 1em;">
+                                <strong>Bold</strong> <em>Italic</em>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;strong&gt;</span>Pogrubiony tekst<span class="code-tag">&lt;/strong&gt;</span>
+<span class="code-tag">&lt;em&gt;</span>Tekst kursywą<span class="code-tag">&lt;/em&gt;</span>
+<span class="code-tag">&lt;b&gt;</span>Pogrubienie<span class="code-tag">&lt;/b&gt;</span>
+<span class="code-tag">&lt;i&gt;</span>Kursywa<span class="code-tag">&lt;/i&gt;</span>
+<span class="code-tag">&lt;u&gt;</span>Podkreślenie<span class="code-tag">&lt;/u&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article i Section -->
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Article i Section</div>
+                            <div class="flip-card-demo" style="font-size: 1em;">📄</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.75em;"><span class="code-tag">&lt;article&gt;</span>
+    <span class="code-tag">&lt;h2&gt;</span>Tytuł artykułu<span class="code-tag">&lt;/h2&gt;</span>
+    <span class="code-tag">&lt;p&gt;</span>Treść artykułu<span class="code-tag">&lt;/p&gt;</span>
+<span class="code-tag">&lt;/article&gt;</span>
+
+<span class="code-tag">&lt;section&gt;</span>
+    <span class="code-tag">&lt;h2&gt;</span>Tytuł sekcji<span class="code-tag">&lt;/h2&gt;</span>
+    <span class="code-tag">&lt;p&gt;</span>Treść sekcji<span class="code-tag">&lt;/p&gt;</span>
+<span class="code-tag">&lt;/section&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja CSS -->
+        <section id="css" class="section">
+            <h2 class="section-title">CSS - Style</h2>
+
+            <!-- Typowa struktura i możliwości -->
+            <div class="code-panel">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 style="margin: 0;">Typowa struktura CSS i możliwości wpływu na elementy</h3>
+                </div>
+                <div class="accordion-content">
+                    <pre><code class="code-block"><span class="code-comment">/* Selektor elementu */</span>
+<span class="code-tag">div</span> {
+    <span class="code-attr">color</span>: <span class="code-string">red</span>;
+}
+
+<span class="code-comment">/* Selektor klasy */</span>
+<span class="code-tag">.klasa</span> {
+    <span class="code-attr">color</span>: <span class="code-string">blue</span>;
+}
+
+<span class="code-comment">/* Selektor ID */</span>
+<span class="code-tag">#identyfikator</span> {
+    <span class="code-attr">color</span>: <span class="code-string">green</span>;
+}
+
+<span class="code-comment">/* Selektor atrybutu */</span>
+<span class="code-tag">[type="text"]</span> {
+    <span class="code-attr">border</span>: <span class="code-string">1px solid black</span>;
+}
+
+<span class="code-comment">/* Selektor potomka */</span>
+<span class="code-tag">div p</span> {
+    <span class="code-attr">margin</span>: <span class="code-string">10px</span>;
+}
+
+<span class="code-comment">/* Selektor dziecka bezpośredniego */</span>
+<span class="code-tag">div > p</span> {
+    <span class="code-attr">padding</span>: <span class="code-string">5px</span>;
+}
+
+<span class="code-comment">/* Pseudoklasy */</span>
+<span class="code-tag">a:hover</span> {
+    <span class="code-attr">color</span>: <span class="code-string">red</span>;
+}
+
+<span class="code-tag">input:focus</span> {
+    <span class="code-attr">outline</span>: <span class="code-string">2px solid blue</span>;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Przykłady właściwości box -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Przykłady właściwości box</h3>
+            <p class="click-hint" style="margin-bottom: 30px; text-align: center;">Kliknij na box, aby zobaczyć kod CSS</p>
+            
+            <div class="css-property-grid">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Zaokrąglone rogi</div>
+                            <div class="css-box" style="border-radius: 20px;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">border-radius</span>: <span class="code-string">20px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Cień</div>
+                            <div class="css-box" style="box-shadow: 0 10px 30px rgba(74, 158, 255, 0.5);"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">box-shadow</span>: <span class="code-string">0 10px 30px rgba(0, 0, 0, 0.3)</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Obramowanie</div>
+                            <div class="css-box" style="border: 5px solid #ffd700;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">border</span>: <span class="code-string">5px solid gold</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Padding</div>
+                            <div class="css-box" style="padding: 30px; background: #5ba8ff;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">padding</span>: <span class="code-string">30px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Margin</div>
+                            <div class="css-box" style="margin: 40px auto;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">margin</span>: <span class="code-string">40px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Transform</div>
+                            <div class="css-box" style="transform: rotate(45deg);"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">transform</span>: <span class="code-string">rotate(45deg)</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Gradient</div>
+                            <div class="css-box" style="background: linear-gradient(135deg, #4a9eff, #ff6b6b);"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">background</span>: <span class="code-string">linear-gradient(135deg, #4a9eff, #ff6b6b)</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Opacity</div>
+                            <div class="css-box" style="opacity: 0.5; background: #ff6b6b;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">opacity</span>: <span class="code-string">0.5</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Width/Height</div>
+                            <div class="css-box" style="width: 150px; height: 60px;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">width</span>: <span class="code-string">150px</span>;
+    <span class="code-attr">height</span>: <span class="code-string">60px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Text-align</div>
+                            <div class="css-box" style="display: flex; align-items: center; justify-content: center; color: #1a1a2e; font-weight: bold;">Tekst</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">text-align</span>: <span class="code-string">center</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Font-size</div>
+                            <div class="css-box" style="display: flex; align-items: center; justify-content: center; font-size: 24px; color: #1a1a2e; font-weight: bold;">A</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">font-size</span>: <span class="code-string">24px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Font-weight</div>
+                            <div class="css-box" style="display: flex; align-items: center; justify-content: center; font-weight: bold; color: #1a1a2e;">Bold</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">font-weight</span>: <span class="code-string">bold</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Color</div>
+                            <div class="css-box" style="background: #ff6b6b; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">Kolor</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">color</span>: <span class="code-string">white</span>;
+    <span class="code-attr">background</span>: <span class="code-string">#ff6b6b</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Transition</div>
+                            <div class="css-box" style="transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.2)'; this.style.background='#ff6b6b';" onmouseout="this.style.transform='scale(1)'; this.style.background='#4a9eff';"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">transition</span>: <span class="code-string">all 0.3s ease</span>;
+}
+
+<span class="code-tag">.box:hover</span> {
+    <span class="code-attr">transform</span>: <span class="code-string">scale(1.2)</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Border-radius różne</div>
+                            <div class="css-box" style="border-radius: 20px 5px 20px 5px;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">border-radius</span>: <span class="code-string">20px 5px 20px 5px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Outline</div>
+                            <div class="css-box" style="outline: 3px dashed #ffd700;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">outline</span>: <span class="code-string">3px dashed gold</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">Max-width</div>
+                            <div class="css-box" style="max-width: 60px;"></div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod CSS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">.box</span> {
+    <span class="code-attr">max-width</span>: <span class="code-string">60px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pozycjonowanie - 1 box -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Pozycjonowanie - 1 box</h3>
+            <div class="code-panel">
+                <h3>Static (domyślne)</h3>
+                <div class="position-container">
+                    <div class="position-box" style="position: static;">Static</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">static</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Relative - top/left <span style="color: #b0b0b0; font-size: 0.7em;">(przytrzymaj i przeciągnij)</span></h3>
+                <div class="position-container" id="relative-container-1">
+                    <div class="position-box draggable-box" id="relative-box-1" style="position: relative; top: 20px; left: 30px;" data-code-id="relative-code-1">Relative</div>
+                </div>
+                <pre><code id="relative-code-1" class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">relative</span>;
+    <span class="code-attr">top</span>: <span class="code-string"><span class="code-update">20px</span></span>;
+    <span class="code-attr">left</span>: <span class="code-string"><span class="code-update">30px</span></span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Relative - bottom/right</h3>
+                <div class="position-container">
+                    <div class="position-box" style="position: relative; bottom: 20px; right: 30px;">Relative</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">relative</span>;
+    <span class="code-attr">bottom</span>: <span class="code-string">20px</span>;
+    <span class="code-attr">right</span>: <span class="code-string">30px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Absolute - top/left <span style="color: #b0b0b0; font-size: 0.7em;">(przytrzymaj i przeciągnij)</span></h3>
+                <div class="position-container" id="absolute-container-1" style="position: relative;">
+                    <div class="position-box draggable-box" id="absolute-box-1" style="position: absolute; top: 50px; left: 100px;" data-code-id="absolute-code-1">Absolute</div>
+                </div>
+                <pre><code id="absolute-code-1" class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">absolute</span>;
+    <span class="code-attr">top</span>: <span class="code-string"><span class="code-update">50px</span></span>;
+    <span class="code-attr">left</span>: <span class="code-string"><span class="code-update">100px</span></span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Absolute - bottom/right</h3>
+                <div class="position-container">
+                    <div class="position-box" style="position: absolute; bottom: 50px; right: 100px;">Absolute</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">absolute</span>;
+    <span class="code-attr">bottom</span>: <span class="code-string">50px</span>;
+    <span class="code-attr">right</span>: <span class="code-string">100px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Absolute - wszystkie strony</h3>
+                <div class="position-container">
+                    <div class="position-box" style="position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px;">Absolute</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">absolute</span>;
+    <span class="code-attr">top</span>: <span class="code-string">20px</span>;
+    <span class="code-attr">right</span>: <span class="code-string">20px</span>;
+    <span class="code-attr">bottom</span>: <span class="code-string">20px</span>;
+    <span class="code-attr">left</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Fixed</h3>
+                <div class="position-container">
+                    <div class="position-box" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">Fixed</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">fixed</span>;
+    <span class="code-attr">bottom</span>: <span class="code-string">20px</span>;
+    <span class="code-attr">right</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Sticky</h3>
+                <div class="position-container" style="height: 400px; overflow-y: auto;">
+                    <div style="height: 200px;"></div>
+                    <div class="position-box" style="position: sticky; top: 20px;">Sticky</div>
+                    <div style="height: 200px;"></div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box</span> {
+    <span class="code-attr">position</span>: <span class="code-string">sticky</span>;
+    <span class="code-attr">top</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <!-- Pozycjonowanie - 2 boxy -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Pozycjonowanie - 2 boxy</h3>
+            <div class="code-panel">
+                <h3>Flexbox - row</h3>
+                <div class="position-container" style="display: flex; flex-direction: row; gap: 20px; align-items: center; justify-content: center;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">flex-direction</span>: <span class="code-string">row</span>;
+    <span class="code-attr">gap</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - column</h3>
+                <div class="position-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center; justify-content: center;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">flex-direction</span>: <span class="code-string">column</span>;
+    <span class="code-attr">gap</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - justify-content: center</h3>
+                <div class="position-container" style="display: flex; justify-content: center; gap: 20px;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">justify-content</span>: <span class="code-string">center</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - justify-content: space-around</h3>
+                <div class="position-container" style="display: flex; justify-content: space-around;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">justify-content</span>: <span class="code-string">space-around</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - align-items: flex-start</h3>
+                <div class="position-container" style="display: flex; align-items: flex-start; gap: 20px; height: 200px;">
+                    <div class="position-box" style="height: 60px;">1</div>
+                    <div class="position-box" style="height: 100px;">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">align-items</span>: <span class="code-string">flex-start</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - align-items: flex-end</h3>
+                <div class="position-container" style="display: flex; align-items: flex-end; gap: 20px; height: 200px;">
+                    <div class="position-box" style="height: 60px;">1</div>
+                    <div class="position-box" style="height: 100px;">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">align-items</span>: <span class="code-string">flex-end</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - 2 kolumny</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-columns</span>: <span class="code-string">1fr 1fr</span>;
+    <span class="code-attr">gap</span>: <span class="code-string">20px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - różne szerokości</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                    <div class="position-box">1 (2fr)</div>
+                    <div class="position-box">2 (1fr)</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-columns</span>: <span class="code-string">2fr 1fr</span>;
+}</code></pre>
+            </div>
+
+            <!-- Pozycjonowanie - 3 boxy -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Pozycjonowanie - 3 boxy</h3>
+            <div class="code-panel">
+                <h3>Flexbox - space-between</h3>
+                <div class="position-container" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">justify-content</span>: <span class="code-string">space-between</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - space-evenly</h3>
+                <div class="position-container" style="display: flex; justify-content: space-evenly;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">justify-content</span>: <span class="code-string">space-evenly</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - flex-grow</h3>
+                <div class="position-container" style="display: flex; gap: 20px;">
+                    <div class="position-box" style="flex-grow: 1;">1 (grow)</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box" style="flex-grow: 2;">3 (grow 2x)</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box1</span> {
+    <span class="code-attr">flex-grow</span>: <span class="code-string">1</span>;
+}
+<span class="code-tag">.box3</span> {
+    <span class="code-attr">flex-grow</span>: <span class="code-string">2</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - 3 kolumny</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-columns</span>: <span class="code-string">repeat(3, 1fr)</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - grid-column span</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div class="position-box" style="grid-column: span 2;">1 (span 2)</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box1</span> {
+    <span class="code-attr">grid-column</span>: <span class="code-string">span 2</span>;
+}</code></pre>
+            </div>
+
+            <!-- Pozycjonowanie - 4 boxy -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Pozycjonowanie - 4 boxy</h3>
+            <div class="code-panel">
+                <h3>Grid - 2x2</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 20px;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                    <div class="position-box">4</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-columns</span>: <span class="code-string">repeat(2, 1fr)</span>;
+    <span class="code-attr">grid-template-rows</span>: <span class="code-string">repeat(2, 1fr)</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Flexbox - wrap</h3>
+                <div class="position-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                    <div class="position-box">4</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">flex</span>;
+    <span class="code-attr">flex-wrap</span>: <span class="code-string">wrap</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - 4 kolumny</h3>
+                <div class="position-container" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                    <div class="position-box">1</div>
+                    <div class="position-box">2</div>
+                    <div class="position-box">3</div>
+                    <div class="position-box">4</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-columns</span>: <span class="code-string">repeat(4, 1fr)</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Grid - grid-template-areas</h3>
+                <div class="position-container" style="display: grid; grid-template-areas: 'header header' 'sidebar main' 'footer footer'; gap: 15px;">
+                    <div class="position-box" style="grid-area: header;">Header</div>
+                    <div class="position-box" style="grid-area: sidebar;">Sidebar</div>
+                    <div class="position-box" style="grid-area: main;">Main</div>
+                    <div class="position-box" style="grid-area: footer;">Footer</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">display</span>: <span class="code-string">grid</span>;
+    <span class="code-attr">grid-template-areas</span>: <span class="code-string">'header header' 'sidebar main' 'footer footer'</span>;
+}</code></pre>
+            </div>
+
+            <!-- Inne ważne -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Inne ważne właściwości CSS</h3>
+            
+            <div class="code-panel">
+                <h3>Display - block</h3>
+                <div class="position-container" style="display: block;">
+                    <div class="position-box" style="display: block; width: 100%; margin-bottom: 10px;">Block 1</div>
+                    <div class="position-box" style="display: block; width: 100%;">Block 2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">display</span>: <span class="code-string">block</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Display - inline</h3>
+                <div class="position-container" style="display: block;">
+                    <div class="position-box" style="display: inline; margin-right: 10px;">Inline 1</div>
+                    <div class="position-box" style="display: inline;">Inline 2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">display</span>: <span class="code-string">inline</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Display - inline-block</h3>
+                <div class="position-container" style="display: block;">
+                    <div class="position-box" style="display: inline-block; margin-right: 10px;">Inline-block 1</div>
+                    <div class="position-box" style="display: inline-block;">Inline-block 2</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">display</span>: <span class="code-string">inline-block</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Float - left</h3>
+                <div class="position-container" style="overflow: auto;">
+                    <div class="position-box" style="float: left; margin-right: 20px;">Float left</div>
+                    <div style="color: #b0b0b0; padding: 10px;">Tekst opływa element z lewej strony. Tekst opływa element z lewej strony.</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">float</span>: <span class="code-string">left</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Float - right</h3>
+                <div class="position-container" style="overflow: auto;">
+                    <div class="position-box" style="float: right; margin-left: 20px;">Float right</div>
+                    <div style="color: #b0b0b0; padding: 10px;">Tekst opływa element z prawej strony. Tekst opływa element z prawej strony.</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">float</span>: <span class="code-string">right</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Z-index - warstwy</h3>
+                <div class="position-container" style="position: relative;">
+                    <div class="position-box" style="position: absolute; top: 20px; left: 20px; z-index: 1; background: #ff6b6b;">Z-index 1</div>
+                    <div class="position-box" style="position: absolute; top: 40px; left: 40px; z-index: 2; background: #4a9eff;">Z-index 2</div>
+                    <div class="position-box" style="position: absolute; top: 60px; left: 60px; z-index: 3; background: #ffd700;">Z-index 3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.box1</span> {
+    <span class="code-attr">position</span>: <span class="code-string">absolute</span>;
+    <span class="code-attr">z-index</span>: <span class="code-string">1</span>;
+}
+<span class="code-tag">.box2</span> {
+    <span class="code-attr">z-index</span>: <span class="code-string">2</span>;
+}
+<span class="code-tag">.box3</span> {
+    <span class="code-attr">z-index</span>: <span class="code-string">3</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Overflow - hidden</h3>
+                <div class="position-container" style="overflow: hidden; height: 100px;">
+                    <div class="position-box" style="margin-bottom: 20px;">Box 1</div>
+                    <div class="position-box" style="margin-bottom: 20px;">Box 2</div>
+                    <div class="position-box">Box 3 (ukryty)</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">overflow</span>: <span class="code-string">hidden</span>;
+    <span class="code-attr">height</span>: <span class="code-string">100px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Overflow - scroll</h3>
+                <div class="position-container" style="overflow: scroll; height: 100px;">
+                    <div class="position-box" style="margin-bottom: 20px;">Box 1</div>
+                    <div class="position-box" style="margin-bottom: 20px;">Box 2</div>
+                    <div class="position-box" style="margin-bottom: 20px;">Box 3</div>
+                    <div class="position-box">Box 4</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">overflow</span>: <span class="code-string">scroll</span>;
+    <span class="code-attr">height</span>: <span class="code-string">100px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Overflow - auto</h3>
+                <div class="position-container" style="overflow: auto; height: 100px;">
+                    <div class="position-box" style="margin-bottom: 20px;">Box 1</div>
+                    <div class="position-box" style="margin-bottom: 20px;">Box 2</div>
+                    <div class="position-box">Box 3</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.container</span> {
+    <span class="code-attr">overflow</span>: <span class="code-string">auto</span>;
+    <span class="code-attr">height</span>: <span class="code-string">100px</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Clear - both</h3>
+                <div class="position-container" style="overflow: auto;">
+                    <div class="position-box" style="float: left; margin-right: 20px;">Float left</div>
+                    <div class="position-box" style="float: right; margin-left: 20px;">Float right</div>
+                    <div style="clear: both; color: #b0b0b0; padding: 10px; border-top: 2px solid #4a9eff; margin-top: 10px;">Clear both - pod floatami</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">clear</span>: <span class="code-string">both</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Visibility - hidden</h3>
+                <div class="position-container">
+                    <div class="position-box">Widoczny</div>
+                    <div class="position-box" style="visibility: hidden;">Ukryty (visibility)</div>
+                    <div class="position-box">Widoczny</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">visibility</span>: <span class="code-string">hidden</span>;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Display - none</h3>
+                <div class="position-container">
+                    <div class="position-box">Widoczny</div>
+                    <div class="position-box" style="display: none;">Ukryty (display: none)</div>
+                    <div class="position-box">Widoczny</div>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">.element</span> {
+    <span class="code-attr">display</span>: <span class="code-string">none</span>;
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Sekcja JavaScript -->
+        <section id="js" class="section">
+            <h2 class="section-title">JavaScript - Interaktywność</h2>
+
+            <!-- Podstawowa struktura -->
+            <div class="code-panel">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 style="margin: 0;">Podstawowa struktura i dołączanie JavaScript</h3>
+                </div>
+                <div class="accordion-content">
+                    <p style="color: #b0b0b0; margin-bottom: 15px;">Dołączanie pliku JavaScript w HTML:</p>
+                    <pre style="margin-bottom: 20px;"><code class="code-block"><span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-string">"script.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span>
+<span class="code-comment">&lt;!-- Lub inline --&gt;</span>
+<span class="code-tag">&lt;script&gt;</span>
+    <span class="code-tag">console.log</span>(<span class="code-string">'Witaj!'</span>);
+<span class="code-tag">&lt;/script&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Alert -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Alert i komunikaty</h3>
+            <div class="code-panel">
+                <h3>Alert - podstawowy</h3>
+                <button onclick="alert('Witaj w JavaScript!')" style="padding: 12px 30px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Kliknij - Alert</button>
+                <pre><code class="code-block"><span class="code-tag">alert</span>(<span class="code-string">'Witaj w JavaScript!'</span>);</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Confirm - potwierdzenie</h3>
+                <button onclick="if(confirm('Czy na pewno?')) alert('Kliknąłeś OK!')" style="padding: 12px 30px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Kliknij - Confirm</button>
+                <pre><code class="code-block"><span class="code-tag">if</span> (<span class="code-tag">confirm</span>(<span class="code-string">'Czy na pewno?'</span>)) {
+    <span class="code-tag">alert</span>(<span class="code-string">'Kliknąłeś OK!'</span>);
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Prompt - wprowadzanie danych</h3>
+                <button onclick="const imie = prompt('Podaj imię:'); if(imie) alert('Witaj, ' + imie + '!')" style="padding: 12px 30px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Kliknij - Prompt</button>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">imie</span> = <span class="code-tag">prompt</span>(<span class="code-string">'Podaj imię:'</span>);
+<span class="code-tag">if</span> (<span class="code-attr">imie</span>) {
+    <span class="code-tag">alert</span>(<span class="code-string">'Witaj, '</span> + <span class="code-attr">imie</span> + <span class="code-string">'!'</span>);
+}</code></pre>
+            </div>
+
+            <!-- Czytanie tekstów z elementów -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Czytanie tekstów z elementów</h3>
+            <div class="code-panel">
+                <h3>getElementById - odczyt tekstu</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <p id="demo-text-1" style="color: #4a9eff; font-size: 1.2em; margin-bottom: 10px;">To jest przykładowy tekst</p>
+                    <button onclick="alert(document.getElementById('demo-text-1').textContent)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer;">Odczytaj tekst</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">element</span> = <span class="code-tag">document.getElementById</span>(<span class="code-string">'demo-text-1'</span>);
+<span class="code-tag">const</span> <span class="code-attr">tekst</span> = <span class="code-attr">element</span>.<span class="code-attr">textContent</span>;
+<span class="code-tag">alert</span>(<span class="code-attr">tekst</span>);</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>querySelector - odczyt wartości input</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="text" id="demo-input-1" placeholder="Wpisz coś..." style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const wartosc = document.querySelector('#demo-input-1').value; alert('Wartość: ' + wartosc)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer;">Odczytaj wartość</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">input</span> = <span class="code-tag">document.querySelector</span>(<span class="code-string">'#demo-input-1'</span>);
+<span class="code-tag">const</span> <span class="code-attr">wartosc</span> = <span class="code-attr">input</span>.<span class="code-attr">value</span>;
+<span class="code-tag">alert</span>(<span class="code-string">'Wartość: '</span> + <span class="code-attr">wartosc</span>);</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>innerHTML - odczyt i zmiana HTML</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div id="demo-html-1" style="color: #4a9eff; margin-bottom: 10px;">Tekst początkowy</div>
+                    <button onclick="alert(document.getElementById('demo-html-1').innerHTML)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-right: 10px;">Odczytaj HTML</button>
+                    <button onclick="document.getElementById('demo-html-1').innerHTML = '<strong>Zmieniony tekst!</strong>'" style="padding: 10px 20px; background: #ff6b6b; border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer;">Zmień HTML</button>
+                </div>
+                <pre><code class="code-block"><span class="code-comment">// Odczyt</span>
+<span class="code-tag">const</span> <span class="code-attr">html</span> = <span class="code-tag">document.getElementById</span>(<span class="code-string">'demo-html-1'</span>).<span class="code-attr">innerHTML</span>;
+
+<span class="code-comment">// Zmiana</span>
+<span class="code-tag">document.getElementById</span>(<span class="code-string">'demo-html-1'</span>).<span class="code-attr">innerHTML</span> = <span class="code-string">'&lt;strong&gt;Nowy tekst&lt;/strong&gt;'</span>;</code></pre>
+            </div>
+
+            <!-- Interakcje z elementami -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Interakcje z elementami</h3>
+            <div class="example-grid">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">onclick</div>
+                            <div class="flip-card-demo">
+                                <button onclick="alert('Kliknięto!')" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 5px; color: #1a1a2e; cursor: pointer;">Kliknij</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod HTML + JS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;button</span> <span class="code-attr">onclick</span>=<span class="code-string">"alert('Kliknięto!')"</span><span class="code-tag">&gt;</span>Kliknij<span class="code-tag">&lt;/button&gt;</span>
+
+<span class="code-comment">// Lub w JavaScript:</span>
+<span class="code-tag">button.addEventListener</span>(<span class="code-string">'click'</span>, <span class="code-tag">function</span>() {
+    <span class="code-tag">alert</span>(<span class="code-string">'Kliknięto!'</span>);
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">onchange</div>
+                            <div class="flip-card-demo">
+                                <select onchange="alert('Wybrano: ' + this.value)" style="padding: 8px; background: #1e2329; border: 1px solid #4a9eff; border-radius: 5px; color: #e0e0e0;">
+                                    <option value="">Wybierz...</option>
+                                    <option value="1">Opcja 1</option>
+                                    <option value="2">Opcja 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod HTML + JS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;select</span> <span class="code-attr">onchange</span>=<span class="code-string">"alert('Wybrano: ' + this.value)"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;option</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>Opcja 1<span class="code-tag">&lt;/option&gt;</span>
+<span class="code-tag">&lt;/select&gt;</span>
+
+<span class="code-comment">// W JavaScript:</span>
+<span class="code-tag">select.addEventListener</span>(<span class="code-string">'change'</span>, <span class="code-tag">function</span>() {
+    <span class="code-tag">alert</span>(<span class="code-string">'Wybrano: '</span> + <span class="code-tag">this</span>.<span class="code-attr">value</span>);
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">onmouseover</div>
+                            <div class="flip-card-demo">
+                                <div onmouseover="this.style.background='#ff6b6b'" onmouseout="this.style.background='#4a9eff'" style="padding: 15px; background: #4a9eff; border-radius: 8px; color: white; cursor: pointer;">Najedź myszką</div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod HTML + JS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;div</span> <span class="code-attr">onmouseover</span>=<span class="code-string">"this.style.background='red'"</span>
+     <span class="code-attr">onmouseout</span>=<span class="code-string">"this.style.background='blue'"</span><span class="code-tag">&gt;</span>
+    Tekst
+<span class="code-tag">&lt;/div&gt;</span>
+
+<span class="code-comment">// W JavaScript:</span>
+<span class="code-tag">element.addEventListener</span>(<span class="code-string">'mouseover'</span>, <span class="code-tag">function</span>() {
+    <span class="code-tag">this</span>.<span class="code-attr">style</span>.<span class="code-attr">background</span> = <span class="code-string">'red'</span>;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-title">onfocus / onblur</div>
+                            <div class="flip-card-demo">
+                                <input type="text" onfocus="this.style.border='3px solid #ffd700'" onblur="this.style.border='1px solid #4a9eff'" placeholder="Kliknij tutaj" style="padding: 8px; background: #1e2329; border: 1px solid #4a9eff; border-radius: 5px; color: #e0e0e0; width: 100%;">
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-card-title">Kod HTML + JS</div>
+                            <pre style="background: transparent; border: none; padding: 0; text-align: left;"><code style="font-size: 0.85em;"><span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"text"</span>
+       <span class="code-attr">onfocus</span>=<span class="code-string">"this.style.border='3px solid gold'"</span>
+       <span class="code-attr">onblur</span>=<span class="code-string">"this.style.border='1px solid blue'"</span><span class="code-tag">&gt;</span>
+
+<span class="code-comment">// W JavaScript:</span>
+<span class="code-tag">input.addEventListener</span>(<span class="code-string">'focus'</span>, <span class="code-tag">function</span>() {
+    <span class="code-tag">this</span>.<span class="code-attr">style</span>.<span class="code-attr">border</span> = <span class="code-string">'3px solid gold'</span>;
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operacje matematyczne -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Operacje matematyczne</h3>
+            <div class="code-panel">
+                <h3>NWD - Największy Wspólny Dzielnik</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="nwd-a" placeholder="Liczba a" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-right: 2%; margin-bottom: 10px;">
+                    <input type="number" id="nwd-b" placeholder="Liczba b" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const nwdA = parseInt(document.getElementById('nwd-a').value); const nwdB = parseInt(document.getElementById('nwd-b').value); if(nwdA && nwdB) alert('NWD(' + nwdA + ', ' + nwdB + ') = ' + nwd(nwdA, nwdB))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz NWD</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">function</span> <span class="code-attr">nwd</span>(<span class="code-attr">a</span>, <span class="code-attr">b</span>) {
+    <span class="code-tag">while</span> (<span class="code-attr">b</span> !== <span class="code-string">0</span>) {
+        <span class="code-tag">let</span> <span class="code-attr">temp</span> = <span class="code-attr">b</span>;
+        <span class="code-attr">b</span> = <span class="code-attr">a</span> % <span class="code-attr">b</span>;
+        <span class="code-attr">a</span> = <span class="code-attr">temp</span>;
+    }
+    <span class="code-tag">return</span> <span class="code-attr">a</span>;
+}
+
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">nwd</span>(<span class="code-string">48</span>, <span class="code-string">18</span>); <span class="code-comment">// wynik: 6</span></code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>NWW - Najmniejsza Wspólna Wielokrotność</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="nww-a" placeholder="Liczba a" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-right: 2%; margin-bottom: 10px;">
+                    <input type="number" id="nww-b" placeholder="Liczba b" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const nwwA = parseInt(document.getElementById('nww-a').value); const nwwB = parseInt(document.getElementById('nww-b').value); if(nwwA && nwwB) alert('NWW(' + nwwA + ', ' + nwwB + ') = ' + nww(nwwA, nwwB))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz NWW</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">function</span> <span class="code-attr">nww</span>(<span class="code-attr">a</span>, <span class="code-attr">b</span>) {
+    <span class="code-tag">return</span> (<span class="code-attr">a</span> * <span class="code-attr">b</span>) / <span class="code-tag">nwd</span>(<span class="code-attr">a</span>, <span class="code-attr">b</span>);
+}
+
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">nww</span>(<span class="code-string">12</span>, <span class="code-string">18</span>); <span class="code-comment">// wynik: 36</span></code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Silnia</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="silnia-n" placeholder="Liczba n" style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const silniaN = parseInt(document.getElementById('silnia-n').value); if(silniaN >= 0) alert(silniaN + '! = ' + silnia(silniaN))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz silnię</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">function</span> <span class="code-attr">silnia</span>(<span class="code-attr">n</span>) {
+    <span class="code-tag">if</span> (<span class="code-attr">n</span> === <span class="code-string">0</span> || <span class="code-attr">n</span> === <span class="code-string">1</span>) {
+        <span class="code-tag">return</span> <span class="code-string">1</span>;
+    }
+    <span class="code-tag">return</span> <span class="code-attr">n</span> * <span class="code-tag">silnia</span>(<span class="code-attr">n</span> - <span class="code-string">1</span>);
+}
+
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">silnia</span>(<span class="code-string">5</span>); <span class="code-comment">// wynik: 120</span></code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Suma liczb</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="suma-a" placeholder="Liczba a" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-right: 2%; margin-bottom: 10px;">
+                    <input type="number" id="suma-b" placeholder="Liczba b" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const sumaA = parseFloat(document.getElementById('suma-a').value); const sumaB = parseFloat(document.getElementById('suma-b').value); if(!isNaN(sumaA) && !isNaN(sumaB)) alert(sumaA + ' + ' + sumaB + ' = ' + (sumaA + sumaB))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz sumę</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">a</span> = <span class="code-string">5</span>;
+<span class="code-tag">const</span> <span class="code-attr">b</span> = <span class="code-string">3</span>;
+<span class="code-tag">const</span> <span class="code-attr">suma</span> = <span class="code-attr">a</span> + <span class="code-attr">b</span>; <span class="code-comment">// wynik: 8</span>
+
+<span class="code-comment">// Z inputów:</span>
+<span class="code-tag">const</span> <span class="code-attr">wartosc1</span> = <span class="code-tag">parseFloat</span>(<span class="code-tag">document.getElementById</span>(<span class="code-string">'input1'</span>).<span class="code-attr">value</span>);
+<span class="code-tag">const</span> <span class="code-attr">wartosc2</span> = <span class="code-tag">parseFloat</span>(<span class="code-tag">document.getElementById</span>(<span class="code-string">'input2'</span>).<span class="code-attr">value</span>);
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-attr">wartosc1</span> + <span class="code-attr">wartosc2</span>;</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Średnia arytmetyczna</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="text" id="srednia-liczby" placeholder="Liczby oddzielone przecinkami (np. 5,10,15)" style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const tekst = document.getElementById('srednia-liczby').value; const liczby = tekst.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x)); if(liczby.length > 0) { const suma = liczby.reduce((a,b) => a+b, 0); alert('Średnia: ' + (suma / liczby.length).toFixed(2)) }" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz średnią</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">function</span> <span class="code-attr">srednia</span>(<span class="code-attr">liczby</span>) {
+    <span class="code-tag">const</span> <span class="code-attr">suma</span> = <span class="code-attr">liczby</span>.<span class="code-tag">reduce</span>((<span class="code-attr">a</span>, <span class="code-attr">b</span>) => <span class="code-attr">a</span> + <span class="code-attr">b</span>, <span class="code-string">0</span>);
+    <span class="code-tag">return</span> <span class="code-attr">suma</span> / <span class="code-attr">liczby</span>.<span class="code-attr">length</span>;
+}
+
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">srednia</span>([<span class="code-string">5</span>, <span class="code-string">10</span>, <span class="code-string">15</span>]); <span class="code-comment">// wynik: 10</span></code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Potęga</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="potega-podstawa" placeholder="Podstawa" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-right: 2%; margin-bottom: 10px;">
+                    <input type="number" id="potega-wykladnik" placeholder="Wykładnik" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const potegaA = parseFloat(document.getElementById('potega-podstawa').value); const potegaB = parseFloat(document.getElementById('potega-wykladnik').value); if(!isNaN(potegaA) && !isNaN(potegaB)) alert(potegaA + '^' + potegaB + ' = ' + Math.pow(potegaA, potegaB))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz potęgę</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">podstawa</span> = <span class="code-string">2</span>;
+<span class="code-tag">const</span> <span class="code-attr">wykladnik</span> = <span class="code-string">3</span>;
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">Math.pow</span>(<span class="code-attr">podstawa</span>, <span class="code-attr">wykladnik</span>); <span class="code-comment">// wynik: 8</span>
+
+<span class="code-comment">// Lub:</span>
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-attr">podstawa</span> ** <span class="code-attr">wykladnik</span>;</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Pierwiastek kwadratowy</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="pierwiastek-n" placeholder="Liczba" style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const pierwiastekN = parseFloat(document.getElementById('pierwiastek-n').value); if(!isNaN(pierwiastekN) && pierwiastekN >= 0) alert('√' + pierwiastekN + ' = ' + Math.sqrt(pierwiastekN).toFixed(2))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Oblicz pierwiastek</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">liczba</span> = <span class="code-string">16</span>;
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">Math.sqrt</span>(<span class="code-attr">liczba</span>); <span class="code-comment">// wynik: 4</span>
+
+<span class="code-comment">// Z inputu:</span>
+<span class="code-tag">const</span> <span class="code-attr">wartosc</span> = <span class="code-tag">parseFloat</span>(<span class="code-tag">document.getElementById</span>(<span class="code-string">'input'</span>).<span class="code-attr">value</span>);
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">Math.sqrt</span>(<span class="code-attr">wartosc</span>);</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Losowa liczba</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="random-min" placeholder="Min" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-right: 2%; margin-bottom: 10px;">
+                    <input type="number" id="random-max" placeholder="Max" style="width: 48%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const min = parseInt(document.getElementById('random-min').value); const max = parseInt(document.getElementById('random-max').value); if(!isNaN(min) && !isNaN(max)) alert('Losowa liczba: ' + Math.floor(Math.random() * (max - min + 1)) + min)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Losuj</button>
+                </div>
+                <pre><code class="code-block"><span class="code-comment">// Losowa liczba 0-1</span>
+<span class="code-tag">const</span> <span class="code-attr">losowa</span> = <span class="code-tag">Math.random</span>(); <span class="code-comment">// 0.0 - 0.999...</span>
+
+<span class="code-comment">// Losowa liczba w zakresie min-max</span>
+<span class="code-tag">function</span> <span class="code-attr">losowaLiczba</span>(<span class="code-attr">min</span>, <span class="code-attr">max</span>) {
+    <span class="code-tag">return</span> <span class="code-tag">Math.floor</span>(<span class="code-tag">Math.random</span>() * (<span class="code-attr">max</span> - <span class="code-attr">min</span> + <span class="code-string">1</span>)) + <span class="code-attr">min</span>;
+}
+
+<span class="code-tag">const</span> <span class="code-attr">wynik</span> = <span class="code-tag">losowaLiczba</span>(<span class="code-string">1</span>, <span class="code-string">100</span>);</code></pre>
+            </div>
+
+            <!-- Pętle i warunki -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Pętle i warunki</h3>
+            <div class="code-panel">
+                <h3>For - pętla</h3>
+                <button onclick="let wynikFor = ''; for(let i = 1; i <= 5; i++) { wynikFor += i + ' '; } alert('Liczby: ' + wynikFor)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Uruchom pętlę for</button>
+                <pre><code class="code-block"><span class="code-tag">for</span> (<span class="code-tag">let</span> <span class="code-attr">i</span> = <span class="code-string">1</span>; <span class="code-attr">i</span> <= <span class="code-string">5</span>; <span class="code-attr">i</span>++) {
+    <span class="code-tag">console.log</span>(<span class="code-attr">i</span>);
+}
+
+<span class="code-comment">// Odliczanie wstecz</span>
+<span class="code-tag">for</span> (<span class="code-tag">let</span> <span class="code-attr">i</span> = <span class="code-string">10</span>; <span class="code-attr">i</span> >= <span class="code-string">1</span>; <span class="code-attr">i</span>--) {
+    <span class="code-tag">console.log</span>(<span class="code-attr">i</span>);
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>While - pętla</h3>
+                <button onclick="let iWhile = 1; let wynikWhile = ''; while(iWhile <= 5) { wynikWhile += iWhile + ' '; iWhile++; } alert('Liczby: ' + wynikWhile)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Uruchom pętlę while</button>
+                <pre><code class="code-block"><span class="code-tag">let</span> <span class="code-attr">i</span> = <span class="code-string">1</span>;
+<span class="code-tag">while</span> (<span class="code-attr">i</span> <= <span class="code-string">5</span>) {
+    <span class="code-tag">console.log</span>(<span class="code-attr">i</span>);
+    <span class="code-attr">i</span>++;
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>If/else - warunki</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="warunek-liczba" placeholder="Podaj liczbę" style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const warunekN = parseFloat(document.getElementById('warunek-liczba').value); if(!isNaN(warunekN)) { if(warunekN > 0) alert('Liczba dodatnia'); else if(warunekN < 0) alert('Liczba ujemna'); else alert('Zero'); }" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Sprawdź</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">liczba</span> = <span class="code-string">5</span>;
+
+<span class="code-tag">if</span> (<span class="code-attr">liczba</span> > <span class="code-string">0</span>) {
+    <span class="code-tag">console.log</span>(<span class="code-string">'Dodatnia'</span>);
+} <span class="code-tag">else if</span> (<span class="code-attr">liczba</span> < <span class="code-string">0</span>) {
+    <span class="code-tag">console.log</span>(<span class="code-string">'Ujemna'</span>);
+} <span class="code-tag">else</span> {
+    <span class="code-tag">console.log</span>(<span class="code-string">'Zero'</span>);
+}</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Switch - wybór</h3>
+                <div style="background: #1e2329; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <input type="number" id="switch-dzien" placeholder="Numer dnia (1-7)" style="width: 100%; padding: 10px; background: #0f1419; border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 6px; color: #e0e0e0; margin-bottom: 10px;">
+                    <button onclick="const dzien = parseInt(document.getElementById('switch-dzien').value); if(!isNaN(dzien) && dzien >= 1 && dzien <= 7) { let nazwa = ''; switch(dzien) { case 1: nazwa = 'Poniedziałek'; break; case 2: nazwa = 'Wtorek'; break; case 3: nazwa = 'Środa'; break; case 4: nazwa = 'Czwartek'; break; case 5: nazwa = 'Piątek'; break; case 6: nazwa = 'Sobota'; break; case 7: nazwa = 'Niedziela'; break; } alert(nazwa); }" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; width: 100%;">Pokaż dzień</button>
+                </div>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">dzien</span> = <span class="code-string">3</span>;
+<span class="code-tag">let</span> <span class="code-attr">nazwa</span>;
+
+<span class="code-tag">switch</span> (<span class="code-attr">dzien</span>) {
+    <span class="code-tag">case</span> <span class="code-string">1</span>:
+        <span class="code-attr">nazwa</span> = <span class="code-string">'Poniedziałek'</span>;
+        <span class="code-tag">break</span>;
+    <span class="code-tag">case</span> <span class="code-string">2</span>:
+        <span class="code-attr">nazwa</span> = <span class="code-string">'Wtorek'</span>;
+        <span class="code-tag">break</span>;
+    <span class="code-tag">default</span>:
+        <span class="code-attr">nazwa</span> = <span class="code-string">'Inny dzień'</span>;
+}</code></pre>
+            </div>
+
+            <!-- Tablice -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Tablice</h3>
+            <div class="code-panel">
+                <h3>Tworzenie i operacje na tablicach</h3>
+                <button onclick="const tablica = [1, 2, 3, 4, 5]; alert('Tablica: ' + tablica.join(', ') + '\\nDługość: ' + tablica.length)" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Pokaż tablicę</button>
+                <pre><code class="code-block"><span class="code-comment">// Tworzenie tablicy</span>
+<span class="code-tag">const</span> <span class="code-attr">tablica</span> = [<span class="code-string">1</span>, <span class="code-string">2</span>, <span class="code-string">3</span>];
+
+<span class="code-comment">// Dodawanie elementu</span>
+<span class="code-attr">tablica</span>.<span class="code-tag">push</span>(<span class="code-string">4</span>);
+
+<span class="code-comment">// Usuwanie ostatniego</span>
+<span class="code-attr">tablica</span>.<span class="code-tag">pop</span>();
+
+<span class="code-comment">// Długość tablicy</span>
+<span class="code-tag">const</span> <span class="code-attr">dlugosc</span> = <span class="code-attr">tablica</span>.<span class="code-attr">length</span>;
+
+<span class="code-comment">// Iteracja</span>
+<span class="code-attr">tablica</span>.<span class="code-tag">forEach</span>(<span class="code-tag">function</span>(<span class="code-attr">element</span>) {
+    <span class="code-tag">console.log</span>(<span class="code-attr">element</span>);
+});</code></pre>
+            </div>
+
+            <div class="code-panel">
+                <h3>Metody tablic - map, filter, reduce</h3>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">liczby</span> = [<span class="code-string">1</span>, <span class="code-string">2</span>, <span class="code-string">3</span>, <span class="code-string">4</span>, <span class="code-string">5</span>];
+
+<span class="code-comment">// Map - przekształcenie</span>
+<span class="code-tag">const</span> <span class="code-attr">podwojone</span> = <span class="code-attr">liczby</span>.<span class="code-tag">map</span>(<span class="code-tag">x</span> => <span class="code-tag">x</span> * <span class="code-string">2</span>);
+
+<span class="code-comment">// Filter - filtrowanie</span>
+<span class="code-tag">const</span> <span class="code-attr">parzyste</span> = <span class="code-attr">liczby</span>.<span class="code-tag">filter</span>(<span class="code-tag">x</span> => <span class="code-tag">x</span> % <span class="code-string">2</span> === <span class="code-string">0</span>);
+
+<span class="code-comment">// Reduce - redukcja</span>
+<span class="code-tag">const</span> <span class="code-attr">suma</span> = <span class="code-attr">liczby</span>.<span class="code-tag">reduce</span>((<span class="code-attr">a</span>, <span class="code-attr">b</span>) => <span class="code-attr">a</span> + <span class="code-attr">b</span>, <span class="code-string">0</span>);</code></pre>
+            </div>
+
+            <!-- Funkcje -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Funkcje</h3>
+            <div class="code-panel">
+                <h3>Deklaracja funkcji</h3>
+                <pre><code class="code-block"><span class="code-comment">// Funkcja deklarowana</span>
+<span class="code-tag">function</span> <span class="code-attr">dodaj</span>(<span class="code-attr">a</span>, <span class="code-attr">b</span>) {
+    <span class="code-tag">return</span> <span class="code-attr">a</span> + <span class="code-attr">b</span>;
+}
+
+<span class="code-comment">// Funkcja anonimowa</span>
+<span class="code-tag">const</span> <span class="code-attr">odejmij</span> = <span class="code-tag">function</span>(<span class="code-attr">a</span>, <span class="code-attr">b</span>) {
+    <span class="code-tag">return</span> <span class="code-attr">a</span> - <span class="code-attr">b</span>;
+};
+
+<span class="code-comment">// Arrow function</span>
+<span class="code-tag">const</span> <span class="code-attr">pomnoz</span> = (<span class="code-attr">a</span>, <span class="code-attr">b</span>) => <span class="code-attr">a</span> * <span class="code-attr">b</span>;</code></pre>
+            </div>
+
+            <!-- Obiekty -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Obiekty</h3>
+            <div class="code-panel">
+                <h3>Tworzenie i dostęp do obiektów</h3>
+                <pre><code class="code-block"><span class="code-comment">// Tworzenie obiektu</span>
+<span class="code-tag">const</span> <span class="code-attr">osoba</span> = {
+    <span class="code-attr">imie</span>: <span class="code-string">'Jan'</span>,
+    <span class="code-attr">wiek</span>: <span class="code-string">25</span>,
+    <span class="code-attr">miasto</span>: <span class="code-string">'Warszawa'</span>
+};
+
+<span class="code-comment">// Dostęp do właściwości</span>
+<span class="code-tag">console.log</span>(<span class="code-attr">osoba</span>.<span class="code-attr">imie</span>); <span class="code-comment">// Jan</span>
+<span class="code-tag">console.log</span>(<span class="code-attr">osoba</span>[<span class="code-string">'wiek'</span>]); <span class="code-comment">// 25</span>
+
+<span class="code-comment">// Dodawanie właściwości</span>
+<span class="code-attr">osoba</span>.<span class="code-attr">email</span> = <span class="code-string">'jan@example.com'</span>;</code></pre>
+            </div>
+
+            <!-- Stringi -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Operacje na stringach</h3>
+            <div class="code-panel">
+                <h3>Metody stringów</h3>
+                <pre><code class="code-block"><span class="code-tag">const</span> <span class="code-attr">tekst</span> = <span class="code-string">'Witaj Świecie'</span>;
+
+<span class="code-comment">// Długość</span>
+<span class="code-tag">const</span> <span class="code-attr">dlugosc</span> = <span class="code-attr">tekst</span>.<span class="code-attr">length</span>;
+
+<span class="code-comment">// Wielkie/małe litery</span>
+<span class="code-tag">const</span> <span class="code-attr">duze</span> = <span class="code-attr">tekst</span>.<span class="code-tag">toUpperCase</span>();
+<span class="code-tag">const</span> <span class="code-attr">male</span> = <span class="code-attr">tekst</span>.<span class="code-tag">toLowerCase</span>();
+
+<span class="code-comment">// Podział</span>
+<span class="code-tag">const</span> <span class="code-attr">czesci</span> = <span class="code-attr">tekst</span>.<span class="code-tag">split</span>(<span class="code-string">' '</span>);
+
+<span class="code-comment">// Łączenie</span>
+<span class="code-tag">const</span> <span class="code-attr">polaczony</span> = <span class="code-attr">czesci</span>.<span class="code-tag">join</span>(<span class="code-string">'-'</span>);
+
+<span class="code-comment">// Zastępowanie</span>
+<span class="code-tag">const</span> <span class="code-attr">nowy</span> = <span class="code-attr">tekst</span>.<span class="code-tag">replace</span>(<span class="code-string">'Świecie'</span>, <span class="code-string">'JavaScript'</span>);</code></pre>
+            </div>
+
+            <!-- Date -->
+            <h3 style="color: #4a9eff; margin-bottom: 20px; font-size: 1.8em; margin-top: 40px;">Data i czas</h3>
+            <div class="code-panel">
+                <h3>Obiekt Date</h3>
+                <button onclick="const data = new Date(); alert('Data: ' + data.toLocaleDateString('pl-PL') + '\\nCzas: ' + data.toLocaleTimeString('pl-PL'))" style="padding: 10px 20px; background: #4a9eff; border: none; border-radius: 6px; color: #1a1a2e; font-weight: 600; cursor: pointer; margin-bottom: 15px;">Pokaż aktualną datę</button>
+                <pre><code class="code-block"><span class="code-comment">// Aktualna data</span>
+<span class="code-tag">const</span> <span class="code-attr">data</span> = <span class="code-tag">new Date</span>();
+
+<span class="code-comment">// Konkretna data</span>
+<span class="code-tag">const</span> <span class="code-attr">data2</span> = <span class="code-tag">new Date</span>(<span class="code-string">2024</span>, <span class="code-string">0</span>, <span class="code-string">15</span>);
+
+<span class="code-comment">// Pobieranie elementów</span>
+<span class="code-tag">const</span> <span class="code-attr">dzien</span> = <span class="code-attr">data</span>.<span class="code-tag">getDate</span>();
+<span class="code-tag">const</span> <span class="code-attr">miesiac</span> = <span class="code-attr">data</span>.<span class="code-tag">getMonth</span>() + <span class="code-string">1</span>;
+<span class="code-tag">const</span> <span class="code-attr">rok</span> = <span class="code-attr">data</span>.<span class="code-tag">getFullYear</span>();
+
+<span class="code-comment">// Formatowanie</span>
+<span class="code-tag">const</span> <span class="code-attr">sformatowana</span> = <span class="code-attr">data</span>.<span class="code-tag">toLocaleDateString</span>(<span class="code-string">'pl-PL'</span>);</code></pre>
+            </div>
+        </section>
+
+        <!-- Sekcja PHP (pusta na razie) -->
+        <section id="php" class="section">
+            <h2 class="section-title">PHP - Backend</h2>
+            <p style="text-align: center; color: #b0b0b0; padding: 40px;">Sekcja w przygotowaniu...</p>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Ukryj wszystkie sekcje
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Usuń aktywną klasę ze wszystkich zakładek
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Pokaż wybraną sekcję
+            document.getElementById(sectionId).classList.add('active');
+
+            // Dodaj aktywną klasę do klikniętej zakładki
+            event.target.classList.add('active');
+        }
+
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        function toggleAccordion(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        function flipTemplateElement(card, elementType) {
+            const inner = card.querySelector('.flip-card-inner');
+            if (inner.style.transform === 'rotateY(180deg)') {
+                inner.style.transform = 'rotateY(0deg)';
+            } else {
+                inner.style.transform = 'rotateY(180deg)';
+            }
+        }
+
+        const originalFormCode = `<span class="code-tag">&lt;form</span> <span class="code-attr">action</span>=<span class="code-string">"#"</span> <span class="code-attr">method</span>=<span class="code-string">"POST"</span><span class="code-tag">&gt;</span>
+    <span class="code-comment">&lt;!-- Pole tekstowe --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"text"</span><span class="code-tag">&gt;</span>Pole tekstowe:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"text"</span> <span class="code-attr">id</span>=<span class="code-string">"text"</span> <span class="code-attr">name</span>=<span class="code-string">"text"</span> <span class="code-attr">placeholder</span>=<span class="code-string">"Wpisz tekst"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Email --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"email"</span><span class="code-tag">&gt;</span>Email:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"email"</span> <span class="code-attr">id</span>=<span class="code-string">"email"</span> <span class="code-attr">name</span>=<span class="code-string">"email"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Hasło --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"password"</span><span class="code-tag">&gt;</span>Hasło:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"password"</span> <span class="code-attr">id</span>=<span class="code-string">"password"</span> <span class="code-attr">name</span>=<span class="code-string">"password"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Liczba --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"number"</span><span class="code-tag">&gt;</span>Liczba:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"number"</span> <span class="code-attr">id</span>=<span class="code-string">"number"</span> <span class="code-attr">min</span>=<span class="code-string">"0"</span> <span class="code-attr">max</span>=<span class="code-string">"100"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Data --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"date"</span><span class="code-tag">&gt;</span>Data:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"date"</span> <span class="code-attr">id</span>=<span class="code-string">"date"</span> <span class="code-attr">name</span>=<span class="code-string">"date"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Czas --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"time"</span><span class="code-tag">&gt;</span>Czas:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"time"</span> <span class="code-attr">id</span>=<span class="code-string">"time"</span> <span class="code-attr">name</span>=<span class="code-string">"time"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Data i czas --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"datetime"</span><span class="code-tag">&gt;</span>Data i czas:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"datetime-local"</span> <span class="code-attr">id</span>=<span class="code-string">"datetime"</span> <span class="code-attr">name</span>=<span class="code-string">"datetime"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Kolor --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"color"</span><span class="code-tag">&gt;</span>Kolor:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"color"</span> <span class="code-attr">id</span>=<span class="code-string">"color"</span> <span class="code-attr">name</span>=<span class="code-string">"color"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Zakres --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"range"</span><span class="code-tag">&gt;</span>Zakres:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"range"</span> <span class="code-attr">id</span>=<span class="code-string">"range"</span> <span class="code-attr">min</span>=<span class="code-string">"0"</span> <span class="code-attr">max</span>=<span class="code-string">"100"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Plik --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"file"</span><span class="code-tag">&gt;</span>Plik:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"file"</span> <span class="code-attr">id</span>=<span class="code-string">"file"</span> <span class="code-attr">name</span>=<span class="code-string">"file"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Lista wyboru --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"select"</span><span class="code-tag">&gt;</span>Lista wyboru:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;select</span> <span class="code-attr">id</span>=<span class="code-string">"select"</span> <span class="code-attr">name</span>=<span class="code-string">"select"</span><span class="code-tag">&gt;</span>
+        <span class="code-tag">&lt;option</span> <span class="code-attr">value</span>=<span class="code-string">""</span><span class="code-tag">&gt;</span>Wybierz opcję<span class="code-tag">&lt;/option&gt;</span>
+        <span class="code-tag">&lt;option</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>Opcja 1<span class="code-tag">&lt;/option&gt;</span>
+    <span class="code-tag">&lt;/select&gt;</span>
+
+    <span class="code-comment">&lt;!-- Obszar tekstowy --&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"textarea"</span><span class="code-tag">&gt;</span>Obszar tekstowy:<span class="code-tag">&lt;/label&gt;</span>
+    <span class="code-tag">&lt;textarea</span> <span class="code-attr">id</span>=<span class="code-string">"textarea"</span> <span class="code-attr">name</span>=<span class="code-string">"textarea"</span> <span class="code-attr">rows</span>=<span class="code-string">"4"</span><span class="code-tag">&gt;&lt;/textarea&gt;</span>
+
+    <span class="code-comment">&lt;!-- Checkboxy --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"checkbox"</span> <span class="code-attr">id</span>=<span class="code-string">"check1"</span> <span class="code-attr">name</span>=<span class="code-string">"check"</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"check1"</span><span class="code-tag">&gt;</span>Opcja 1<span class="code-tag">&lt;/label&gt;</span>
+
+    <span class="code-comment">&lt;!-- Radio buttons --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"radio"</span> <span class="code-attr">id</span>=<span class="code-string">"radio1"</span> <span class="code-attr">name</span>=<span class="code-string">"radio"</span> <span class="code-attr">value</span>=<span class="code-string">"1"</span><span class="code-tag">&gt;</span>
+    <span class="code-tag">&lt;label</span> <span class="code-attr">for</span>=<span class="code-string">"radio1"</span><span class="code-tag">&gt;</span>Opcja A<span class="code-tag">&lt;/label&gt;</span>
+
+    <span class="code-comment">&lt;!-- URL --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"url"</span> <span class="code-attr">id</span>=<span class="code-string">"url"</span> <span class="code-attr">name</span>=<span class="code-string">"url"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Telefon --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"tel"</span> <span class="code-attr">id</span>=<span class="code-string">"tel"</span> <span class="code-attr">name</span>=<span class="code-string">"tel"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-comment">&lt;!-- Wyszukiwarka --&gt;</span>
+    <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-string">"search"</span> <span class="code-attr">id</span>=<span class="code-string">"search"</span> <span class="code-attr">name</span>=<span class="code-string">"search"</span><span class="code-tag">&gt;</span>
+
+    <span class="code-tag">&lt;button</span> <span class="code-attr">type</span>=<span class="code-string">"submit"</span><span class="code-tag">&gt;</span>Wyślij<span class="code-tag">&lt;/button&gt;</span>
+    <span class="code-tag">&lt;button</span> <span class="code-attr">type</span>=<span class="code-string">"reset"</span><span class="code-tag">&gt;</span>Resetuj<span class="code-tag">&lt;/button&gt;</span>
+<span class="code-tag">&lt;/form&gt;</span>`;
+
+        function highlightFormCode(elementId) {
+            const codeBlock = document.getElementById('form-code-block');
+            if (!codeBlock) return;
+            
+            // Zawsze zaczynamy od czystego oryginalnego kodu
+            let html = originalFormCode;
+            
+            const commentMap = {
+                'text': 'Pole tekstowe',
+                'email': 'Email',
+                'password': 'Hasło',
+                'number': 'Liczba',
+                'date': 'Data',
+                'time': 'Czas',
+                'datetime': 'Data i czas',
+                'color': 'Kolor',
+                'range': 'Zakres',
+                'file': 'Plik',
+                'select': 'Lista wyboru',
+                'textarea': 'Obszar tekstowy',
+                'check1': 'Checkboxy',
+                'radio1': 'Radio buttons',
+                'url': 'URL',
+                'tel': 'Telefon',
+                'search': 'Wyszukiwarka'
+            };
+            
+            const searchComment = commentMap[elementId];
+            if (!searchComment) return;
+            
+            // Znajdź komentarz dla danego elementu
+            const commentPattern = `<span class="code-comment">&lt;!-- ${searchComment} --&gt;</span>`;
+            const commentIndex = html.indexOf(commentPattern);
+            
+            if (commentIndex === -1) return;
+            
+            // Znajdź koniec bloku - następny komentarz
+            let endIndex = html.indexOf('<span class="code-comment">&lt;!--', commentIndex + commentPattern.length);
+            if (endIndex === -1) {
+                // Jeśli nie ma następnego komentarza, szukaj przycisków
+                endIndex = html.indexOf('<span class="code-tag">&lt;button', commentIndex);
+                if (endIndex === -1) {
+                    endIndex = html.indexOf('<span class="code-tag">&lt;/form&gt;</span>', commentIndex);
+                }
+            }
+            if (endIndex === -1) {
+                endIndex = html.length;
+            }
+            
+            // Znajdź początek bloku - cofnij się do początku linii z komentarzem
+            // Szukamy znaku nowej linii przed komentarzem (lub początku stringa)
+            let startIndex = commentIndex;
+            const beforeComment = html.substring(0, commentIndex);
+            const lastNewline = beforeComment.lastIndexOf('\n');
+            if (lastNewline !== -1) {
+                startIndex = lastNewline + 1;
+            } else {
+                startIndex = 0;
+            }
+            
+            // Wyciągnij blok do podświetlenia
+            const beforeBlock = html.substring(0, startIndex);
+            const blockToHighlight = html.substring(startIndex, endIndex);
+            const afterBlock = html.substring(endIndex);
+            
+            // Owiń blok w span z podświetleniem
+            const highlightedBlock = `<span class="code-highlight">${blockToHighlight}</span>`;
+            
+            // Zaktualizuj HTML
+            codeBlock.innerHTML = beforeBlock + highlightedBlock + afterBlock;
+        }
+
+        // Funkcje matematyczne
+        function nwd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function nww(a, b) {
+            return (a * b) / nwd(a, b);
+        }
+
+        function silnia(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * silnia(n - 1);
+        }
+
+        // Funkcja drag & drop dla boxów pozycjonowania
+        function initDraggableBoxes() {
+            const draggableBoxes = document.querySelectorAll('.draggable-box');
+            
+            draggableBoxes.forEach(box => {
+                let isDragging = false;
+                let startX, startY, initialTop, initialLeft;
+                
+                box.addEventListener('mousedown', function(e) {
+                    isDragging = true;
+                    box.classList.add('dragging');
+                    
+                    const rect = box.getBoundingClientRect();
+                    const containerRect = box.parentElement.getBoundingClientRect();
+                    
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    
+                    // Pobierz aktualne wartości top i left
+                    const computedStyle = window.getComputedStyle(box);
+                    initialTop = parseInt(computedStyle.top) || 0;
+                    initialLeft = parseInt(computedStyle.left) || 0;
+                    
+                    e.preventDefault();
+                });
+                
+                document.addEventListener('mousemove', function(e) {
+                    if (!isDragging) return;
+                    
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+                    
+                    const newLeft = initialLeft + deltaX;
+                    const newTop = initialTop + deltaY;
+                    
+                    box.style.left = newLeft + 'px';
+                    box.style.top = newTop + 'px';
+                    
+                    // Zaktualizuj kod CSS
+                    const codeId = box.getAttribute('data-code-id');
+                    if (codeId) {
+                        updatePositionCode(codeId, newTop, newLeft);
+                    }
+                });
+                
+                document.addEventListener('mouseup', function() {
+                    if (isDragging) {
+                        isDragging = false;
+                        box.classList.remove('dragging');
+                    }
+                });
+            });
+        }
+        
+        function updatePositionCode(codeId, top, left) {
+            const codeElement = document.getElementById(codeId);
+            if (!codeElement) return;
+            
+            const topValue = Math.round(top);
+            const leftValue = Math.round(left);
+            
+            // Znajdź i zaktualizuj wartości top i left w kodzie
+            let html = codeElement.innerHTML;
+            
+            // Zaktualizuj top - znajdź dokładny wzorzec
+            html = html.replace(/(<span class="code-attr">top<\/span>: <span class="code-string">)(<span class="code-update">)\d+px(<\/span><\/span>)/, `$1$2${topValue}px$3`);
+            
+            // Zaktualizuj left - znajdź dokładny wzorzec
+            html = html.replace(/(<span class="code-attr">left<\/span>: <span class="code-string">)(<span class="code-update">)\d+px(<\/span><\/span>)/, `$1$2${leftValue}px$3`);
+            
+            codeElement.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const formElements = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+            formElements.forEach(element => {
+                element.addEventListener('click', function() {
+                    highlightFormCode(this.id);
+                });
+            });
+            
+            // Inicjalizuj drag & drop
+            initDraggableBoxes();
+        });
+    </script>
+</body>
+</html>
+
